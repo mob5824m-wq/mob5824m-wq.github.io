@@ -161,6 +161,39 @@
     if (target && target.hidden) a.remove();
   });
 
+  /* ── Icons ─────────────────────────────────────────────────
+     Inline SVG rather than emoji: emoji render as empty boxes on
+     machines without an emoji font (common on Linux and older
+     Windows). Set `icon:` on a project to pick one of these. */
+  var ICONS = {
+    book:
+      "<path d='M4 4.5A1.5 1.5 0 0 1 5.5 3H19a1 1 0 0 1 1 1v13.5'/>" +
+      "<path d='M4 4.5v13A1.5 1.5 0 0 0 5.5 19H20'/>" +
+      "<path d='M20 17.5H5.5A1.5 1.5 0 0 0 4 19'/><path d='M9 7h7'/><path d='M9 10.5h7'/>",
+    bot:
+      "<rect x='4' y='8' width='16' height='11' rx='3'/><path d='M12 8V4.5'/>" +
+      "<circle cx='12' cy='3.5' r='1.2'/><path d='M9 13h.01'/><path d='M15 13h.01'/>" +
+      "<path d='M9.5 16.2c1.6.9 3.4.9 5 0'/><path d='M2.5 12v3'/><path d='M21.5 12v3'/>",
+    antenna:
+      "<path d='M12 21v-8'/><circle cx='12' cy='10.5' r='2.5'/>" +
+      "<path d='M7.4 15.1a6.5 6.5 0 0 1 0-9.2'/><path d='M16.6 5.9a6.5 6.5 0 0 1 0 9.2'/>" +
+      "<path d='M4.6 18a10.5 10.5 0 0 1 0-15'/><path d='M19.4 3a10.5 10.5 0 0 1 0 15'/>",
+    terminal:
+      "<rect x='3' y='4' width='18' height='16' rx='2.5'/><path d='M7 9.5l3 2.5-3 2.5'/><path d='M12.5 15h4'/>",
+    code:
+      "<path d='M8.5 8.5 4 12l4.5 3.5'/><path d='M15.5 8.5 20 12l-4.5 3.5'/><path d='M13.5 5.5l-3 13'/>",
+    spark:
+      "<path d='M12 3v18'/><path d='M3 12h18'/><path d='M5.6 5.6l12.8 12.8'/><path d='M18.4 5.6 5.6 18.4'/>"
+  };
+
+  function iconSvg(name) {
+    var body = ICONS[name];
+    if (!body) return "";
+    return "<svg class='thumb-icon' viewBox='0 0 24 24' aria-hidden='true' " +
+      "fill='none' stroke='currentColor' stroke-width='1.6' " +
+      "stroke-linecap='round' stroke-linejoin='round'>" + body + "</svg>";
+  }
+
   /* ── Projects ──────────────────────────────────────────── */
   var grid = $("#project-grid");
   var emptyEl = $("#empty");
@@ -201,7 +234,7 @@
   function placeholderCard() {
     return "" +
       "<div class='card project placeholder'>" +
-        "<div class='project-top'><div class='thumb'>✳</div></div>" +
+        "<div class='project-top'><div class='thumb'>" + iconSvg("spark") + "</div></div>" +
         "<h3>Your first project</h3>" +
         "<p>Open <code>data/content.js</code> and add an entry to the " +
         "<code>PROJECTS</code> array — a card will appear here automatically.</p>" +
@@ -228,7 +261,7 @@
       var idx = PROJECTS.indexOf(p);
       var thumb = p.image
         ? "<img src='" + esc(p.image) + "' alt='' loading='lazy'>"
-        : esc(p.emoji || "◆");
+        : (iconSvg(p.icon) || iconSvg("code"));
       var meta =
         (p.year ? "<span>" + esc(p.year) + "</span>" : "") +
         (p.status ? "<span class='badge " + statusClass(p.status) + "'>" + esc(p.status) + "</span>" : "");

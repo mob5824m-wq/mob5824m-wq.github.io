@@ -97,7 +97,7 @@ window.PROJECTS = [
     year: "2026",
     status: "In progress",
     featured: true,
-    emoji: "📚",
+    icon: "book",        // book | bot | antenna | terminal | code | spark
     highlights: [
       "Scannable EAN-13 barcodes drawn on canvas, with camera, keyboard and USB-scanner input",
       "Loan lengths vary by book type and shorten automatically for popular titles",
@@ -131,7 +131,7 @@ window.PROJECTS = [
     tags: ["Discord", "Bot", "Python", "Moderation"],
     year: "2026",
     status: "In progress",
-    emoji: "🤖",
+    icon: "bot",
     highlights: [
       "Timed punishments that restore the member's original roles automatically",
       "Dry-run mode previews which roles would be removed before anything changes",
@@ -158,7 +158,7 @@ window.PROJECTS = [
     tags: ["CLI", "Bash", "Raspberry Pi", "Linux"],
     year: "2026",
     status: "Live",
-    emoji: "📡",
+    icon: "antenna",
     highlights: [
       "A single ~2,200-line Bash script — no dependencies beyond the build tools it installs itself",
       "Builds an arm64 image from an x86_64 host using qemu and binfmt",
