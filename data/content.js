@@ -27,7 +27,7 @@ window.SITE = {
 
   /* --- Hero stats — [] hides the row ----------------------- */
   stats: [
-    { value: "2",       label: "Public projects" },
+    { value: "3",       label: "Projects" },
     { value: "Vanilla", label: "No frameworks" },
     { value: "MIT",     label: "Open source" }
   ],
@@ -35,7 +35,7 @@ window.SITE = {
   /* --- About ----------------------------------------------- */
   // TODO: this is a reasonable guess from your repos — make it yours.
   about: [
-    "I build software to solve problems in front of me. Both projects here started " +
+    "I build software to solve problems in front of me. Everything here started " +
     "as something I needed and couldn't buy off the shelf.",
     "I like plain HTML, CSS and JavaScript with no build step, shell scripts that are " +
     "verbose about what they're doing, and tools that a non-technical person can actually run."
@@ -97,21 +97,34 @@ window.PROJECTS = [
     ]
   },
   /* ---------------------------------------------------------
-     TODO: Discord bot — I couldn't find this on your GitHub
-     (only classroomlib and RaspAP-WebOne are there, and I can't
-     see private repos), so the text below is a placeholder.
-     Replace the blurb/description/highlights with the real
-     details, or tell me and I'll write them.
+     NOTE: no repo link yet — add one when it's published.
+     Server/role/channel IDs are deliberately NOT listed here;
+     they belong in the bot's config file, not on a public page.
      --------------------------------------------------------- */
   {
-    title: "Discord Bot",                    // TODO: real name
-    blurb: "A Discord bot.",                 // TODO: one line — what does it do?
-    description: "",                         // TODO: a short paragraph
-    tags: ["Discord", "Bot"],                // TODO: add the language, e.g. "Python"
+    title: "Punishment Bot",                 // TODO: rename if it has a real name
+    blurb:
+      "A moderation bot for Discord: temporarily strips a member's roles, " +
+      "then restores them automatically when the timer runs out.",
+    description:
+      "An admin picks a member, a duration and a reason. The bot removes their roles, " +
+      "applies a Punishment role, and DMs them a private explanation in the punishment " +
+      "channel. When the time is up it swaps the role for 'Punishment over' and puts the " +
+      "original roles back. Every case is written to a log channel and a local database, " +
+      "and all server, role and channel IDs live in a config file so other servers can " +
+      "run it without touching the code.",
+    tags: ["Discord", "Bot", "Moderation"],  // TODO: add the language once settled
     year: "2026",
     status: "In progress",
     emoji: "🤖",
-    highlights: [],                          // TODO: a few standout features
+    highlights: [
+      "Timed punishments that restore the member's original roles automatically",
+      "Dry-run mode previews which roles would be removed before anything changes",
+      "Protected and exempt lists so staff roles can't be stripped by accident",
+      "Case history with lookup, extend, edit-reason and manual removal commands",
+      "Startup validation checks every configured role, channel and permission",
+      "Alerts the mod log if a role can't be restored, plus periodic database backups"
+    ],
     links: []                                // TODO: { label: "Source", href: "https://..." }
   },
   {
