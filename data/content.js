@@ -32,25 +32,36 @@ window.SITE = {
     { value: "MIT",     label: "Open source" }
   ],
 
-  /* --- About ----------------------------------------------- */
-  // TODO: this is a reasonable guess from your repos — make it yours.
+  /* --- About -----------------------------------------------
+     Drawn from the patterns in your three repos. Reword freely
+     — this is the part visitors read to decide who you are.
+     --------------------------------------------------------- */
   about: [
-    "I build software to solve problems in front of me. Everything here started " +
-    "as something I needed and couldn't buy off the shelf.",
-    "I like plain HTML, CSS and JavaScript with no build step, shell scripts that are " +
-    "verbose about what they're doing, and tools that a non-technical person can actually run."
+    "I build software for people who aren't going to read the manual. A classroom " +
+    "library that seventh-graders run themselves, a Raspberry Pi image you flash and " +
+    "forget, a moderation bot an admin drives with one command.",
+
+    "That shapes how I build. Everything ships with a way in for non-technical users " +
+    "— a graphical window next to the CLI, a progress bar, defaults that already work " +
+    "— and a way to configure it without touching code.",
+
+    "I also spend most of my effort on what happens when things go wrong: checksum " +
+    "verification, dry-run previews, resumable builds, validation that refuses bad " +
+    "input up front, and encrypted credentials. Accessibility counts too — dark mode, " +
+    "larger text and a dyslexia-friendly font are built in, not bolted on."
   ],
 
   skills: [
-    "Python", "JavaScript", "Node.js", "HTML", "CSS", "Bash",
-    "Raspberry Pi", "Debian", "Linux", "Git"
+    "Python", "JavaScript", "Node.js", "Bash",
+    "HTML", "CSS", "SQLite",
+    "Linux", "Debian", "Raspberry Pi", "Git"
   ],
 
   // "Currently" list in the About sidebar — [] hides the card.
   timeline: [
-    { when: "Now",  what: "Building the Room 204 classroom library" },
-    { when: "Now",  what: "Writing a Discord moderation bot in discord.py" },
-    { when: "2026", what: "Shipped the RaspAP + WebOne image builder" }
+    { when: "Now",     what: "Building the Room 204 classroom library" },
+    { when: "Now",     what: "Writing Punishment Manager, a Discord moderation bot" },
+    { when: "Shipped", what: "RaspAP + WebOne — one script, one flashable Pi image" }
   ],
 
   /* --- Contact --------------------------------------------- */

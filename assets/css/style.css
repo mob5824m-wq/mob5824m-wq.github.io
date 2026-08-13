@@ -367,7 +367,13 @@ a { color: inherit; }
 /* ── About ─────────────────────────────────────────────────── */
 .about { display: grid; grid-template-columns: 1.5fr 1fr; gap: 2.5rem; align-items: start; }
 .about-copy p { color: var(--muted); max-width: 62ch; }
-.about-card { padding: 1.6rem; }
+/* Lead paragraph reads as the opening statement */
+.about-copy p:first-of-type {
+  font-size: clamp(1.02rem, 1.5vw, 1.14rem);
+  color: var(--text);
+  line-height: 1.6;
+}
+.about-card { padding: 1.6rem; position: sticky; top: 92px; }
 .about-card h3 { margin: 0 0 1.1rem; font-size: .78rem; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
 
 .skills { display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; padding: 0; margin: 1.7rem 0 0; }
@@ -438,6 +444,7 @@ a { color: inherit; }
 /* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .about { grid-template-columns: 1fr; }
+  .about-card { position: static; }  /* sticky only makes sense beside the copy */
   .project.featured { grid-column: span 1; }
 }
 
