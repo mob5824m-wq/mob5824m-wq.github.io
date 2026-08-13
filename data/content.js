@@ -98,12 +98,12 @@ window.PROJECTS = [
     ]
   },
   /* ---------------------------------------------------------
-     NOTE: no repo link yet — add one when it's published.
-     Server/role/channel IDs are deliberately NOT listed here;
-     they belong in the bot's config file, not on a public page.
+     NOTE: server/role/channel IDs are deliberately NOT listed
+     here — they belong in the bot's config file, not on a
+     public page.
      --------------------------------------------------------- */
   {
-    title: "Punishment Bot",                 // TODO: rename if it has a real name
+    title: "Punishment Manager",
     blurb:
       "A moderation bot for Discord: temporarily strips a member's roles, " +
       "then restores them automatically when the timer runs out.",
@@ -127,7 +127,9 @@ window.PROJECTS = [
       "Startup validation checks every configured role, channel and permission",
       "Alerts the mod log if a role can't be restored, plus periodic database backups"
     ],
-    links: []                                // TODO: { label: "Source", href: "https://..." }
+    links: [
+      { label: "Source", href: "https://github.com/mob5824m-wq/Punishment-Manager" }
+    ]
   },
   {
     title: "RaspAP + WebOne image builder",
