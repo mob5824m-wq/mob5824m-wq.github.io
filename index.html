@@ -27,6 +27,9 @@
 <meta name="twitter:image" content="https://mob5824m-wq.github.io/assets/img/og.jpg" />
 
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="assets/img/favicon.ico" sizes="32x32" />
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -107,6 +110,31 @@
 
     <div class="grid" id="project-grid"></div>
     <p class="empty" id="empty" hidden>No projects match that filter.</p>
+
+    <!-- Shown only when JavaScript is unavailable, so the page still has
+         real content for crawlers, link previews and text browsers. -->
+    <noscript>
+      <div class="grid">
+        <article class="card project noscript-card">
+          <h3>Classroom Library</h3>
+          <p>A full library system for a Grade 7&ndash;8 classroom &mdash; checkout, holds,
+             barcodes and reading logs, in vanilla JS.</p>
+          <p><a href="https://github.com/mob5824m-wq/classroomlib" rel="noopener">View source</a></p>
+        </article>
+        <article class="card project noscript-card">
+          <h3>Punishment Manager</h3>
+          <p>A moderation bot for Discord: temporarily strips a member's roles,
+             then restores them automatically when the timer runs out.</p>
+          <p><a href="https://github.com/mob5824m-wq/Punishment-Manager" rel="noopener">View source</a></p>
+        </article>
+        <article class="card project noscript-card">
+          <h3>RaspAP + WebOne image builder</h3>
+          <p>One Debian script that builds a flashable 64-bit Raspberry Pi image:
+             a Wi-Fi hotspot with a retro-web proxy baked in.</p>
+          <p><a href="https://github.com/mob5824m-wq/RaspAP-WebOne" rel="noopener">View source</a></p>
+        </article>
+      </div>
+    </noscript>
   </section>
 
   <!-- ───────────────────────── About ──────────────────────── -->

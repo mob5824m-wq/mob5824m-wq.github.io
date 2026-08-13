@@ -495,3 +495,43 @@ a { color: inherit; }
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ── No-JS fallback cards ──────────────────────────────────── */
+.noscript-card { cursor: default; }
+.noscript-card h3 { margin: 0 0 .45rem; font-size: 1.18rem; font-weight: 650; letter-spacing: -.015em; }
+.noscript-card p { color: var(--muted); font-size: .93rem; margin: 0 0 .8rem; }
+.noscript-card a { color: var(--accent); }
+
+/* ── Print ─────────────────────────────────────────────────────
+   Flatten to ink-friendly black on white and expose link targets. */
+@media print {
+  .bg-grid, .bg-glow, .site-header, .filters, .to-top,
+  .theme-toggle, .nav-toggle, .modal, .hero-actions, .cta-actions { display: none !important; }
+
+  html, body { background: #fff !important; color: #000 !important; }
+
+  .container { width: 100%; }
+  .section { padding: 1rem 0; page-break-inside: avoid; }
+  .hero { padding: 0 0 1rem; }
+
+  .card, .project {
+    border: 1px solid #bbb !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+  .grid { display: block; }
+  .project { margin-bottom: .6rem; }
+  .project.featured { grid-column: auto; }
+
+  .hero-title, .section-title, h1, h2, h3 { color: #000 !important; }
+  .grad { -webkit-text-fill-color: #000 !important; color: #000 !important; background: none !important; }
+  p, .hero-sub, .section-sub, .tag, .meta, .timeline .what { color: #222 !important; }
+
+  .thumb-icon { color: #000 !important; }
+  .about { display: block; }
+  .about-card { position: static; }
+
+  /* Show URLs so a printed copy is still useful */
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .75em; color: #555; word-break: break-all; }
+}
