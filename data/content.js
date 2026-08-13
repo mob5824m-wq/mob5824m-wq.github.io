@@ -18,12 +18,12 @@ window.SITE = {
   availability: "",            // e.g. "Open to collaboration" — "" hides the pill
 
   // Rotating words in the hero. One entry = no animation, [] = off.
-  typewriter: ["tools for classrooms.", "things for Raspberry Pi.", "software that gets used."],
+  typewriter: ["tools for classrooms.", "things for Raspberry Pi.", "bots for Discord.", "software that gets used."],
 
   // TODO: rewrite in your own voice.
   tagline:
     "I build practical software — a classroom library system my students actually use, " +
-    "and a one-command image builder for Raspberry Pi hotspots.",
+    "a one-command image builder for Raspberry Pi hotspots, and a moderation bot for Discord.",
 
   /* --- Hero stats — [] hides the row ----------------------- */
   stats: [
@@ -42,13 +42,14 @@ window.SITE = {
   ],
 
   skills: [
-    "JavaScript", "Node.js", "HTML", "CSS", "Bash",
+    "Python", "JavaScript", "Node.js", "HTML", "CSS", "Bash",
     "Raspberry Pi", "Debian", "Linux", "Git"
   ],
 
   // "Currently" list in the About sidebar — [] hides the card.
   timeline: [
     { when: "Now",  what: "Building the Room 204 classroom library" },
+    { when: "Now",  what: "Writing a Discord moderation bot in discord.py" },
     { when: "2026", what: "Raspberry Pi image builder for RaspAP + WebOne" }
   ],
 
@@ -107,13 +108,14 @@ window.PROJECTS = [
       "A moderation bot for Discord: temporarily strips a member's roles, " +
       "then restores them automatically when the timer runs out.",
     description:
-      "An admin picks a member, a duration and a reason. The bot removes their roles, " +
+      "Built with discord.py. An admin picks a member, a duration and a reason. The bot " +
+      "removes their roles, " +
       "applies a Punishment role, and DMs them a private explanation in the punishment " +
       "channel. When the time is up it swaps the role for 'Punishment over' and puts the " +
       "original roles back. Every case is written to a log channel and a local database, " +
       "and all server, role and channel IDs live in a config file so other servers can " +
       "run it without touching the code.",
-    tags: ["Discord", "Bot", "Moderation"],  // TODO: add the language once settled
+    tags: ["Discord", "Bot", "Python", "Moderation"],
     year: "2026",
     status: "In progress",
     emoji: "🤖",
