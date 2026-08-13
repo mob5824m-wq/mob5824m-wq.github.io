@@ -101,9 +101,13 @@
   var tlEl = $("#timeline");
   if (tlEl && has(SITE.timeline)) {
     tlEl.innerHTML = SITE.timeline.map(function (t) {
-      // An entry counts as shipped via `done: true` or a "Shipped" label.
-      var done = t.done === true || /^\s*shipped\b/i.test(t.when || "");
-      return "<li" + (done ? " class='shipped'" : "") + ">" +
+      // An entry counts as shipped via `done: true` or a "Shipped" label,
+      // and as queued via `next: true` or a "Next" / "Soon" label.
+      var when = t.when || "";
+      var done = t.done === true || /^\s*shipped\b/i.test(when);
+      var next = !done && (t.next === true || /^\s*(next|soon|planned)\b/i.test(when));
+      var cls  = done ? " class='shipped'" : next ? " class='next'" : "";
+      return "<li" + cls + ">" +
              "<span class='when'>" + esc(t.when) + "</span>" +
              "<span class='what'>" + esc(t.what) + "</span></li>";
     }).join("");

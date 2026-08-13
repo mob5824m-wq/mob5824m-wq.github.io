@@ -27,6 +27,7 @@
   --shadow: 0 18px 50px rgba(0, 0, 0, .5);
   --grid-line: rgba(255, 255, 255, .028);
   --ship: #4ade80;                 /* shipped / completed */
+  --next: #fb923c;                 /* queued / not started */
 }
 
 /* Light */
@@ -42,6 +43,7 @@
   --shadow: 0 18px 44px rgba(20, 22, 40, .12);
   --grid-line: rgba(10, 12, 30, .035);
   --ship: #16a34a;                 /* shipped / completed */
+  --next: #ea580c;                 /* queued / not started */
   --accent: #5462f0;
   --accent-2: #0f9d8c;
 }
@@ -419,6 +421,12 @@ a { color: inherit; }
 /* Nothing follows the last entry, so fade the green out instead. */
 .timeline li.shipped:last-child::after {
   background: linear-gradient(to bottom, var(--ship), transparent);
+}
+
+/* Queued entries: orange dot to separate "not started" from "in flight". */
+.timeline li.next::before {
+  background: var(--next);
+  box-shadow: 0 0 0 3px var(--bg), 0 0 10px color-mix(in srgb, var(--next) 55%, transparent);
 }
 
 /* ── CTA ───────────────────────────────────────────────────── */
