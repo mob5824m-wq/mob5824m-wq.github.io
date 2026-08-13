@@ -134,7 +134,7 @@ window.PROJECTS = [
       "run it without touching the code.",
     tags: ["Discord", "Bot", "Python", "Moderation"],
     year: "2026",
-    status: "In progress",
+    status: "Next",
     icon: "bot",
     highlights: [
       "Timed punishments that restore the member's original roles automatically",
