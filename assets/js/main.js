@@ -299,14 +299,18 @@
   /* ── Project modal ─────────────────────────────────────── */
   var modal = $("#modal");
   var modalBody = $("#modal-body");
+  var lastFocused = null;   // element to restore focus to on close
+  var openIndex = -1;       // which project is currently open
+
+  /* URL-safe id so a project can be linked directly */
+  function slugify(s) {
+    return String(s).toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
 
   if (grid && modal && modalBody) {
-    grid.addEventListener("click", function (e) {
-      var card = e.target.closest(".project");
-      if (!card || !card.dataset.i) return;
-      var p = PROJECTS[Number(card.dataset.i)];
-      if (!p) return;
-
+    function renderModal(p) {
       var meta =
         (p.year ? "<span>" + esc(p.year) + "</span>" : "") +
         (p.status ? "<span class='badge " + statusClass(p.status) + "'>" + esc(p.status) + "</span>" : "");
@@ -330,15 +334,86 @@
               return "<a class='btn " + (i === 0 ? "btn-primary" : "btn-ghost") + "' href='" +
                 esc(l.href) + "'" + ext + ">" + esc(l.label || "Open") + "</a>";
             }).join("") + "</div>" : "");
+    }
 
-      if (typeof modal.showModal === "function") modal.showModal();
-      else modal.setAttribute("open", "");
+    /* Prev / next controls so you can walk the list without closing */
+    function navButtons() {
+      if (PROJECTS.length < 2) return "";
+      return "<div class='modal-nav'>" +
+        "<button type='button' class='modal-step' data-step='-1' aria-label='Previous project'>" +
+          "<span aria-hidden='true'>\u2190</span> Prev</button>" +
+        "<span class='modal-count'>" + (openIndex + 1) + " / " + PROJECTS.length + "</span>" +
+        "<button type='button' class='modal-step' data-step='1' aria-label='Next project'>" +
+          "Next <span aria-hidden='true'>\u2192</span></button>" +
+        "</div>";
+    }
+
+    function openProject(idx, opts) {
+      var p = PROJECTS[idx];
+      if (!p) return;
+      opts = opts || {};
+      openIndex = idx;
+      renderModal(p);
+      modalBody.insertAdjacentHTML("beforeend", navButtons());
+
+      if (!modal.open) {
+        if (opts.restoreFocus !== false) lastFocused = document.activeElement;
+        if (typeof modal.showModal === "function") modal.showModal();
+        else modal.setAttribute("open", "");
+      }
+      // Deep link: /#project-slug
+      if (history.replaceState) {
+        history.replaceState(null, "", "#" + slugify(p.title));
+      }
+      var h = $("#modal-title");
+      if (h) { h.setAttribute("tabindex", "-1"); h.focus(); }
+    }
+
+    function step(delta) {
+      if (openIndex < 0) return;
+      openProject((openIndex + delta + PROJECTS.length) % PROJECTS.length, { restoreFocus: false });
+    }
+
+    grid.addEventListener("click", function (e) {
+      var card = e.target.closest(".project");
+      if (!card || !card.dataset.i) return;
+      openProject(Number(card.dataset.i));
+    });
+
+    modalBody.addEventListener("click", function (e) {
+      var b = e.target.closest(".modal-step");
+      if (b) step(Number(b.dataset.step));
     });
 
     $("#modal-close").addEventListener("click", function () { modal.close(); });
     modal.addEventListener("click", function (e) {
       if (e.target === modal) modal.close(); // backdrop click
     });
+
+    /* Arrow keys move between projects while the dialog is open */
+    modal.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { e.preventDefault(); step(1); }
+      else if (e.key === "ArrowLeft") { e.preventDefault(); step(-1); }
+    });
+
+    /* Restore focus and clean the URL when the dialog closes.
+       (Esc closes a <dialog> natively, so hook 'close', not the button.) */
+    modal.addEventListener("close", function () {
+      openIndex = -1;
+      if (history.replaceState) {
+        history.replaceState(null, "", location.pathname + location.search);
+      }
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+      lastFocused = null;
+    });
+
+    /* Open straight from a shared link like /#classroom-library */
+    if (location.hash.length > 1) {
+      var want = location.hash.slice(1).toLowerCase();
+      for (var pi = 0; pi < PROJECTS.length; pi++) {
+        if (slugify(PROJECTS[pi].title) === want) { openProject(pi); break; }
+      }
+    }
   }
 
   /* ── Mobile nav ────────────────────────────────────────── */
@@ -376,6 +451,30 @@
   };
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
+
+  /* ── Scrollspy: mark the section currently in view ─────── */
+  (function () {
+    var navMap = {};
+    $$(".nav-links a[href^='#']").forEach(function (a) {
+      var id = a.getAttribute("href").slice(1);
+      if (id && document.getElementById(id)) navMap[id] = a;
+    });
+    var sections = Object.keys(navMap).map(function (id) { return document.getElementById(id); });
+    if (!sections.length || !("IntersectionObserver" in window)) return;
+
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var link = navMap[en.target.id];
+        if (!link) return;
+        if (en.isIntersecting) {
+          Object.keys(navMap).forEach(function (k) { navMap[k].removeAttribute("aria-current"); });
+          link.setAttribute("aria-current", "true");
+        }
+      });
+    }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+
+    sections.forEach(function (s) { spy.observe(s); });
+  })();
 
   /* ── Reveal on scroll ──────────────────────────────────── */
   var reveals = $$(".reveal");

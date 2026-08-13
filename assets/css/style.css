@@ -535,3 +535,25 @@ a { color: inherit; }
   /* Show URLs so a printed copy is still useful */
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .75em; color: #555; word-break: break-all; }
 }
+
+/* ── Modal prev/next ───────────────────────────────────────── */
+.modal-nav {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: .75rem; margin-top: 1.6rem; padding-top: 1.1rem;
+  border-top: 1px solid var(--border);
+}
+.modal-step {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem; border-radius: 999px;
+  background: var(--surface); border: 1px solid var(--border);
+  color: var(--muted); font: inherit; font-size: .85rem; font-weight: 500;
+  cursor: pointer; transition: color .2s, border-color .2s, background .2s, transform .2s var(--ease);
+}
+.modal-step:hover { color: var(--text); border-color: var(--border-strong); background: var(--surface-2); transform: translateY(-1px); }
+.modal-count { font-family: var(--mono); font-size: .76rem; color: var(--muted); }
+
+/* ── Active nav link (scrollspy) ───────────────────────────── */
+.nav-links a[aria-current="true"] { color: var(--text); }
+.nav-links a[aria-current="true"]::after { width: 100%; }
+
+@media print { .modal-nav { display: none !important; } }
