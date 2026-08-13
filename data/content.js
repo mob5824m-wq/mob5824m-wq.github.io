@@ -58,10 +58,12 @@ window.SITE = {
   ],
 
   // "Currently" list in the About sidebar — [] hides the card.
+  // `done: true` (or a "Shipped" label) turns the dot, the label and the
+  // first half of the connector green.
   timeline: [
+    { when: "Shipped", what: "RaspAP + WebOne — one script, one flashable Pi image", done: true },
     { when: "Now",     what: "Building the classroom library system" },
-    { when: "Now",     what: "Writing Punishment Manager, a Discord moderation bot" },
-    { when: "Shipped", what: "RaspAP + WebOne — one script, one flashable Pi image" }
+    { when: "Now",     what: "Writing Punishment Manager, a Discord moderation bot" }
   ],
 
   /* --- Contact --------------------------------------------- */
@@ -161,6 +163,8 @@ window.PROJECTS = [
     year: "2026",
     status: "Live",
     icon: "antenna",
+    shot: "assets/img/shots/raspap-gui.png",
+    shotPos: "top",          // title and mode buttons sit at the very top
     highlights: [
       "A single ~2,200-line Bash script — no dependencies beyond the build tools it installs itself",
       "Builds an arm64 image from an x86_64 host using qemu and binfmt",

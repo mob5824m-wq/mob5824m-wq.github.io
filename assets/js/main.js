@@ -101,7 +101,10 @@
   var tlEl = $("#timeline");
   if (tlEl && has(SITE.timeline)) {
     tlEl.innerHTML = SITE.timeline.map(function (t) {
-      return "<li><span class='when'>" + esc(t.when) + "</span>" +
+      // A entry counts as shipped via `done: true` or a "Shipped" label.
+      var done = t.done === true || /^\s*shipped\b/i.test(t.when || "");
+      return "<li" + (done ? " class='shipped'" : "") + ">" +
+             "<span class='when'>" + esc(t.when) + "</span>" +
              "<span class='what'>" + esc(t.what) + "</span></li>";
     }).join("");
     show($("#timeline-card"), true);

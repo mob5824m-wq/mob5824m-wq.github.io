@@ -26,6 +26,7 @@
   --muted: #969cb3;
   --shadow: 0 18px 50px rgba(0, 0, 0, .5);
   --grid-line: rgba(255, 255, 255, .028);
+  --ship: #4ade80;                 /* shipped / completed */
 }
 
 /* Light */
@@ -40,6 +41,7 @@
   --muted: #5c6274;
   --shadow: 0 18px 44px rgba(20, 22, 40, .12);
   --grid-line: rgba(10, 12, 30, .035);
+  --ship: #16a34a;                 /* shipped / completed */
   --accent: #5462f0;
   --accent-2: #0f9d8c;
 }
@@ -400,6 +402,24 @@ a { color: inherit; }
 }
 .timeline .when { display: block; font-family: var(--mono); font-size: .74rem; color: var(--accent); margin-bottom: .1rem; }
 .timeline .what { font-size: .9rem; color: var(--muted); }
+
+/* Shipped entries: green dot, green label, and the connector to the next
+   item runs green for its first half before returning to the normal line. */
+.timeline li.shipped { border-left-color: transparent; }
+.timeline li.shipped::before {
+  background: var(--ship);
+  box-shadow: 0 0 0 3px var(--bg), 0 0 10px color-mix(in srgb, var(--ship) 55%, transparent);
+}
+.timeline li.shipped .when { color: var(--ship); }
+.timeline li.shipped::after {
+  content: ""; position: absolute; left: -1px; width: 1px;
+  top: calc(.5rem + 4px); bottom: 0;
+  background: linear-gradient(to bottom, var(--ship) 50%, var(--border) 50%);
+}
+/* Nothing follows the last entry, so fade the green out instead. */
+.timeline li.shipped:last-child::after {
+  background: linear-gradient(to bottom, var(--ship), transparent);
+}
 
 /* ── CTA ───────────────────────────────────────────────────── */
 .cta { text-align: center; padding: clamp(2.4rem, 6vw, 3.8rem) 1.5rem; }
