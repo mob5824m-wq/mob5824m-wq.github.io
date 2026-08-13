@@ -98,6 +98,9 @@ window.PROJECTS = [
     status: "In progress",
     featured: true,
     icon: "book",        // book | bot | antenna | terminal | code | spark
+    // Drop a screenshot in assets/img/shots/ and point `shot` at it to get a
+    // wide banner on the card plus a full image in the popup:
+    // shot: "assets/img/shots/classroom-library.png",
     highlights: [
       "Scannable EAN-13 barcodes drawn on canvas, with camera, keyboard and USB-scanner input",
       "Loan lengths vary by book type and shorten automatically for popular titles",

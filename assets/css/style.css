@@ -557,3 +557,45 @@ a { color: inherit; }
 .nav-links a[aria-current="true"]::after { width: 100%; }
 
 @media print { .modal-nav { display: none !important; } }
+
+/* ── Project screenshots ───────────────────────────────────────
+   `shot:` renders a wide banner across the top of the card and a
+   full-width image in the dialog. Top-anchored so the header of a
+   tall page screenshot stays visible in the crop. */
+.shot {
+  margin: -1.5rem -1.5rem 1.25rem;
+  border-radius: var(--radius) var(--radius) 0 0;
+  overflow: hidden;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  aspect-ratio: 16 / 9;
+}
+.shot img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: top center;
+  transition: transform .5s var(--ease), filter .4s var(--ease);
+  filter: saturate(.92);
+}
+.project:hover .shot img { transform: scale(1.035); filter: saturate(1); }
+
+/* With a banner the small icon tile is redundant */
+.project.has-shot .thumb { display: none; }
+.project.has-shot .project-top { justify-content: flex-end; margin-bottom: .75rem; }
+
+.modal-shot {
+  margin: -2rem -2rem 1.4rem;
+  border-radius: var(--radius) var(--radius) 0 0;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-2);
+  max-height: 320px;
+}
+.modal-shot img { width: 100%; height: auto; display: block; object-position: top center; }
+
+@media (max-width: 720px) {
+  .modal-shot { margin: -1.6rem -1.6rem 1.1rem; max-height: 220px; object-fit: cover; }
+}
+@media print {
+  .shot, .modal-shot { break-inside: avoid; }
+  .project.has-shot .thumb { display: grid; }
+}

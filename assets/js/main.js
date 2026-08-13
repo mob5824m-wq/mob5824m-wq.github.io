@@ -262,13 +262,21 @@
       var thumb = p.image
         ? "<img src='" + esc(p.image) + "' alt='' loading='lazy'>"
         : (iconSvg(p.icon) || iconSvg("code"));
+
+      // A wide screenshot banner across the top of the card.
+      var shot = p.shot
+        ? "<div class='shot'><img src='" + esc(p.shot) + "' alt='Screenshot of " +
+          esc(p.title) + "' loading='lazy' decoding='async'></div>"
+        : "";
       var meta =
         (p.year ? "<span>" + esc(p.year) + "</span>" : "") +
         (p.status ? "<span class='badge " + statusClass(p.status) + "'>" + esc(p.status) + "</span>" : "");
 
       return "" +
-        "<button class='card project" + (p.featured ? " featured" : "") + "' data-i='" + idx +
+        "<button class='card project" + (p.featured ? " featured" : "") +
+          (p.shot ? " has-shot" : "") + "' data-i='" + idx +
           "' style='animation-delay:" + (i * 45) + "ms' aria-haspopup='dialog'>" +
+          shot +
           "<div class='project-top'>" +
             "<div class='thumb'>" + thumb + "</div>" +
             (meta ? "<div class='meta'>" + meta + "</div>" : "") +
@@ -316,6 +324,10 @@
         (p.status ? "<span class='badge " + statusClass(p.status) + "'>" + esc(p.status) + "</span>" : "");
 
       modalBody.innerHTML = "" +
+        (p.shot
+          ? "<div class='modal-shot'><img src='" + esc(p.shot) + "' alt='Screenshot of " +
+            esc(p.title) + "' loading='lazy' decoding='async'></div>"
+          : "") +
         (meta ? "<div class='meta' style='margin-bottom:.8rem'>" + meta + "</div>" : "") +
         "<h3 id='modal-title'>" + esc(p.title) + "</h3>" +
         (has(p.description) || has(p.blurb)
