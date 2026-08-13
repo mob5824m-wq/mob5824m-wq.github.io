@@ -419,6 +419,8 @@ a { color: inherit; }
 .site-footer { border-top: 1px solid var(--border); padding: 1.9rem 0; margin-top: 2rem; }
 .footer-inner { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center; }
 .footer-inner p { margin: 0; font-size: .85rem; color: var(--muted); }
+.footer-link { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--border); transition: color .2s, border-color .2s; }
+.footer-link:hover { color: var(--text); border-bottom-color: var(--border-strong); }
 .to-top { font-size: .85rem; color: var(--muted); text-decoration: none; transition: color .2s; }
 .to-top:hover { color: var(--text); }
 
