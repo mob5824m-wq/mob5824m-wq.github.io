@@ -199,6 +199,14 @@ a { color: inherit; }
 }
 @keyframes blink { 50% { opacity: 0; } }
 
+.hero-role {
+  margin: -.4rem 0 1rem;
+  font-family: var(--mono);
+  font-size: clamp(.9rem, 1.5vw, 1.02rem);
+  color: var(--accent);
+  letter-spacing: -.01em;
+}
+
 .hero-sub { max-width: 58ch; color: var(--muted); font-size: clamp(1rem, 1.6vw, 1.12rem); margin: 0 0 2rem; }
 
 .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; }
@@ -333,6 +341,28 @@ a { color: inherit; }
 .project:hover .arrow span { transform: translateX(4px); }
 
 .empty { text-align: center; color: var(--muted); padding: 3rem 0; }
+
+/* Placeholder card shown while PROJECTS is still empty */
+.project.placeholder {
+  cursor: default;
+  border-style: dashed;
+  border-color: var(--border-strong);
+  background: transparent;
+}
+.project.placeholder:hover { transform: none; box-shadow: none; }
+.project.placeholder:hover::before { opacity: 0; }
+.project.placeholder .thumb { border-style: dashed; opacity: .7; }
+.project.placeholder h3 { opacity: .85; }
+.project.placeholder .tag { opacity: .5; }
+.project.placeholder code {
+  font-family: var(--mono);
+  font-size: .85em;
+  padding: .1em .4em;
+  border-radius: 5px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
 
 /* ── About ─────────────────────────────────────────────────── */
 .about { display: grid; grid-template-columns: 1.5fr 1fr; gap: 2.5rem; align-items: start; }
