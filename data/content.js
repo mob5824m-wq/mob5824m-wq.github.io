@@ -63,7 +63,7 @@ window.SITE = {
   timeline: [
     { when: "Shipped", what: "RaspAP + WebOne — one script, one flashable Pi image", done: true },
     { when: "Now",     what: "Building the classroom library system" },
-    { when: "Now",     what: "Writing Punishment Manager, a Discord moderation bot" }
+    { when: "Next",    what: "Writing Punishment Manager, a Discord moderation bot" }
   ],
 
   /* --- Contact --------------------------------------------- */

@@ -101,7 +101,7 @@
   var tlEl = $("#timeline");
   if (tlEl && has(SITE.timeline)) {
     tlEl.innerHTML = SITE.timeline.map(function (t) {
-      // A entry counts as shipped via `done: true` or a "Shipped" label.
+      // An entry counts as shipped via `done: true` or a "Shipped" label.
       var done = t.done === true || /^\s*shipped\b/i.test(t.when || "");
       return "<li" + (done ? " class='shipped'" : "") + ">" +
              "<span class='when'>" + esc(t.when) + "</span>" +
