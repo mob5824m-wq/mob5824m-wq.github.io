@@ -50,7 +50,7 @@ window.SITE = {
   timeline: [
     { when: "Now",  what: "Building the Room 204 classroom library" },
     { when: "Now",  what: "Writing a Discord moderation bot in discord.py" },
-    { when: "2026", what: "Raspberry Pi image builder for RaspAP + WebOne" }
+    { when: "2026", what: "Shipped the RaspAP + WebOne image builder" }
   ],
 
   /* --- Contact --------------------------------------------- */
@@ -140,17 +140,20 @@ window.PROJECTS = [
       "Downloads the official RaspAP Lite image, grows it, customises it via loop mount and " +
       "qemu, and writes a single .img you flash with Raspberry Pi Imager. The result is a " +
       "Raspberry Pi hotspot running RaspAP with the WebOne proxy already configured — useful " +
-      "for getting vintage machines onto the modern web.",
+      "for getting vintage machines onto the modern web. Runs from a text menu or a Tk window, " +
+      "and is checkpointed so an interrupted build picks up where it left off.",
     tags: ["CLI", "Bash", "Raspberry Pi", "Linux"],
     year: "2026",
-    status: "In progress",
+    status: "Live",
     emoji: "📡",
     highlights: [
+      "A single ~2,200-line Bash script — no dependencies beyond the build tools it installs itself",
       "Builds an arm64 image from an x86_64 host using qemu and binfmt",
-      "Graphical window or pure CLI — the GUI escalates to sudo for you",
+      "Graphical window or pure CLI — the launchers escalate to sudo for you",
+      "Verifies downloads against GitHub release SHA-256 checksums",
       "Checkpointed and resumable: rerun the same command after a failed build",
       "Update mode remounts an existing image and checks GitHub for newer releases",
-      "Bakes in hostname, user, SSID and an optional SSH public key"
+      "Four SSH modes (off, password, public key, both) plus configurable Wi-Fi country"
     ],
     links: [
       { label: "Source", href: "https://github.com/mob5824m-wq/RaspAP-WebOne" }
