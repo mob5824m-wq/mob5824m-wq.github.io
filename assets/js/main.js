@@ -264,9 +264,12 @@
         : (iconSvg(p.icon) || iconSvg("code"));
 
       // A wide screenshot banner across the top of the card.
+      // `shotPos` tunes the crop (CSS object-position), e.g. "top", "center",
+      // or "center 12%" to skip past a tall nav bar. Defaults to the top.
+      var shotPos = p.shotPos ? " style='object-position:" + esc(p.shotPos) + "'" : "";
       var shot = p.shot
         ? "<div class='shot'><img src='" + esc(p.shot) + "' alt='Screenshot of " +
-          esc(p.title) + "' loading='lazy' decoding='async'></div>"
+          esc(p.title) + "' loading='lazy' decoding='async'" + shotPos + "></div>"
         : "";
       var meta =
         (p.year ? "<span>" + esc(p.year) + "</span>" : "") +
@@ -326,7 +329,8 @@
       modalBody.innerHTML = "" +
         (p.shot
           ? "<div class='modal-shot'><img src='" + esc(p.shot) + "' alt='Screenshot of " +
-            esc(p.title) + "' loading='lazy' decoding='async'></div>"
+            esc(p.title) + "' loading='lazy' decoding='async'" +
+            (p.shotPos ? " style='object-position:" + esc(p.shotPos) + "'" : "") + "></div>"
           : "") +
         (meta ? "<div class='meta' style='margin-bottom:.8rem'>" + meta + "</div>" : "") +
         "<h3 id='modal-title'>" + esc(p.title) + "</h3>" +

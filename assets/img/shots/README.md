@@ -3,7 +3,7 @@
 Drop project screenshots here, then reference one from `data/content.js`:
 
 ```js
-shot: "assets/img/shots/classroom-library.png",
+shot: "assets/img/shots/classroom-library.jpg",
 ```
 
 The card crops it to 16:9 anchored at the top, so the header of a tall
