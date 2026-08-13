@@ -423,11 +423,13 @@ a { color: inherit; }
   background: linear-gradient(to bottom, var(--ship), transparent);
 }
 
-/* Queued entries: orange dot to separate "not started" from "in flight". */
+/* Queued entries: orange dot and label to separate "not started" from
+   "in flight". */
 .timeline li.next::before {
   background: var(--next);
   box-shadow: 0 0 0 3px var(--bg), 0 0 10px color-mix(in srgb, var(--next) 55%, transparent);
 }
+.timeline li.next .when { color: var(--next); }
 
 /* ── CTA ───────────────────────────────────────────────────── */
 .cta { text-align: center; padding: clamp(2.4rem, 6vw, 3.8rem) 1.5rem; }
