@@ -1,88 +1,124 @@
 /* ============================================================
-   CONTENT — this is the only file you need to edit.
-   Everything on the page is rendered from the two objects below.
+   CONTENT — the only file you need to edit.
 
-   Anything left as "" or [] is simply not rendered, so you can
-   fill this in a bit at a time without the layout breaking.
+   Project entries below were written from the READMEs of your
+   actual GitHub repos. Lines marked TODO are guesses about YOU
+   (not your code) — please correct them.
+
+   Anything left as "" or [] is not rendered, so you can trim
+   freely without breaking the layout.
    ============================================================ */
 
 window.SITE = {
   /* --- Identity ------------------------------------------- */
-  brand: "mob5824m",          // small logo text in the header
-  name: "Your Name",          // TODO: shown in the hero headline
-  role: "",                   // TODO: e.g. "Software developer" — subtitle under the name
+  brand: "mob5824",
+  name: "mob5824",
+  role: "",                    // TODO: e.g. "Teacher who codes" / "Student developer"
 
-  availability: "",           // e.g. "Open to new projects" — "" hides the pill
+  availability: "",            // e.g. "Open to collaboration" — "" hides the pill
 
-  // Rotating words in the hero. Use one entry for no animation, [] to disable.
-  typewriter: [],             // e.g. ["web apps.", "small tools."]
+  // Rotating words in the hero. One entry = no animation, [] = off.
+  typewriter: ["tools for classrooms.", "things for Raspberry Pi.", "software that gets used."],
 
-  tagline: "",                // TODO: one or two sentences under the headline
+  // TODO: rewrite in your own voice.
+  tagline:
+    "I build practical software — a classroom library system my students actually use, " +
+    "and a one-command image builder for Raspberry Pi hotspots.",
 
   /* --- Hero stats — [] hides the row ----------------------- */
   stats: [
-    // { value: "12", label: "Projects shipped" },
+    { value: "2",       label: "Public projects" },
+    { value: "Vanilla", label: "No frameworks" },
+    { value: "MIT",     label: "Open source" }
   ],
 
   /* --- About ----------------------------------------------- */
+  // TODO: this is a reasonable guess from your repos — make it yours.
   about: [
-    // TODO: one string per paragraph.
-    // "First paragraph about you.",
+    "I build software to solve problems in front of me. Both projects here started " +
+    "as something I needed and couldn't buy off the shelf.",
+    "I like plain HTML, CSS and JavaScript with no build step, shell scripts that are " +
+    "verbose about what they're doing, and tools that a non-technical person can actually run."
   ],
 
   skills: [
-    // TODO: "JavaScript", "Python", "Figma", ...
+    "JavaScript", "Node.js", "HTML", "CSS", "Bash",
+    "Raspberry Pi", "Debian", "Linux", "Git"
   ],
 
   // "Currently" list in the About sidebar — [] hides the card.
   timeline: [
-    // { when: "Now",  what: "What you're working on" },
+    { when: "Now",  what: "Building the Room 204 classroom library" },
+    { when: "2026", what: "Raspberry Pi image builder for RaspAP + WebOne" }
   ],
 
   /* --- Contact --------------------------------------------- */
   ctaHeading: "Get in touch",
-  ctaText: "",                // TODO: one line inviting people to reach out
+  ctaText: "Questions about a project, or want to use one? Happy to hear from you.",
 
   links: [
-    // TODO: add your real links. `primary: true` styles the main button.
-    // { label: "Email",  href: "mailto:you@example.com", primary: true },
-    // { label: "GitHub", href: "https://github.com/mob5824m-wq" },
+    { label: "GitHub", href: "https://github.com/mob5824m-wq", primary: true }
+    // TODO: add an email if you want to be reachable:
+    // { label: "Email", href: "mailto:you@example.com" }
   ]
 };
 
 /* ============================================================
    PROJECTS
-
-   Copy the template below for each project. Only `title` is
-   required — every other field degrades gracefully if omitted.
-
-   {
-     title:       "Project name",              // required
-     blurb:       "One line shown on the card.",
-     description: "Longer text shown in the popup.",
-     tags:        ["Web app", "Python"],       // these become the filter buttons
-     year:        "2026",
-     status:      "Live",                      // "Live" | "In progress" | "Archived"
-     featured:    false,                       // true = card spans two columns
-     emoji:       "🚀",                        // fallback when there's no image
-     image:       "assets/img/project.png",    // optional thumbnail
-     highlights:  ["Bullet in the popup"],
-     links:       [{ label: "Source", href: "https://..." }]
-   }
-
-   While this array is empty the page shows a friendly placeholder
-   card instead, so the site still looks intentional.
+   Only `title` is required; every other field is optional.
    ============================================================ */
 
 window.PROJECTS = [
-  // {
-  //   title: "My first project",
-  //   blurb: "A one-line description.",
-  //   description: "A longer description shown when the card is clicked.",
-  //   tags: ["Web app"],
-  //   year: "2026",
-  //   status: "Live",
-  //   emoji: "🚀",
-  //   links: [{ label: "Source", href: "https://github.com/mob5824m-wq" }]
-  // },
+  {
+    title: "Room 204 Classroom Library",
+    blurb:
+      "A full library system for a Grade 7–8 classroom — checkout, holds, barcodes " +
+      "and reading logs, in vanilla JS.",
+    description:
+      "A complete classroom library that students run themselves. Books are checked out, " +
+      "returned, renewed and placed on hold without a librarian. It's built in plain HTML, " +
+      "CSS and vanilla JavaScript with no framework and no build step, backed by a small " +
+      "Node server that keeps one shared library so every tablet and laptop sees the same data.",
+    tags: ["Web app", "JavaScript", "Node.js", "Education"],
+    year: "2026",
+    status: "In progress",
+    featured: true,
+    emoji: "📚",
+    highlights: [
+      "Scannable EAN-13 barcodes drawn on canvas, with camera, keyboard and USB-scanner input",
+      "Loan lengths vary by book type and shorten automatically for popular titles",
+      "Fair hold queue — the front of the line claims the next returned copy",
+      "Covers and descriptions pulled automatically from Open Library",
+      "Admin passwords hashed, student passwords encrypted at rest, 6-hour auto sign-out",
+      "Dark mode, larger text and a dyslexia-friendly font toggle"
+    ],
+    links: [
+      { label: "Source", href: "https://github.com/mob5824m-wq/classroomlib" }
+    ]
+  },
+  {
+    title: "RaspAP + WebOne image builder",
+    blurb:
+      "One Debian script that builds a flashable 64-bit Raspberry Pi image: " +
+      "a Wi-Fi hotspot with a retro-web proxy baked in.",
+    description:
+      "Downloads the official RaspAP Lite image, grows it, customises it via loop mount and " +
+      "qemu, and writes a single .img you flash with Raspberry Pi Imager. The result is a " +
+      "Raspberry Pi hotspot running RaspAP with the WebOne proxy already configured — useful " +
+      "for getting vintage machines onto the modern web.",
+    tags: ["CLI", "Bash", "Raspberry Pi", "Linux"],
+    year: "2026",
+    status: "In progress",
+    emoji: "📡",
+    highlights: [
+      "Builds an arm64 image from an x86_64 host using qemu and binfmt",
+      "Graphical window or pure CLI — the GUI escalates to sudo for you",
+      "Checkpointed and resumable: rerun the same command after a failed build",
+      "Update mode remounts an existing image and checks GitHub for newer releases",
+      "Bakes in hostname, user, SSID and an optional SSH public key"
+    ],
+    links: [
+      { label: "Source", href: "https://github.com/mob5824m-wq/RaspAP-WebOne" }
+    ]
+  }
 ];
