@@ -296,6 +296,19 @@
 
   render();
 
+  /* If a screenshot path is wrong or the file is missing, drop the banner
+     and fall back to the icon rather than showing a broken image. */
+  if (grid) {
+    grid.addEventListener("error", function (e) {
+      var img = e.target;
+      if (!img || img.tagName !== "IMG") return;
+      var card = img.closest(".project");
+      var wrap = img.closest(".shot");
+      if (wrap) wrap.remove();
+      if (card) card.classList.remove("has-shot");
+    }, true); // capture: image errors don't bubble
+  }
+
   /* Cursor spotlight */
   if (grid) {
     grid.addEventListener("pointermove", function (e) {
