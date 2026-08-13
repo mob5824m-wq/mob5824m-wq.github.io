@@ -10,7 +10,7 @@ index.html              page structure (rarely needs editing)
 data/content.js         ← YOU EDIT THIS
 assets/css/style.css    design tokens at the top, then components
 assets/js/main.js       rendering + interactions
-assets/img/             favicon.svg, og.png (replace with your own)
+assets/img/             favicon.svg, og.jpg (replace with your own)
 .nojekyll               stops GitHub Pages running Jekyll
 ```
 
@@ -68,9 +68,12 @@ Dark and light palettes are defined separately just below.
 ## Local preview
 
 ```bash
-python3 -m http.server 8000
+python3 serve.py 8000
 # http://localhost:8000
 ```
+
+`serve.py` disables caching so edits show up on a normal refresh.
+Plain `python3 -m http.server` will serve stale CSS/JS while you work.
 
 ## Deploying
 
@@ -82,5 +85,5 @@ Served from the repo root, so pushing the default branch is enough.
 - [ ] Fill in `SITE.name`, `role`, `tagline` in `data/content.js`
 - [ ] Add your real links (email, GitHub, …)
 - [ ] Add at least one project
-- [ ] Replace `assets/img/og.png` (1200×630 social preview)
+- [ ] Replace `assets/img/og.jpg` (1200×630 social preview)
 - [ ] Update the `<title>` and `<meta name="description">` in `index.html`
