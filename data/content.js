@@ -59,7 +59,7 @@ window.SITE = {
 
   // "Currently" list in the About sidebar — [] hides the card.
   timeline: [
-    { when: "Now",     what: "Building the Room 204 classroom library" },
+    { when: "Now",     what: "Building the classroom library system" },
     { when: "Now",     what: "Writing Punishment Manager, a Discord moderation bot" },
     { when: "Shipped", what: "RaspAP + WebOne — one script, one flashable Pi image" }
   ],
@@ -84,7 +84,7 @@ window.SITE = {
 
 window.PROJECTS = [
   {
-    title: "Room 204 Classroom Library",
+    title: "Classroom Library",
     blurb:
       "A full library system for a Grade 7–8 classroom — checkout, holds, barcodes " +
       "and reading logs, in vanilla JS.",

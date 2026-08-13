@@ -324,6 +324,18 @@
     });
   }
 
+  /* ── Back to top ───────────────────────────────────────────
+     #top sits on the sticky header, which is always in view, so
+     the browser treats the anchor as already satisfied and does
+     nothing. Scroll explicitly instead. */
+  $$('a[href="#top"]').forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: reduced ? "auto" : "smooth" });
+      if (history.replaceState) history.replaceState(null, "", location.pathname + location.search);
+    });
+  });
+
   /* ── Header border on scroll ───────────────────────────── */
   var header = $(".site-header");
   var onScroll = function () {
