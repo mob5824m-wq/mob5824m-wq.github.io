@@ -113,11 +113,44 @@
   /* ── Contact ───────────────────────────────────────────── */
   var ctaEl = $("#cta-links");
   if (ctaEl && has(SITE.links)) {
-    ctaEl.innerHTML = SITE.links.filter(function (l) { return l && l.href; }).map(function (l) {
+    // A link is either a normal href, or { copy: "..." } which copies to
+    // the clipboard — for handles like Discord that have no public URL.
+    ctaEl.innerHTML = SITE.links.filter(function (l) {
+      return l && (l.href || l.copy);
+    }).map(function (l) {
+      var cls = "btn " + (l.primary ? "btn-primary" : "btn-ghost");
+      if (l.copy) {
+        return "<button type='button' class='" + cls + " copy-btn' data-copy='" +
+          esc(l.copy) + "' title='Copy " + esc(l.copy) + "'>" +
+          esc(l.label || l.copy) + "</button>";
+      }
       var ext = /^https?:/i.test(l.href) ? " target='_blank' rel='noopener'" : "";
-      return "<a class='btn " + (l.primary ? "btn-primary" : "btn-ghost") + "' href='" +
-        esc(l.href) + "'" + ext + ">" + esc(l.label || l.href) + "</a>";
+      return "<a class='" + cls + "' href='" + esc(l.href) + "'" + ext + ">" +
+        esc(l.label || l.href) + "</a>";
     }).join("");
+
+    // Copy-to-clipboard with a "Copied!" confirmation
+    ctaEl.addEventListener("click", function (e) {
+      var btn = e.target.closest(".copy-btn");
+      if (!btn) return;
+      var value = btn.dataset.copy;
+      var original = btn.textContent;
+      var done = function () {
+        btn.textContent = "Copied \u2713";
+        btn.classList.add("copied");
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove("copied");
+        }, 1600);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(value).then(done, function () {
+          btn.textContent = value; // clipboard blocked — show it to copy manually
+        });
+      } else {
+        btn.textContent = value;
+      }
+    });
   }
   var contactUsed = has(SITE.links) || has(SITE.ctaText);
   show($("#contact"), contactUsed);

@@ -401,6 +401,14 @@ a { color: inherit; }
 .cta p { margin: 0 auto 1.9rem; color: var(--muted); max-width: 46ch; }
 .cta-actions { display: flex; flex-wrap: wrap; gap: .7rem; justify-content: center; }
 
+/* Copy-to-clipboard button (Discord handle) */
+.copy-btn { font: inherit; }
+.copy-btn.copied {
+  color: var(--accent-2);
+  border-color: color-mix(in srgb, var(--accent-2) 55%, transparent);
+  background: color-mix(in srgb, var(--accent-2) 12%, transparent);
+}
+
 /* ── Footer ────────────────────────────────────────────────── */
 .site-footer { border-top: 1px solid var(--border); padding: 1.9rem 0; margin-top: 2rem; }
 .footer-inner { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: center; }

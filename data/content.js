@@ -68,10 +68,12 @@ window.SITE = {
   ctaHeading: "Get in touch",
   ctaText: "Questions about a project, or want to use one? Happy to hear from you.",
 
+  // `href` makes a normal link; `copy` makes a copy-to-clipboard button
+  // (for handles like Discord that have no public profile URL).
   links: [
-    { label: "GitHub", href: "https://github.com/mob5824m-wq", primary: true }
-    // TODO: add an email if you want to be reachable:
-    // { label: "Email", href: "mailto:you@example.com" }
+    { label: "Email",   href: "mailto:mob5824@duck.com", primary: true },
+    { label: "GitHub",  href: "https://github.com/mob5824m-wq" },
+    { label: "Discord", copy: "mob5824m" }
   ]
 };
 
