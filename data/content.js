@@ -96,6 +96,24 @@ window.PROJECTS = [
       { label: "Source", href: "https://github.com/mob5824m-wq/classroomlib" }
     ]
   },
+  /* ---------------------------------------------------------
+     TODO: Discord bot — I couldn't find this on your GitHub
+     (only classroomlib and RaspAP-WebOne are there, and I can't
+     see private repos), so the text below is a placeholder.
+     Replace the blurb/description/highlights with the real
+     details, or tell me and I'll write them.
+     --------------------------------------------------------- */
+  {
+    title: "Discord Bot",                    // TODO: real name
+    blurb: "A Discord bot.",                 // TODO: one line — what does it do?
+    description: "",                         // TODO: a short paragraph
+    tags: ["Discord", "Bot"],                // TODO: add the language, e.g. "Python"
+    year: "2026",
+    status: "In progress",
+    emoji: "🤖",
+    highlights: [],                          // TODO: a few standout features
+    links: []                                // TODO: { label: "Source", href: "https://..." }
+  },
   {
     title: "RaspAP + WebOne image builder",
     blurb:
