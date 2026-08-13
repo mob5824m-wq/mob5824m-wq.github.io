@@ -1,1 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>mob5824m — Projects</title>
+<meta name="description" content="A portfolio of things I've designed, built and shipped." />
+<meta name="color-scheme" content="dark light" />
 
+<!-- Social preview -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="mob5824m — Projects" />
+<meta property="og:description" content="A portfolio of things I've designed, built and shipped." />
+<meta property="og:image" content="assets/img/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="bg-grid" aria-hidden="true"></div>
+<div class="bg-glow" aria-hidden="true"></div>
+
+<header class="site-header" id="top">
+  <nav class="nav container" aria-label="Primary">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name" data-site="brand">mob5824m</span>
+    </a>
+
+    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <div class="nav-links" id="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-toggle" type="button" aria-label="Switch theme" title="Switch theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ───────────────────────── Hero ───────────────────────── -->
+  <section class="hero container">
+    <p class="eyebrow reveal"><span class="dot"></span> <span data-site="availability">Open to new projects</span></p>
+    <h1 class="hero-title reveal">
+      Hi, I'm <span class="grad" data-site="name">mob5824m</span>.<br />
+      I build <span class="typer" id="typer" aria-live="polite"></span><span class="caret" aria-hidden="true"></span>
+    </h1>
+    <p class="hero-sub reveal" data-site="tagline">
+      A collection of things I've designed, built and shipped — side projects, experiments,
+      and tools that solve problems I actually had.
+    </p>
+    <div class="hero-actions reveal">
+      <a class="btn btn-primary" href="#projects">View projects <span aria-hidden="true">→</span></a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+
+    <ul class="stats reveal" id="stats" aria-label="Highlights"></ul>
+  </section>
+
+  <!-- ─────────────────────── Projects ─────────────────────── -->
+  <section class="section container" id="projects">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Projects</h2>
+        <p class="section-sub">Selected work. Click any card for details and links.</p>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filter projects by tag"></div>
+    </div>
+
+    <div class="grid" id="project-grid"></div>
+    <p class="empty" id="empty" hidden>No projects match that filter.</p>
+  </section>
+
+  <!-- ───────────────────────── About ──────────────────────── -->
+  <section class="section container" id="about">
+    <div class="about">
+      <div class="about-copy">
+        <h2 class="section-title">About</h2>
+        <p data-site="bio1">
+          I'm a builder who likes small, sharp tools and interfaces that get out of the way.
+          Most of what's here started as a weekend itch and grew into something I use every day.
+        </p>
+        <p data-site="bio2">
+          I care about performance, clean typography and code that the next person can read.
+          When I'm not shipping, I'm usually reading changelogs or breaking something on purpose.
+        </p>
+        <ul class="skills" id="skills" aria-label="Tools and technologies"></ul>
+      </div>
+      <aside class="card about-card">
+        <h3>Currently</h3>
+        <ul class="timeline" id="timeline"></ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ──────────────────────── Contact ─────────────────────── -->
+  <section class="section container" id="contact">
+    <div class="cta card">
+      <h2>Let's build something</h2>
+      <p data-site="ctaText">Have an idea, a role, or just want to say hello? My inbox is open.</p>
+      <div class="cta-actions" id="cta-links"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p>© <span id="year"></span> <span data-site="brand">mob5824m</span>. Built with plain HTML, CSS &amp; JS.</p>
+    <a href="#top" class="to-top">Back to top ↑</a>
+  </div>
+</footer>
+
+<!-- Project detail dialog -->
+<dialog class="modal" id="modal" aria-labelledby="modal-title">
+  <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+  <div class="modal-body" id="modal-body"></div>
+</dialog>
+
+<script src="data/projects.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
