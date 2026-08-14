@@ -88,27 +88,33 @@ window.PROJECTS = [
   {
     title: "Classroom Library",
     blurb:
-      "A full library system for a Grade 7–8 classroom — checkout, holds, barcodes " +
-      "and reading logs, in vanilla JS.",
+      "A self-hosted library system for a Grade 7–8 classroom — checkout, holds, " +
+      "barcode scanning and reading logs, in vanilla JS.",
     description:
       "A complete classroom library that students run themselves. Books are checked out, " +
-      "returned, renewed and placed on hold without a librarian. It's built in plain HTML, " +
-      "CSS and vanilla JavaScript with no framework and no build step, backed by a small " +
-      "Node server that keeps one shared library so every tablet and laptop sees the same data.",
-    tags: ["Web app", "JavaScript", "Node.js", "Education"],
+      "returned, renewed and placed on hold without a librarian, and a no-login kiosk handles " +
+      "checkout at the classroom door. It's built in plain HTML, CSS and vanilla JavaScript " +
+      "with no framework and no build step, backed by a small Node server that keeps one " +
+      "shared library so every tablet and laptop sees the same data. It installs as an " +
+      "offline-capable app, and ships with scripts to self-host it from a laptop at home " +
+      "over HTTPS so it works from school.",
+    tags: ["Web app", "JavaScript", "Node.js", "Education", "Self-hosted"],
     year: "2026",
-    status: "In progress",
+    status: "Live",
     featured: true,
     icon: "book",        // book | bot | antenna | terminal | code | spark
     shot: "assets/img/shots/classroom-library.jpg",
     shotPos: "center 12%",   // crop past the nav bar to the welcome panel
     highlights: [
       "Scannable EAN-13 barcodes drawn on canvas, with camera, keyboard and USB-scanner input",
+      "Walk-up kiosk mode that checks books out to a student without anyone signing in",
       "Loan lengths vary by book type and shorten automatically for popular titles",
       "Fair hold queue — the front of the line claims the next returned copy",
-      "Covers and descriptions pulled automatically from Open Library",
+      "Covers, descriptions and star ratings, with cover art pulled from Open Library",
+      "Reading logs with streaks, book clubs and teacher-assigned reading groups",
       "Admin passwords hashed, student passwords encrypted at rest, 6-hour auto sign-out",
-      "Dark mode, larger text and a dyslexia-friendly font toggle"
+      "One-command self-hosting: HTTPS via Caddy, dynamic DNS and nightly backups",
+      "Installable and offline-capable, with dark mode, larger text and a dyslexia-friendly font"
     ],
     links: [
       { label: "Source", href: "https://github.com/mob5824m-wq/classroomlib" }
