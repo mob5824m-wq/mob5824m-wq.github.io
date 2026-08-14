@@ -61,8 +61,9 @@ window.SITE = {
   // `done: true` (or a "Shipped" label) turns the dot, the label and the
   // first half of the connector green.
   timeline: [
+    { when: "Shipped", what: "Classroom library — live, self-hosted, running on real shelves", done: true },
     { when: "Shipped", what: "RaspAP + WebOne — one script, one flashable Pi image", done: true },
-    { when: "Now",     what: "Building the classroom library system" },
+    { when: "Now",     what: "Polishing this site and the library's kiosk" },
     { when: "Next",    what: "Writing Punishment Manager, a Discord moderation bot" }
   ],
 
