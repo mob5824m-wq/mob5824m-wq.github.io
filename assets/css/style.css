@@ -329,8 +329,11 @@ a { color: inherit; }
   letter-spacing: .04em; text-transform: uppercase; font-weight: 600;
   border: 1px solid var(--border); background: var(--surface-2); font-family: var(--font);
 }
+/* Badge colours mirror the timeline dots: in-flight work takes the accent,
+   queued work goes orange. */
 .badge.live     { color: var(--accent-2); border-color: color-mix(in srgb, var(--accent-2) 45%, transparent); }
-.badge.progress { color: #f0b45e; border-color: rgba(240, 180, 94, .42); }
+.badge.progress { color: var(--accent);   border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.badge.next     { color: var(--next);     border-color: color-mix(in srgb, var(--next) 45%, transparent); }
 .badge.archived { color: var(--muted); }
 
 .project h3 { margin: 0 0 .45rem; font-size: 1.18rem; letter-spacing: -.015em; font-weight: 650; }

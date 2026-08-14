@@ -211,6 +211,7 @@
     var k = String(s || "").toLowerCase();
     if (k.indexOf("live") > -1) return "live";
     if (k.indexOf("progress") > -1) return "progress";
+    if (/\b(next|soon|planned)\b/.test(k)) return "next";
     return "archived";
   }
 
