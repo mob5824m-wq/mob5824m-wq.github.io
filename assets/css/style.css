@@ -418,15 +418,18 @@ a { color: inherit; }
 .timeline li.shipped .when { color: var(--ship); }
 .timeline li.shipped::after {
   content: ""; position: absolute; left: -1px; width: 1px;
-  top: calc(.5rem + 4px); bottom: 0;
+  /* Runs dot-centre to dot-centre: the next dot sits .5rem + 4px into the
+     following item, so this has to overshoot its own box to reach it. */
+  top: calc(.5rem + 4px); bottom: calc(-.5rem - 4px);
   background: linear-gradient(to bottom, var(--ship) 50%, var(--border) 50%);
 }
 /* Between two finished items the whole segment is green. */
 .timeline li.shipped:has(+ li.shipped)::after {
   background: var(--ship);
 }
-/* Nothing follows the last entry, so fade the green out instead. */
+/* Nothing follows the last entry, so stop at its own edge and fade out. */
 .timeline li.shipped:last-child::after {
+  bottom: 0;
   background: linear-gradient(to bottom, var(--ship), transparent);
 }
 
