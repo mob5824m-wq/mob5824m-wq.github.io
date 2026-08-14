@@ -113,7 +113,8 @@ window.PROJECTS = [
       "Fair hold queue — the front of the line claims the next returned copy",
       "Covers, descriptions and star ratings, with cover art pulled from Open Library",
       "Reading logs with streaks, book clubs and teacher-assigned reading groups",
-      "Admin passwords hashed, student passwords encrypted at rest, 6-hour auto sign-out",
+      "Server-side security: hashed admin passwords, encrypted student credentials, and " +
+        "students who can't wipe the catalog or promote themselves",
       "One-command self-hosting: HTTPS via Caddy, dynamic DNS and nightly backups",
       "Installable and offline-capable, with dark mode, larger text and a dyslexia-friendly font"
     ],
