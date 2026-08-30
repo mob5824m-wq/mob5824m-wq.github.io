@@ -14,7 +14,7 @@ NA_PRODUCTS_DIR = ROOT / "NA" / "products"
 na_PRODUCTS_DIR = ROOT / "na" / "products"
 NA_DIRECT_DIR = ROOT / "NA"
 na_DIRECT_DIR = ROOT / "na"
-ASSET_VERSION = "20260830c"
+ASSET_VERSION = "20260830d"
 
 
 def slugify(value: str) -> str:
@@ -164,7 +164,7 @@ def product_page_html(product_name: str, product_id: str, styles_href: str, stor
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="{styles_href}" />
+    <link rel="stylesheet" href="{styles_href}?v={ASSET_VERSION}" />
   </head>
   <body data-page="product" data-product-id="{product_id}">
     <div class="site-shell">
