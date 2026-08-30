@@ -1136,6 +1136,284 @@ a {
   border: 0;
 }
 
+body[data-page="catalog"] .topbar {
+  padding: 16px 20px;
+  border-color: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 20px 40px rgba(52, 42, 33, 0.08);
+}
+
+.brand-mark {
+  position: relative;
+  isolation: isolate;
+  width: 50px;
+  height: 50px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #141311 0%, #4a3d31 55%, #ae7c58 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 18px 28px rgba(47, 36, 28, 0.22);
+}
+
+.brand-mark::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), transparent 55%);
+  z-index: 0;
+}
+
+.brand-mark-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.brand-copy strong {
+  font-size: 1.02rem;
+  letter-spacing: -0.03em;
+}
+
+body[data-page="catalog"] .brand-copy small {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.68rem;
+}
+
+.hero-premium {
+  position: relative;
+  grid-template-columns: 1.08fr 0.92fr;
+  padding: 34px;
+  border-radius: 40px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.92), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(199, 155, 120, 0.18), transparent 30%),
+    linear-gradient(135deg, rgba(255,255,255,0.78), rgba(255,255,255,0.44));
+}
+
+.hero-premium::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(182, 127, 92, 0.08), transparent 42%);
+  pointer-events: none;
+}
+
+.hero-kicker-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.hero-source-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(29, 27, 24, 0.06);
+  border: 1px solid rgba(29, 27, 24, 0.08);
+  color: var(--ink);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.hero-logo-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0 0;
+  padding: 14px 16px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  box-shadow: 0 16px 30px rgba(45, 35, 26, 0.08);
+}
+
+.hero-logo-badge {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #141311 0%, #4a3d31 60%, #ae7c58 100%);
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  box-shadow: 0 14px 24px rgba(47, 36, 28, 0.2);
+}
+
+.hero-logo-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.hero-logo-lockup small {
+  color: var(--muted);
+}
+
+.hero-premium h1 {
+  max-width: 11ch;
+  margin-top: 22px;
+  font-size: clamp(3rem, 7vw, 5.8rem);
+}
+
+.hero-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.hero-highlight {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(29, 27, 24, 0.08);
+  color: var(--ink);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.hero-scene {
+  min-height: 520px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.85), transparent 24%),
+    linear-gradient(180deg, #d6b49b 0%, #b67f5c 100%);
+}
+
+.hero-glow {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(10px);
+  opacity: 0.7;
+}
+
+.hero-glow-one {
+  top: 36px;
+  right: 42px;
+  width: 160px;
+  height: 160px;
+  background: rgba(255, 255, 255, 0.36);
+}
+
+.hero-glow-two {
+  left: 48px;
+  bottom: 66px;
+  width: 180px;
+  height: 180px;
+  background: rgba(97, 62, 42, 0.22);
+}
+
+.scene-card {
+  position: absolute;
+  z-index: 1;
+  border-radius: 28px;
+  padding: 22px;
+  color: #fff;
+  box-shadow: 0 18px 40px rgba(55, 34, 22, 0.2);
+}
+
+.scene-card p,
+.scene-card strong,
+.scene-card small,
+.scene-card span {
+  display: block;
+  margin: 0;
+}
+
+.scene-card-primary {
+  inset: 24px 88px auto 24px;
+  min-height: 200px;
+  background: linear-gradient(145deg, rgba(27, 24, 21, 0.92), rgba(62, 50, 39, 0.72));
+}
+
+.scene-card-primary p,
+.scene-card-floating small,
+.scene-card-bottom p {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.scene-card-primary strong {
+  margin-top: 14px;
+  font-size: 1.55rem;
+  line-height: 1.1;
+}
+
+.scene-card-floating {
+  inset: 166px 24px auto 118px;
+  background: linear-gradient(145deg, rgba(255,255,255,0.28), rgba(255,255,255,0.12));
+  backdrop-filter: blur(12px);
+}
+
+.scene-eyebrow {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.scene-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.scene-stat-grid strong {
+  font-size: 1rem;
+}
+
+.scene-stat-grid small {
+  margin-top: 4px;
+}
+
+.scene-card-bottom {
+  inset: auto 28px 28px 40px;
+  max-width: 320px;
+  background: linear-gradient(145deg, rgba(110, 62, 39, 0.92), rgba(70, 38, 27, 0.82));
+}
+
+.scene-chip {
+  display: inline-flex !important;
+  width: fit-content;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.scene-card-bottom p {
+  margin-top: 14px;
+  line-height: 1.6;
+}
+
+.featured-strip-premium article {
+  min-height: 128px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.74));
+}
+
+.featured-strip-premium strong {
+  font-size: 1.04rem;
+  line-height: 1.45;
+}
+
+body[data-page="catalog"] .story-main {
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(247,243,238,0.88));
+}
+
 @media (max-width: 1080px) {
   .hero,
   .section-heading,
@@ -1159,8 +1437,20 @@ a {
     max-width: 100%;
   }
 
+  .hero-premium {
+    padding: 26px;
+  }
+
   .hero-visual {
-    min-height: 360px;
+    min-height: 420px;
+  }
+
+  .scene-card-primary {
+    right: 28px;
+  }
+
+  .scene-card-floating {
+    left: 68px;
   }
 }
 

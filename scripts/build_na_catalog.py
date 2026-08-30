@@ -14,7 +14,7 @@ NA_PRODUCTS_DIR = ROOT / "NA" / "products"
 na_PRODUCTS_DIR = ROOT / "na" / "products"
 NA_DIRECT_DIR = ROOT / "NA"
 na_DIRECT_DIR = ROOT / "na"
-ASSET_VERSION = "20260830d"
+ASSET_VERSION = "20260830e"
 
 
 def slugify(value: str) -> str:

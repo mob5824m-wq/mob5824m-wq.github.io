@@ -6,7 +6,7 @@
     <title>North Active | Shop</title>
     <meta
       name="description"
-      content="North Active storefront at /NA with catalog browsing, product details, cart behavior, source links, and checkout redirection."
+      content="North Active storefront with a polished landing page, hosted Athleta catalog, product pages, and external checkout handoff."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,16 +14,16 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../NA/styles.css?v=20260830d" />
+    <link rel="stylesheet" href="../NA/styles.css?v=20260830e" />
   </head>
   <body data-page="catalog">
     <div class="site-shell">
       <header class="topbar">
         <a class="brand" href="./" aria-label="North Active home">
-          <span class="brand-mark">NA</span>
+          <span class="brand-mark"><span class="brand-mark-inner">NA</span></span>
           <span class="brand-copy">
             <strong>North Active</strong>
-            <small>/na storefront</small>
+            <small>curated active storefront</small>
           </span>
         </a>
 
@@ -41,45 +41,96 @@
       </header>
 
       <main id="home">
-        <section class="hero">
+        <section class="hero hero-premium">
           <div class="hero-copy">
-            <p class="eyebrow">North Active at /NA</p>
-            <h1>A full storefront path with product pages, cart flow, and source links.</h1>
+            <div class="hero-kicker-row">
+              <p class="eyebrow">North Active /na</p>
+              <span class="hero-source-pill">Hosted catalog. Premium browsing. Athleta checkout.</span>
+            </div>
+
+            <div class="hero-logo-lockup" aria-hidden="true">
+              <span class="hero-logo-badge">NA</span>
+              <div>
+                <p class="hero-logo-title">North Active</p>
+                <small>Movement essentials in a cleaner storefront</small>
+              </div>
+            </div>
+
+            <h1>A sharper landing page for your activewear storefront.</h1>
             <p class="hero-text">
-              Your shop now lives at <span class="inline-code">/na/</span>. It uses your hosted Athleta catalog JSON,
-              includes product detail pages, persistent cart behavior, source references on the page, and a checkout handoff
-              that redirects shoppers to Athleta.
+              North Active turns your hosted Athleta catalog into a more premium shopping experience with
+              a stronger brand feel, cleaner entry point, product pages for every item, and a simple handoff
+              to Athleta when shoppers are ready to check out.
             </p>
+
             <div class="hero-actions">
               <a class="button button-dark" href="#catalog">Shop the catalog</a>
               <a class="button button-light" href="./cart.html">Open cart</a>
             </div>
-            <ul class="hero-stats" aria-label="Store highlights">
+
+            <div class="hero-highlights" aria-label="Store highlights">
+              <span class="hero-highlight">Hosted catalog JSON</span>
+              <span class="hero-highlight">Direct product pages</span>
+              <span class="hero-highlight">Athleta checkout handoff</span>
+            </div>
+
+            <ul class="hero-stats" aria-label="Store statistics">
               <li><strong id="heroProductCount">--</strong><span>catalog items</span></li>
-              <li><strong>3</strong><span>shop, product, cart pages</span></li>
+              <li><strong>1</strong><span>premium storefront</span></li>
               <li><strong id="heroSourceName">Athleta</strong><span>checkout partner</span></li>
             </ul>
           </div>
 
-          <div class="hero-visual" aria-hidden="true">
-            <div class="visual-card visual-card-one"><span>Browse</span></div>
-            <div class="visual-card visual-card-two"><span>Product details</span></div>
-            <div class="visual-card visual-card-three"><span>Checkout redirect</span></div>
+          <div class="hero-visual hero-scene" aria-hidden="true">
+            <div class="hero-glow hero-glow-one"></div>
+            <div class="hero-glow hero-glow-two"></div>
+
+            <article class="scene-card scene-card-primary">
+              <p>Shop /na</p>
+              <strong>Editorial storefront styling with faster product entry points</strong>
+            </article>
+
+            <article class="scene-card scene-card-floating">
+              <span class="scene-eyebrow">Featured flow</span>
+              <div class="scene-stat-grid">
+                <div>
+                  <strong>Browse</strong>
+                  <small>filter by category</small>
+                </div>
+                <div>
+                  <strong>Select</strong>
+                  <small>open a product page</small>
+                </div>
+                <div>
+                  <strong>Review</strong>
+                  <small>colour-specific images</small>
+                </div>
+                <div>
+                  <strong>Checkout</strong>
+                  <small>redirect to Athleta</small>
+                </div>
+              </div>
+            </article>
+
+            <article class="scene-card scene-card-bottom">
+              <span class="scene-chip">Brand refresh</span>
+              <p>Soft neutrals, elevated cards, and a stronger North Active logo treatment.</p>
+            </article>
           </div>
         </section>
 
-        <section class="featured-strip" id="featured">
+        <section class="featured-strip featured-strip-premium" id="featured">
           <article>
-            <p>Path update</p>
-            <strong>The storefront is now structured under /NA/</strong>
+            <p>Better first impression</p>
+            <strong>A more branded homepage with a cleaner visual hierarchy</strong>
           </article>
           <article>
-            <p>Source hosting</p>
-            <strong>Every product can show source metadata and source links</strong>
+            <p>Product-focused flow</p>
+            <strong>Filters, detail pages, and image-led browsing stay front and center</strong>
           </article>
           <article>
-            <p>Checkout flow</p>
-            <strong>Cart checkout can redirect shoppers to Athleta</strong>
+            <p>Source-aware shopping</p>
+            <strong>Your site hosts the experience while Athleta handles the final checkout</strong>
           </article>
         </section>
 
@@ -127,28 +178,29 @@
         <section class="story-section" id="story">
           <div class="story-card story-main">
             <p class="eyebrow">Store behavior</p>
-            <h3>Products live on your page, while checkout hands off to the source site.</h3>
+            <h3>North Active owns the presentation. Athleta handles the last-mile checkout.</h3>
             <p>
-              This setup lets you present the catalog in your own design language while still making the original source visible.
-              Product pages can link back to the source item, and the cart can send shoppers to Athleta for checkout.
+              The landing page now feels more like a real storefront instead of a plain catalog wrapper.
+              Shoppers browse on your site, open dedicated product pages, explore colour-specific images,
+              and then hand off to Athleta when they are ready to buy.
             </p>
           </div>
           <div class="story-card">
             <h4>What shoppers can do</h4>
             <ul>
-              <li>Browse a shopping-style catalog</li>
-              <li>Open product detail pages</li>
-              <li>Add items to a persistent cart</li>
-              <li>Follow source links and checkout externally</li>
+              <li>Browse a premium storefront landing page</li>
+              <li>Filter the hosted catalog quickly</li>
+              <li>Open direct product pages for every item</li>
+              <li>Continue to Athleta for checkout</li>
             </ul>
           </div>
           <div class="story-card">
-            <h4>What you can customize</h4>
+            <h4>What powers it</h4>
             <ul>
-              <li>Hosted catalog file in <span class="inline-code">athleta-combined-catalog.json</span></li>
-              <li>Checkout target such as Athleta Canada</li>
-              <li>Product detail copy, galleries, and related items</li>
-              <li>Category styling and page structure</li>
+              <li>Hosted catalog file from your branch</li>
+              <li>Shared storefront styling and logo system</li>
+              <li>Static product pages under <span class="inline-code">/na/&lt;slug&gt;/</span></li>
+              <li>Optional backend support for future feeds</li>
             </ul>
           </div>
         </section>
@@ -157,7 +209,7 @@
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    <script src="../NA/store.js?v=20260830d"></script>
-    <script src="../NA/catalog.js?v=20260830d"></script>
+    <script src="../NA/store.js?v=20260830e"></script>
+    <script src="../NA/catalog.js?v=20260830e"></script>
   </body>
 </html>
