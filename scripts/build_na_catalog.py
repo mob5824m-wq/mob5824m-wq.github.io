@@ -14,6 +14,7 @@ NA_PRODUCTS_DIR = ROOT / "NA" / "products"
 na_PRODUCTS_DIR = ROOT / "na" / "products"
 NA_DIRECT_DIR = ROOT / "NA"
 na_DIRECT_DIR = ROOT / "na"
+ASSET_VERSION = "20260830c"
 
 
 def slugify(value: str) -> str:
@@ -198,8 +199,8 @@ def product_page_html(product_name: str, product_id: str, styles_href: str, stor
       </main>
     </div>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script src="{store_js_href}"></script>
-    <script src="{product_js_href}"></script>
+    <script src="{store_js_href}?v={ASSET_VERSION}"></script>
+    <script src="{product_js_href}?v={ASSET_VERSION}"></script>
   </body>
 </html>
 '''
