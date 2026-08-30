@@ -26,38 +26,73 @@
   }
 
   function detailMedia(product) {
-    if (!product.image) {
-      return `
+    const mainImage = product.gallery[0] || product.image;
+    const gallery = product.gallery.slice(0, 6);
+
+    const visual = mainImage
+      ? `
+        <div class="detail-visual" style="--tone-start:${product.toneStart}; --tone-end:${product.toneEnd};">
+          <span class="detail-badge">${escapeHtml(product.badge)}</span>
+          <div class="detail-photo-wrap">
+            <img class="detail-photo" src="${mainImage}" alt="${escapeHtml(product.name)}" />
+          </div>
+          <div class="detail-photo-scrim" aria-hidden="true"></div>
+          <div class="detail-category">${escapeHtml(product.category)}</div>
+        </div>
+      `
+      : `
         <div class="detail-visual" style="--tone-start:${product.toneStart}; --tone-end:${product.toneEnd};">
           <span class="detail-badge">${escapeHtml(product.badge)}</span>
           <div class="detail-photo-wrap detail-placeholder" aria-hidden="true"></div>
           <div class="detail-category">${escapeHtml(product.category)}</div>
         </div>
       `;
-    }
 
-    return `
-      <div class="detail-visual" style="--tone-start:${product.toneStart}; --tone-end:${product.toneEnd};">
-        <span class="detail-badge">${escapeHtml(product.badge)}</span>
-        <div class="detail-photo-wrap">
-          <img class="detail-photo" src="${product.image}" alt="${escapeHtml(product.name)}" />
+    const thumbs = gallery.length
+      ? `
+        <div class="detail-gallery">
+          ${gallery
+            .map(
+              (imageUrl, index) => `
+                <a class="gallery-thumb" href="${imageUrl}" target="_blank" rel="noreferrer" aria-label="Open product image ${index + 1}">
+                  <img src="${imageUrl}" alt="${escapeHtml(product.name)} image ${index + 1}" loading="lazy" />
+                </a>
+              `
+            )
+            .join('')}
         </div>
-        <div class="detail-photo-scrim" aria-hidden="true"></div>
-        <div class="detail-category">${escapeHtml(product.category)}</div>
-      </div>
-    `;
+      `
+      : '';
+
+    return `${visual}${thumbs}`;
+  }
+
+  function priceMarkup(product) {
+    const current = formatPrice(product.price, product.currency);
+    if (typeof product.price === 'number' && typeof product.regularPrice === 'number' && product.regularPrice > product.price) {
+      return `
+        <div class="price-stack detail-price-stack">
+          <span class="detail-price">${escapeHtml(current)}</span>
+          <span class="price-was">${escapeHtml(formatPrice(product.regularPrice, product.currency))}</span>
+        </div>
+      `;
+    }
+    return `<div class="detail-price${product.price == null ? ' muted' : ''}">${escapeHtml(current)}</div>`;
   }
 
   function renderProduct(product, catalog) {
     document.title = `${product.name} | North Active`;
 
-    const bullets = [
-      `${product.fit} silhouette for everyday wear`,
-      `${product.colors.length || 1} curated color option${product.colors.length === 1 ? '' : 's'}`,
-      `Checkout handoff available through ${catalog.source.checkoutName}`
-    ];
-
     const sourcePage = product.url || product.sourceUrl || catalog.source.sourceUrl || catalog.source.checkoutUrl;
+    const reviewLine = product.reviews?.count
+      ? `${product.reviews.score || 'Rated'}${product.reviews.score ? '★' : ''} from ${product.reviews.count} reviews`
+      : 'Hosted product record with images and source links';
+    const bulletPool = [
+      product.inventoryStatus || 'Availability varies by source',
+      `${product.colors.length || 1} color option${product.colors.length === 1 ? '' : 's'}`,
+      product.details?.styleId ? `Style ID ${product.details.styleId}` : '',
+      `Checkout handoff available through ${catalog.source.checkoutName}`
+    ].filter(Boolean);
 
     productDetail.innerHTML = `
       <div>${detailMedia(product)}</div>
@@ -72,18 +107,21 @@
         <p>${escapeHtml(product.description)}</p>
         <div class="detail-price-row">
           <div>
-            <div class="detail-price${product.price == null ? ' muted' : ''}">${escapeHtml(formatPrice(product.price, product.currency))}</div>
-            <p class="section-note">Displayed on your page, with source checkout handled externally.</p>
+            ${priceMarkup(product)}
+            <p class="section-note">${escapeHtml(reviewLine)}</p>
+          </div>
+          <div class="detail-meta">
+            <span class="meta-chip">${escapeHtml(product.fit)}</span>
+            <span class="meta-chip">${escapeHtml(product.sourceName)}</span>
+            <span class="meta-chip">${escapeHtml(product.inventoryStatus || 'Availability varies')}</span>
+            ${product.reviews?.count ? `<span class="meta-chip">${escapeHtml(`${product.reviews.score || 'Rated'}★ · ${product.reviews.count}`)}</span>` : ''}
           </div>
         </div>
         <div class="detail-meta">
-          <span class="meta-chip">${escapeHtml(product.fit)}</span>
-          <span class="meta-chip">${escapeHtml(product.sourceName)}</span>
-          <span class="meta-chip">${product.colors.length || 1} color${product.colors.length === 1 ? '' : 's'}</span>
-          ${product.colors.slice(0, 3).map((color) => `<span class="meta-chip">${escapeHtml(color)}</span>`).join('')}
+          ${product.colors.slice(0, 8).map((color) => `<span class="meta-chip">${escapeHtml(color)}</span>`).join('')}
         </div>
         <ul class="detail-bullets">
-          ${bullets.map((bullet) => `<li>${escapeHtml(bullet)}</li>`).join('')}
+          ${bulletPool.map((bullet) => `<li>${escapeHtml(bullet)}</li>`).join('')}
         </ul>
         <div class="detail-actions">
           <div class="quantity-stepper" aria-label="Quantity selector">
@@ -98,11 +136,31 @@
           <h3>Source information</h3>
           <div class="summary-rows">
             <div class="summary-row"><p>Source name</p><strong>${escapeHtml(product.sourceName)}</strong></div>
+            <div class="summary-row"><p>Source label</p><strong>${escapeHtml(product.sourceLabel || product.sourceName)}</strong></div>
             <div class="summary-row"><p>Checkout redirect</p><strong>${escapeHtml(catalog.source.checkoutName)}</strong></div>
-            ${sourcePage ? `<div class="summary-row"><p>Source page</p><a href="${sourcePage}" target="_blank" rel="noreferrer">Open original item</a></div>` : ''}
-            <div class="summary-row"><p>Checkout URL</p><a href="${catalog.source.checkoutUrl}" target="_blank" rel="noreferrer">${escapeHtml(catalog.source.checkoutName)}</a></div>
+            ${sourcePage ? `<div class="summary-row"><p>Source page</p><a href="${sourcePage}" target="_blank" rel="noreferrer">Open hosted source page</a></div>` : ''}
+            <div class="summary-row"><p>Checkout URL</p><a href="${product.checkoutUrl || catalog.source.checkoutUrl}" target="_blank" rel="noreferrer">${escapeHtml(catalog.source.checkoutName)}</a></div>
           </div>
         </div>
+        ${product.variants.length ? `
+          <div class="detail-source-card">
+            <h3>Available color variants</h3>
+            <div class="variant-list">
+              ${product.variants
+                .slice(0, 8)
+                .map(
+                  (variant) => `
+                    <div class="variant-card">
+                      <strong>${escapeHtml(variant.description || variant.name || 'Variant')}</strong>
+                      <span>${escapeHtml(formatPrice(variant.price, product.currency))}</span>
+                      <small>${escapeHtml(variant.inventoryStatus || 'Availability varies')}</small>
+                    </div>
+                  `
+                )
+                .join('')}
+            </div>
+          </div>
+        ` : ''}
       </div>
     `;
 
@@ -164,7 +222,7 @@
 
   async function init() {
     const requestedId = getRequestedId();
-    productDetail.innerHTML = loadingMarkup('Loading product…', 'Fetching product details from the storefront catalog.');
+    productDetail.innerHTML = loadingMarkup('Loading product…', 'Fetching product details from your hosted Athleta catalog JSON.');
     relatedGrid.innerHTML = '';
 
     try {
@@ -180,7 +238,7 @@
       renderProduct(product, catalog);
       renderRelated(product, catalog);
     } catch (error) {
-      productDetail.innerHTML = emptyMarkup('Product unavailable', 'The backend catalog could not be loaded right now.');
+      productDetail.innerHTML = emptyMarkup('Product unavailable', 'The hosted catalog could not be loaded right now.');
       relatedGrid.innerHTML = '';
     }
   }

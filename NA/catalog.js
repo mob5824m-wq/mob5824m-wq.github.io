@@ -61,7 +61,16 @@
 
     if (query) {
       items = items.filter((product) => {
-        const searchable = [product.name, product.category, product.description, product.fit, product.sourceName, ...product.colors]
+        const searchable = [
+          product.name,
+          product.category,
+          product.description,
+          product.fit,
+          product.sourceName,
+          product.sourceLabel,
+          product.inventoryStatus,
+          ...product.colors
+        ]
           .join(' ')
           .toLowerCase();
         return searchable.includes(query);
@@ -98,8 +107,28 @@
     `;
   }
 
+  function reviewMarkup(product) {
+    if (!product.reviews?.count) {
+      return '';
+    }
+    const score = product.reviews.score ? `${product.reviews.score}★` : 'Rated';
+    return `<span class="meta-chip">${escapeHtml(score)} · ${product.reviews.count} reviews</span>`;
+  }
+
+  function priceMarkup(product) {
+    const current = formatPrice(product.price, product.currency);
+    if (typeof product.price === 'number' && typeof product.regularPrice === 'number' && product.regularPrice > product.price) {
+      return `
+        <div class="price-stack">
+          <span class="product-price">${escapeHtml(current)}</span>
+          <span class="price-was">${escapeHtml(formatPrice(product.regularPrice, product.currency))}</span>
+        </div>
+      `;
+    }
+    return `<span class="product-price${product.price == null ? ' muted' : ''}">${escapeHtml(current)}</span>`;
+  }
+
   function productCardMarkup(product) {
-    const priceText = formatPrice(product.price, product.currency);
     const detailUrl = `./product.html?id=${encodeURIComponent(product.id)}`;
     const sourceLink = product.url || product.sourceUrl || state.catalog.source.sourceUrl || state.catalog.source.checkoutUrl;
 
@@ -115,17 +144,18 @@
         <div class="product-body">
           <div class="product-topline">
             <h3 class="product-title"><a href="${detailUrl}">${escapeHtml(product.name)}</a></h3>
-            <span class="product-price${product.price == null ? ' muted' : ''}">${escapeHtml(priceText)}</span>
+            ${priceMarkup(product)}
           </div>
           <p class="product-subline">${escapeHtml(product.description)}</p>
           <div class="product-meta">
             <span class="meta-chip">${escapeHtml(product.fit)}</span>
             <span class="meta-chip">${product.colors.length || 1} color${product.colors.length === 1 ? '' : 's'}</span>
-            <span class="meta-chip">${escapeHtml(product.sourceBadge)}</span>
+            <span class="meta-chip">${escapeHtml(product.inventoryStatus || product.sourceBadge)}</span>
+            ${reviewMarkup(product)}
           </div>
           <div class="product-source-row">
             <span>Source: ${escapeHtml(product.sourceName)}</span>
-            ${sourceLink ? `<a href="${sourceLink}" target="_blank" rel="noreferrer">Source page</a>` : ''}
+            ${sourceLink ? `<a href="${sourceLink}" target="_blank" rel="noreferrer">${escapeHtml(product.sourceLabel || 'Source page')}</a>` : ''}
           </div>
           <div class="product-actions">
             <button class="product-button" type="button" data-action="add" data-id="${escapeHtml(product.id)}">Add to bag</button>
@@ -168,7 +198,7 @@
   }
 
   async function init() {
-    productGrid.innerHTML = loadingMarkup('Loading catalog…', 'The /NA storefront is requesting products from the backend API.');
+    productGrid.innerHTML = loadingMarkup('Loading catalog…', 'The /NA storefront is loading your hosted Athleta catalog JSON.');
 
     try {
       state.catalog = await loadCatalog();
@@ -187,7 +217,7 @@
       productGrid.innerHTML = `
         <div class="empty-state">
           <h3>Catalog unavailable</h3>
-          <p>Please try again once the backend source is available.</p>
+          <p>Please try again once the hosted catalog is available.</p>
         </div>
       `;
       resultsText.textContent = '0 products shown';

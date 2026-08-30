@@ -15,6 +15,7 @@ from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parent
 FALLBACK_PATH = ROOT / "data" / "fallback-products.json"
+HOSTED_CATALOG_PATH = ROOT / "data" / "athleta-storefront.json"
 CONFIG_PATH = ROOT / "source.config.json"
 DEFAULT_PORT = int(os.environ.get("PORT", "8000"))
 DEFAULT_HOST = os.environ.get("HOST", "0.0.0.0")
@@ -373,6 +374,26 @@ def base_source_payload(config: dict[str, Any], mode: str, message: str, parser:
 
 
 
+def load_hosted_catalog_payload(config: dict[str, Any], message: str) -> dict[str, Any] | None:
+    hosted_data = load_json_file(HOSTED_CATALOG_PATH, None)
+    if not isinstance(hosted_data, dict):
+        return None
+
+    items = hosted_data.get("items", []) if isinstance(hosted_data.get("items"), list) else []
+    source = hosted_data.get("source", {}) if isinstance(hosted_data.get("source"), dict) else {}
+    payload = {
+        "items": items,
+        "source": {
+            **base_source_payload(config, "static-json", message, parser="prebuilt-json"),
+            **source,
+            "mode": "static-json",
+            "message": message,
+        },
+    }
+    return payload
+
+
+
 def load_fallback_payload(config: dict[str, Any], message: str) -> dict[str, Any]:
     fallback_data = load_json_file(FALLBACK_PATH, {"items": []})
     items = fallback_data.get("items", []) if isinstance(fallback_data, dict) else []
@@ -393,6 +414,13 @@ def build_catalog_payload(force_refresh: bool = False) -> dict[str, Any]:
     currency = config.get("currency", DEFAULT_CONFIG["currency"])
 
     if not source_url:
+        hosted_payload = load_hosted_catalog_payload(
+            config,
+            "Using the hosted Athleta catalog JSON from this branch."
+        )
+        if hosted_payload:
+            return hosted_payload
+
         return load_fallback_payload(
             config,
             "Using bundled sample catalog. Add a permitted source URL in source.config.json to load remote products."

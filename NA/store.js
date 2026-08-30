@@ -1,6 +1,8 @@
 (() => {
+  const STATIC_CATALOG_URL = '../data/athleta-storefront.json';
   const API_URL = '../api/products';
-  const CATALOG_CACHE_KEY = 'na-catalog-cache-v1';
+  const FALLBACK_URL = '../data/fallback-products.json';
+  const CATALOG_CACHE_KEY = 'na-catalog-cache-v2';
   const CART_KEY = 'na-cart-v1';
   const DEFAULT_CHECKOUT_URL = 'https://athleta.gapcanada.ca/';
   const DEFAULT_CHECKOUT_NAME = 'Athleta Canada';
@@ -95,46 +97,6 @@
     return Array.from(new Set((Array.isArray(values) ? values : []).map((value) => String(value).trim()).filter(Boolean)));
   }
 
-  function normalizeProduct(product, index, source) {
-    const name = String(product?.name || `Product ${index + 1}`).trim();
-    const category = String(product?.category || 'Featured').trim();
-    const description = String(product?.description || 'Catalog item loaded through the storefront proxy.').trim();
-    const fit = String(product?.fit || product?.brand || 'Everyday fit').trim();
-    const colors = uniqueStrings(product?.colors);
-    const badge = String(product?.badge || product?.brand || 'Catalog').trim();
-    const price = coercePrice(product?.price);
-    const currency = String(product?.currency || source.currency || 'CAD').toUpperCase();
-    const productUrl = safeUrl(product?.url || product?.sourceUrl || source.sourceUrl || '');
-    const checkoutUrl = safeUrl(product?.checkoutUrl || source.checkoutUrl || DEFAULT_CHECKOUT_URL);
-    const sourceName = String(product?.sourceName || source.displayName || 'Catalog source').trim();
-    const sourceUrl = safeUrl(product?.sourceUrl || source.sourceUrl || productUrl || '');
-    const image = safeUrl(product?.image || '');
-    const id = String(product?.id || productUrl || `${category}-${name}-${index}`);
-    const slug = slugify(product?.slug || `${name}-${category}`);
-    const palette = getPalette(`${name}-${category}-${id}`);
-
-    return {
-      id,
-      slug,
-      name,
-      category,
-      description,
-      fit,
-      colors,
-      badge,
-      price,
-      currency,
-      image,
-      url: productUrl,
-      sourceName,
-      sourceUrl,
-      checkoutUrl,
-      toneStart: palette.toneStart,
-      toneEnd: palette.toneEnd,
-      sourceBadge: source.mode === 'remote' || source.mode === 'remote-cache' ? 'Live source' : 'Demo catalog'
-    };
-  }
-
   function normalizeSource(source = {}) {
     const checkoutUrl = safeUrl(source.checkoutUrl || DEFAULT_CHECKOUT_URL) || DEFAULT_CHECKOUT_URL;
     const displayName = String(source.displayName || source.checkoutName || 'Catalog source').trim();
@@ -149,6 +111,105 @@
       checkoutUrl,
       checkoutName: String(source.checkoutName || DEFAULT_CHECKOUT_NAME).trim(),
       currency: String(source.currency || 'CAD').trim() || 'CAD'
+    };
+  }
+
+  function normalizeReviews(reviews) {
+    if (!reviews || typeof reviews !== 'object') {
+      return { score: null, count: null };
+    }
+
+    const score = Number(reviews.score);
+    const count = Number(reviews.count);
+
+    return {
+      score: Number.isFinite(score) ? score : null,
+      count: Number.isFinite(count) ? count : null
+    };
+  }
+
+  function normalizeVariants(variants, productUrl, fallbackImage, currency) {
+    if (!Array.isArray(variants)) {
+      return [];
+    }
+
+    return variants.slice(0, 20).map((variant, index) => ({
+      id: String(variant?.id || `${productUrl || 'variant'}-${index}`),
+      name: String(variant?.name || '').trim(),
+      description: String(variant?.description || variant?.short_description || '').trim(),
+      price: coercePrice(variant?.price),
+      regularPrice: coercePrice(variant?.regularPrice ?? variant?.regular_price),
+      percentageOff: String(variant?.percentageOff || variant?.percentage_off || '').trim(),
+      inventoryStatus: String(variant?.inventoryStatus || variant?.inventory_status || '').trim(),
+      inventoryCount: Number.isFinite(Number(variant?.inventoryCount ?? variant?.inventory_count)) ? Number(variant?.inventoryCount ?? variant?.inventory_count) : null,
+      images: uniqueStrings(variant?.images).map(safeUrl).filter(Boolean).slice(0, 6),
+      checkoutUrl: safeUrl(variant?.checkoutUrl || productUrl || DEFAULT_CHECKOUT_URL) || DEFAULT_CHECKOUT_URL,
+      fallbackImage
+    }));
+  }
+
+  function normalizeProduct(product, index, source) {
+    const name = String(product?.name || `Product ${index + 1}`).trim();
+    const category = String(product?.category || 'Featured').trim();
+    const description = String(product?.description || 'Catalog item loaded through the storefront proxy.').trim();
+    const fit = String(product?.fit || product?.brand || 'Everyday fit').trim();
+    const colors = uniqueStrings(product?.colors);
+    const badge = String(product?.badge || product?.brand || 'Catalog').trim();
+    const price = coercePrice(product?.price);
+    const regularPrice = coercePrice(product?.regularPrice ?? product?.regular_price);
+    const currency = String(product?.currency || source.currency || 'CAD').toUpperCase();
+    const productUrl = safeUrl(product?.url || product?.sourceUrl || source.sourceUrl || '');
+    const checkoutUrl = safeUrl(product?.checkoutUrl || productUrl || source.checkoutUrl || DEFAULT_CHECKOUT_URL) || DEFAULT_CHECKOUT_URL;
+    const sourceName = String(product?.sourceName || source.displayName || 'Catalog source').trim();
+    const sourceUrl = safeUrl(product?.sourceUrl || source.sourceUrl || productUrl || checkoutUrl || '');
+    const sourceLabel = String(product?.sourceLabel || product?.source_label || sourceName).trim();
+    const image = safeUrl(product?.image || '');
+    const gallery = uniqueStrings(product?.gallery || product?.images || []).map(safeUrl).filter(Boolean);
+    const id = String(product?.id || productUrl || `${category}-${name}-${index}`);
+    const slug = slugify(product?.slug || `${name}-${category}`);
+    const palette = getPalette(`${name}-${category}-${id}`);
+    const reviews = normalizeReviews(product?.reviews);
+    const details = product?.details && typeof product.details === 'object' ? product.details : {};
+    const variants = normalizeVariants(product?.variants, productUrl, image, currency);
+    const inventoryStatus = String(product?.inventoryStatus || product?.inventory_status || variants[0]?.inventoryStatus || '').trim();
+    const inventoryCount = Number.isFinite(Number(product?.inventoryCount ?? product?.inventory_count)) ? Number(product?.inventoryCount ?? product?.inventory_count) : variants.reduce((sum, variant) => sum + (variant.inventoryCount || 0), 0) || null;
+
+    const allImages = uniqueStrings([image, ...gallery, ...variants.flatMap((variant) => variant.images)]).filter(Boolean);
+
+    let sourceBadge = 'Hosted catalog';
+    if (source.mode === 'remote' || source.mode === 'remote-cache') {
+      sourceBadge = 'Live source';
+    } else if (source.mode === 'fallback') {
+      sourceBadge = 'Demo catalog';
+    }
+
+    return {
+      id,
+      slug,
+      name,
+      category,
+      description,
+      fit,
+      colors,
+      badge,
+      price,
+      regularPrice,
+      currency,
+      image: image || allImages[0] || '',
+      gallery: allImages.slice(0, 10),
+      url: productUrl,
+      sourceName,
+      sourceUrl,
+      sourceLabel,
+      checkoutUrl,
+      toneStart: palette.toneStart,
+      toneEnd: palette.toneEnd,
+      sourceBadge,
+      reviews,
+      details,
+      variants,
+      inventoryStatus,
+      inventoryCount
     };
   }
 
@@ -169,36 +230,52 @@
     }
   }
 
+  async function fetchJson(url) {
+    const response = await fetch(url, { cache: 'no-store' });
+    if (!response.ok) {
+      throw new Error(`${url} returned ${response.status}`);
+    }
+    return response.json();
+  }
+
+  function normalizeCatalogPayload(payload) {
+    const source = normalizeSource(payload?.source || {});
+    const items = Array.isArray(payload?.items) ? payload.items : Array.isArray(payload) ? payload : [];
+    const products = items.map((item, index) => normalizeProduct(item, index, source));
+
+    return {
+      source,
+      products,
+      byId: new Map(products.map((product) => [product.id, product])),
+      bySlug: new Map(products.map((product) => [product.slug, product]))
+    };
+  }
+
   async function loadCatalog() {
     const cached = readCatalogCache();
 
     try {
-      const response = await fetch(API_URL, { cache: 'no-store' });
-      if (!response.ok) {
-        throw new Error(`Catalog API returned ${response.status}`);
-      }
-
-      const payload = await response.json();
-      writeCatalogCache(payload);
-      return normalizeCatalogPayload(payload);
-    } catch (error) {
-      if (cached) {
-        const normalized = normalizeCatalogPayload(cached);
-        normalized.source.mode = 'remote-cache';
-        normalized.source.message = 'Live request failed, so a cached catalog snapshot is being shown.';
-        return normalized;
-      }
-
+      const staticPayload = await fetchJson(STATIC_CATALOG_URL);
+      writeCatalogCache(staticPayload);
+      return normalizeCatalogPayload(staticPayload);
+    } catch (staticError) {
       try {
-        const fallbackResponse = await fetch(FALLBACK_URL, { cache: 'no-store' });
-        if (!fallbackResponse.ok) {
-          throw new Error(`Fallback catalog returned ${fallbackResponse.status}`);
+        const apiPayload = await fetchJson(API_URL);
+        writeCatalogCache(apiPayload);
+        return normalizeCatalogPayload(apiPayload);
+      } catch (apiError) {
+        if (cached) {
+          const normalized = normalizeCatalogPayload(cached);
+          normalized.source.mode = 'remote-cache';
+          normalized.source.message = 'Live request failed, so a cached catalog snapshot is being shown.';
+          return normalized;
         }
-        const fallbackPayload = await fallbackResponse.json();
+
+        const fallbackPayload = await fetchJson(FALLBACK_URL);
         fallbackPayload.source = {
           ...(fallbackPayload.source || {}),
           mode: 'fallback',
-          message: 'Using bundled demo products because the live backend is unavailable.',
+          message: 'Using bundled demo products because no hosted catalog was available.',
           sourceUrl: '',
           displayName: 'North Active Demo Catalog',
           parser: 'bundled-json',
@@ -209,23 +286,8 @@
         };
         writeCatalogCache(fallbackPayload);
         return normalizeCatalogPayload(fallbackPayload);
-      } catch (fallbackError) {
-        throw fallbackError;
       }
     }
-  }
-
-  function normalizeCatalogPayload(payload) {
-    const source = normalizeSource(payload?.source || {});
-    const items = Array.isArray(payload?.items) ? payload.items : [];
-    const products = items.map((item, index) => normalizeProduct(item, index, source));
-
-    return {
-      source,
-      products,
-      byId: new Map(products.map((product) => [product.id, product])),
-      bySlug: new Map(products.map((product) => [product.slug, product]))
-    };
   }
 
   function readCart() {
@@ -323,7 +385,7 @@
     const unique = new Map();
 
     lines.forEach((line) => {
-      const url = line.product.url || line.product.sourceUrl;
+      const url = line.product.url || line.product.sourceUrl || line.product.checkoutUrl;
       if (url && !unique.has(url)) {
         unique.set(url, {
           label: `${line.product.name} source`,
@@ -374,7 +436,7 @@
       return;
     }
     element.textContent = source.message || 'Catalog loaded.';
-    element.classList.toggle('ready', source.mode === 'remote' || source.mode === 'remote-cache');
+    element.classList.toggle('ready', ['remote', 'remote-cache', 'static-json'].includes(source.mode));
   }
 
   function loadingMarkup(title = 'Loading catalog…', message = 'Please wait while the storefront loads products.') {

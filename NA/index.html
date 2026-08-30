@@ -46,9 +46,9 @@
             <p class="eyebrow">North Active at /NA</p>
             <h1>A full storefront path with product pages, cart flow, and source links.</h1>
             <p class="hero-text">
-              Your shop now lives at <span class="inline-code">/NA/</span>. It includes product detail pages,
-              persistent cart behavior, source references on the page, and a checkout handoff that can redirect shoppers
-              to Athleta.
+              Your shop now lives at <span class="inline-code">/NA/</span>. It uses your hosted Athleta catalog JSON,
+              includes product detail pages, persistent cart behavior, source references on the page, and a checkout handoff
+              that redirects shoppers to Athleta.
             </p>
             <div class="hero-actions">
               <a class="button button-dark" href="#catalog">Shop the catalog</a>
@@ -91,7 +91,7 @@
             </div>
             <div class="section-summary">
               <p class="section-note">
-                Storefront products load from <span class="inline-code">../api/products</span>.
+                Storefront products load from your hosted catalog JSON, with the backend still available as an optional fallback.
               </p>
               <p class="source-status" id="sourceStatus">Checking catalog source…</p>
             </div>
@@ -145,9 +145,9 @@
           <div class="story-card">
             <h4>What you can customize</h4>
             <ul>
-              <li>Remote product source in <span class="inline-code">source.config.json</span></li>
+              <li>Hosted catalog file in <span class="inline-code">athleta-combined-catalog.json</span></li>
               <li>Checkout target such as Athleta Canada</li>
-              <li>Product detail copy and related items</li>
+              <li>Product detail copy, galleries, and related items</li>
               <li>Category styling and page structure</li>
             </ul>
           </div>

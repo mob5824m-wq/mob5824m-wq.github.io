@@ -43,16 +43,17 @@ Edit `source.config.json` to connect an approved remote source:
 
 ## Current behavior
 
-- The frontend loads products from `/api/products`
-- The backend tries JSON-LD first, then a generic HTML parser
-- If no allowed remote source is configured, bundled demo products are used
-- Product pages show source information when available
+- The frontend first loads products from `data/athleta-storefront.json`
+- That hosted storefront file is generated from `athleta-combined-catalog.json`
+- Product cards and product pages use the hosted image links from your JSON
+- Product pages show source information, reviews, variants, and gallery images when present
 - The cart stores items locally in the browser
 - The cart checkout button redirects shoppers to Athleta Canada
+- The backend `/api/products` still exists as an optional server-side source path
 
 ## Note
 
-GitHub Pages can host the static `/NA/` files, but it cannot run `server.py`. For that reason:
+GitHub Pages can host the static `/NA/` files and JSON files, but it cannot run `server.py`. For that reason:
 
-- on plain GitHub Pages, the `/NA/` storefront falls back to `data/fallback-products.json`
-- for live remote catalog proxying, deploy the Python backend on a host that supports server-side code
+- on plain GitHub Pages, the `/NA/` storefront can work directly from the hosted JSON files in the repo
+- for live remote catalog proxying beyond the committed JSON, deploy the Python backend on a host that supports server-side code
