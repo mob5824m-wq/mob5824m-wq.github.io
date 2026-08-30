@@ -1,0 +1,11 @@
+{
+  "sourceUrl": "",
+  "sourceName": "North Active Catalog",
+  "allowedHosts": [],
+  "cacheTtlSeconds": 900,
+  "mode": "auto",
+  "userAgent": "NorthActiveCatalogProxy/1.0",
+  "checkoutUrl": "https://athleta.gapcanada.ca/",
+  "checkoutName": "Athleta Canada",
+  "currency": "CAD"
+}
