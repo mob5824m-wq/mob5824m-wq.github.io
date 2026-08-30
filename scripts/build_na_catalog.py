@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import re
 from collections import OrderedDict
+from html import escape
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -103,7 +104,7 @@ def build_storefront_items(source_items: list[dict]) -> list[OrderedDict]:
             description_bits.append(f"{review.get('count')} review" + ("s" if review.get("count") != 1 else ""))
         description = " • ".join(description_bits)
         item_id = str(item.get("id", ""))
-        slug = f"{slugify(item.get('name') or 'athleta-item')}-{item_id}"
+        slug = slugify(f"{item.get('name') or 'athleta-item'}-{item_id}")
         source_url = item.get("source_url") or "https://athleta.gapcanada.ca/"
 
         out_items.append(
@@ -158,20 +159,22 @@ def build_storefront_items(source_items: list[dict]) -> list[OrderedDict]:
 def write_product_page(product: dict) -> None:
     path = NA_PRODUCTS_DIR / product["slug"] / "index.html"
     ensure_dir(path.parent)
+    product_name = escape(product["name"])
+    product_id = escape(product["id"])
     path.write_text(
         f'''<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{product['name']} | North Active</title>
-    <meta name="description" content="{product['name']} product page on North Active." />
+    <title>{product_name} | North Active</title>
+    <meta name="description" content="{product_name} product page on North Active." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../styles.css" />
   </head>
-  <body data-page="product" data-product-id="{product['id']}">
+  <body data-page="product" data-product-id="{product_id}">
     <div class="site-shell">
       <header class="topbar">
         <a class="brand" href="../../" aria-label="North Active home">

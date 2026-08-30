@@ -194,7 +194,7 @@
     const image = safeUrl(product?.image || '');
     const gallery = uniqueStrings(product?.gallery || product?.images || []).map(safeUrl).filter(Boolean);
     const id = String(product?.id || productUrl || `${category}-${name}-${index}`);
-    const slug = slugify(product?.slug || `${name}-${id}`);
+    const slug = String(product?.slug || slugify(`${name}-${id}`)).trim();
     const palette = getPalette(`${name}-${category}-${id}`);
     const reviews = normalizeReviews(product?.reviews);
     const details = product?.details && typeof product.details === 'object' ? product.details : {};
