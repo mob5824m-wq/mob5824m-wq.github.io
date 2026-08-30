@@ -12,6 +12,8 @@ SOURCE_PATH = ROOT / "athleta-combined-catalog.json"
 DATA_PATH = ROOT / "data" / "athleta-storefront.json"
 NA_PRODUCTS_DIR = ROOT / "NA" / "products"
 na_PRODUCTS_DIR = ROOT / "na" / "products"
+NA_DIRECT_DIR = ROOT / "NA"
+na_DIRECT_DIR = ROOT / "na"
 
 
 def slugify(value: str) -> str:
@@ -74,9 +76,7 @@ def build_storefront_items(source_items: list[dict]) -> list[OrderedDict]:
 
         slim_variants = []
         for variant in variants[:12]:
-            variant_images = unique_strings([
-                img.get("url") for img in (variant.get("images") or []) if isinstance(img, dict)
-            ])
+            variant_images = unique_strings([img.get("url") for img in (variant.get("images") or []) if isinstance(img, dict)])
             slim_variants.append(
                 OrderedDict(
                     [
@@ -126,13 +126,7 @@ def build_storefront_items(source_items: list[dict]) -> list[OrderedDict]:
                     ("colors", color_names[:12]),
                     ("image", image_candidates[0] if image_candidates else ""),
                     ("gallery", image_candidates[:10]),
-                    (
-                        "reviews",
-                        {
-                            "score": review.get("score"),
-                            "count": review.get("count"),
-                        },
-                    ),
+                    ("reviews", {"score": review.get("score"), "count": review.get("count")}),
                     ("sourceName", "Athleta Canada"),
                     ("sourceLabel", item.get("source_label") or "Athleta source page"),
                     ("sourceUrl", source_url),
@@ -156,13 +150,10 @@ def build_storefront_items(source_items: list[dict]) -> list[OrderedDict]:
     return out_items
 
 
-def write_product_page(product: dict) -> None:
-    path = NA_PRODUCTS_DIR / product["slug"] / "index.html"
-    ensure_dir(path.parent)
-    product_name = escape(product["name"])
-    product_id = escape(product["id"])
-    path.write_text(
-        f'''<!DOCTYPE html>
+def product_page_html(product_name: str, product_id: str, styles_href: str, store_js_href: str, product_js_href: str, shop_href: str, cart_href: str) -> str:
+    product_name = escape(product_name)
+    product_id = escape(product_id)
+    return f'''<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -172,12 +163,12 @@ def write_product_page(product: dict) -> None:
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="{styles_href}" />
   </head>
   <body data-page="product" data-product-id="{product_id}">
     <div class="site-shell">
       <header class="topbar">
-        <a class="brand" href="../../" aria-label="North Active home">
+        <a class="brand" href="{shop_href}" aria-label="North Active home">
           <span class="brand-mark">NA</span>
           <span class="brand-copy">
             <strong>North Active</strong>
@@ -185,10 +176,10 @@ def write_product_page(product: dict) -> None:
           </span>
         </a>
         <nav class="nav-links" aria-label="Primary navigation">
-          <a href="../../">Shop</a>
-          <a href="../../cart.html">Cart</a>
+          <a href="{shop_href}">Shop</a>
+          <a href="{cart_href}">Cart</a>
         </nav>
-        <a class="bag-button" id="bagButton" href="../../cart.html" aria-label="Shopping cart">
+        <a class="bag-button" id="bagButton" href="{cart_href}" aria-label="Shopping cart">
           <span>Bag</span>
           <span class="bag-count" id="bagCount">0</span>
         </a>
@@ -207,36 +198,93 @@ def write_product_page(product: dict) -> None:
       </main>
     </div>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script src="../../store.js"></script>
-    <script src="../../product-page.js"></script>
+    <script src="{store_js_href}"></script>
+    <script src="{product_js_href}"></script>
   </body>
 </html>
-''',
-        encoding="utf-8",
+'''
+
+
+def write_text(path: Path, content: str) -> None:
+    ensure_dir(path.parent)
+    path.write_text(content, encoding="utf-8")
+
+
+def write_legacy_upper_product_page(product: dict) -> None:
+    path = NA_PRODUCTS_DIR / product["slug"] / "index.html"
+    write_text(
+        path,
+        product_page_html(
+            product["name"],
+            product["id"],
+            "../../styles.css",
+            "../../store.js",
+            "../../product-page.js",
+            "../../",
+            "../../cart.html",
+        ),
     )
 
 
-def write_alias_page(product: dict) -> None:
+def write_legacy_lower_product_alias(product: dict) -> None:
     path = na_PRODUCTS_DIR / product["slug"] / "index.html"
-    ensure_dir(path.parent)
-    path.write_text(
+    write_text(
+        path,
         f'''<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=../../../NA/products/{product['slug']}/" />
+    <meta http-equiv="refresh" content="0; url=../../{product['slug']}/" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Redirecting to /NA/products/{product['slug']}/</title>
+    <title>Redirecting to /na/{product['slug']}/</title>
     <script>
-      window.location.replace('../../../NA/products/{product['slug']}/' + window.location.search + window.location.hash);
+      window.location.replace('../../{product['slug']}/' + window.location.search + window.location.hash);
     </script>
   </head>
   <body>
-    <p>Redirecting to <a href="../../../NA/products/{product['slug']}/">product page</a>…</p>
+    <p>Redirecting to <a href="../../{product['slug']}/">product page</a>…</p>
   </body>
 </html>
 ''',
-        encoding="utf-8",
+    )
+
+
+def write_direct_lower_product_page(product: dict) -> None:
+    path = na_DIRECT_DIR / product["slug"] / "index.html"
+    write_text(
+        path,
+        product_page_html(
+            product["name"],
+            product["id"],
+            "../../NA/styles.css",
+            "../../NA/store.js",
+            "../../NA/product-page.js",
+            "../",
+            "../cart.html",
+        ),
+    )
+
+
+def write_direct_upper_product_alias(product: dict) -> None:
+    path = NA_DIRECT_DIR / product["slug"] / "index.html"
+    write_text(
+        path,
+        f'''<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content="0; url=../../na/{product['slug']}/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting to /na/{product['slug']}/</title>
+    <script>
+      window.location.replace('../../na/{product['slug']}/' + window.location.search + window.location.hash);
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to <a href="../../na/{product['slug']}/">product page</a>…</p>
+  </body>
+</html>
+''',
     )
 
 
@@ -269,10 +317,14 @@ def main() -> None:
 
     ensure_dir(NA_PRODUCTS_DIR)
     ensure_dir(na_PRODUCTS_DIR)
+    ensure_dir(NA_DIRECT_DIR)
+    ensure_dir(na_DIRECT_DIR)
 
     for product in storefront_items:
-        write_product_page(product)
-        write_alias_page(product)
+        write_legacy_upper_product_page(product)
+        write_legacy_lower_product_alias(product)
+        write_direct_lower_product_page(product)
+        write_direct_upper_product_alias(product)
 
     print(f"Built {len(storefront_items)} storefront items and product pages.")
 

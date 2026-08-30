@@ -1,15 +1,16 @@
 # North Active Shop
 
-This repo now includes a storefront mounted at `/NA/`.
+This repo now includes a storefront mounted at `/na/` with uppercase `/NA/` aliases.
 
 ## Pages
 
-- `/NA/` – catalog page
-- `/NA/products/<product-slug>/` – individual product webpages
-- `/NA/product.html?id=...` – legacy product detail route
-- `/NA/cart.html` – persistent shopping bag and checkout handoff page
+- `/na/` – catalog page
+- `/na/<product-slug>/` – individual product webpages
+- `/na/product.html?id=...` – legacy product detail route
+- `/na/cart.html` – persistent shopping bag and checkout handoff page
+- `/NA/...` – uppercase aliases for compatibility
 
-The root `/` redirects to `/NA/`.
+The root `/` redirects to `/na/`.
 
 ## Backend
 

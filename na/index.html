@@ -2,14 +2,162 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=../NA/" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Redirecting to /NA/</title>
-    <script>
-      window.location.replace('../NA/' + window.location.search + window.location.hash);
-    </script>
+    <title>North Active | Shop</title>
+    <meta
+      name="description"
+      content="North Active storefront at /NA with catalog browsing, product details, cart behavior, source links, and checkout redirection."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../NA/styles.css" />
   </head>
-  <body>
-    <p>Redirecting to <a href="../NA/">/NA/</a>…</p>
+  <body data-page="catalog">
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="North Active home">
+          <span class="brand-mark">NA</span>
+          <span class="brand-copy">
+            <strong>North Active</strong>
+            <small>/na storefront</small>
+          </span>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#featured">Featured</a>
+          <a href="#catalog">Shop</a>
+          <a href="#story">About</a>
+          <a href="./cart.html">Cart</a>
+        </nav>
+
+        <a class="bag-button" id="bagButton" href="./cart.html" aria-label="Shopping cart">
+          <span>Bag</span>
+          <span class="bag-count" id="bagCount">0</span>
+        </a>
+      </header>
+
+      <main id="home">
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">North Active at /NA</p>
+            <h1>A full storefront path with product pages, cart flow, and source links.</h1>
+            <p class="hero-text">
+              Your shop now lives at <span class="inline-code">/na/</span>. It uses your hosted Athleta catalog JSON,
+              includes product detail pages, persistent cart behavior, source references on the page, and a checkout handoff
+              that redirects shoppers to Athleta.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-dark" href="#catalog">Shop the catalog</a>
+              <a class="button button-light" href="./cart.html">Open cart</a>
+            </div>
+            <ul class="hero-stats" aria-label="Store highlights">
+              <li><strong id="heroProductCount">--</strong><span>catalog items</span></li>
+              <li><strong>3</strong><span>shop, product, cart pages</span></li>
+              <li><strong id="heroSourceName">Athleta</strong><span>checkout partner</span></li>
+            </ul>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="visual-card visual-card-one"><span>Browse</span></div>
+            <div class="visual-card visual-card-two"><span>Product details</span></div>
+            <div class="visual-card visual-card-three"><span>Checkout redirect</span></div>
+          </div>
+        </section>
+
+        <section class="featured-strip" id="featured">
+          <article>
+            <p>Path update</p>
+            <strong>The storefront is now structured under /NA/</strong>
+          </article>
+          <article>
+            <p>Source hosting</p>
+            <strong>Every product can show source metadata and source links</strong>
+          </article>
+          <article>
+            <p>Checkout flow</p>
+            <strong>Cart checkout can redirect shoppers to Athleta</strong>
+          </article>
+        </section>
+
+        <section class="catalog-section" id="catalog">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Catalog</p>
+              <h2>Shop by feel, fit, and function.</h2>
+            </div>
+            <div class="section-summary">
+              <p class="section-note">
+                Storefront products load from your hosted catalog JSON, with the backend still available as an optional fallback.
+              </p>
+              <p class="source-status" id="sourceStatus">Checking catalog source…</p>
+            </div>
+          </div>
+
+          <div class="toolbar" aria-label="Catalog controls">
+            <label class="search-field">
+              <span class="sr-only">Search products</span>
+              <input id="searchInput" type="search" placeholder="Search leggings, fleece, jackets…" autocomplete="off" />
+            </label>
+
+            <div class="filter-pills" id="categoryFilters" role="tablist" aria-label="Product categories"></div>
+
+            <label class="sort-field">
+              <span class="sr-only">Sort products</span>
+              <select id="sortSelect">
+                <option value="featured">Sort: Featured</option>
+                <option value="price-asc">Price: Low to high</option>
+                <option value="price-desc">Price: High to low</option>
+                <option value="name-asc">Name: A to Z</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="results-bar">
+            <p id="resultsText">Loading products…</p>
+            <button class="clear-button" id="clearFilters" type="button">Clear filters</button>
+          </div>
+
+          <div class="product-grid" id="productGrid" aria-live="polite"></div>
+        </section>
+
+        <section class="story-section" id="story">
+          <div class="story-card story-main">
+            <p class="eyebrow">Store behavior</p>
+            <h3>Products live on your page, while checkout hands off to the source site.</h3>
+            <p>
+              This setup lets you present the catalog in your own design language while still making the original source visible.
+              Product pages can link back to the source item, and the cart can send shoppers to Athleta for checkout.
+            </p>
+          </div>
+          <div class="story-card">
+            <h4>What shoppers can do</h4>
+            <ul>
+              <li>Browse a shopping-style catalog</li>
+              <li>Open product detail pages</li>
+              <li>Add items to a persistent cart</li>
+              <li>Follow source links and checkout externally</li>
+            </ul>
+          </div>
+          <div class="story-card">
+            <h4>What you can customize</h4>
+            <ul>
+              <li>Hosted catalog file in <span class="inline-code">athleta-combined-catalog.json</span></li>
+              <li>Checkout target such as Athleta Canada</li>
+              <li>Product detail copy, galleries, and related items</li>
+              <li>Category styling and page structure</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="../NA/store.js"></script>
+    <script src="../NA/catalog.js"></script>
   </body>
 </html>

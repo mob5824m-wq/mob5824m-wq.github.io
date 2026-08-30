@@ -9,7 +9,7 @@
   }
 
   const REPO_PREFIX = resolveRepoPrefix();
-  const STORE_BASE = `${REPO_PREFIX}/NA`;
+  const STORE_BASE = `${REPO_PREFIX}/na`;
   const STATIC_CATALOG_URL = `${REPO_PREFIX}/data/athleta-storefront.json`;
   const API_URL = `${REPO_PREFIX}/api/products`;
   const FALLBACK_URL = `${REPO_PREFIX}/data/fallback-products.json`;
@@ -122,7 +122,7 @@
 
   function productPath(productOrSlug) {
     const slug = typeof productOrSlug === 'string' ? productOrSlug : productOrSlug?.slug;
-    return `${STORE_BASE}/products/${encodeURIComponent(slug || '')}/`;
+    return `${STORE_BASE}/${encodeURIComponent(slug || '')}/`;
   }
 
   function normalizeSource(source = {}) {
