@@ -7,34 +7,40 @@
     showToast,
     updateBagCount,
     loadingMarkup,
-    emptyMarkup
+    emptyMarkup,
+    cartPath,
+    shopPath,
+    productPath,
+    findCatalogProduct
   } = window.NAStore;
 
   const productDetail = document.getElementById('productDetail');
   const relatedGrid = document.getElementById('relatedGrid');
 
   function getRequestedId() {
+    const fromBody = document.body.dataset.productId;
+    if (fromBody) {
+      return fromBody;
+    }
+
     const params = new URLSearchParams(window.location.search);
-    return params.get('id') || '';
+    return params.get('id') || params.get('slug') || '';
   }
 
   function findProduct(catalog, requestedId) {
-    if (!requestedId) {
-      return null;
-    }
-    return catalog.byId.get(requestedId) || catalog.bySlug.get(requestedId) || null;
+    return findCatalogProduct(catalog.products, requestedId);
   }
 
   function detailMedia(product) {
-    const mainImage = product.gallery[0] || product.image;
-    const gallery = product.gallery.slice(0, 6);
+    const gallery = product.gallery.slice(0, 8);
+    const mainImage = gallery[0] || product.image;
 
     const visual = mainImage
       ? `
         <div class="detail-visual" style="--tone-start:${product.toneStart}; --tone-end:${product.toneEnd};">
           <span class="detail-badge">${escapeHtml(product.badge)}</span>
           <div class="detail-photo-wrap">
-            <img class="detail-photo" src="${mainImage}" alt="${escapeHtml(product.name)}" />
+            <img class="detail-photo" id="mainProductImage" src="${mainImage}" alt="${escapeHtml(product.name)}" />
           </div>
           <div class="detail-photo-scrim" aria-hidden="true"></div>
           <div class="detail-category">${escapeHtml(product.category)}</div>
@@ -54,9 +60,9 @@
           ${gallery
             .map(
               (imageUrl, index) => `
-                <a class="gallery-thumb" href="${imageUrl}" target="_blank" rel="noreferrer" aria-label="Open product image ${index + 1}">
+                <button class="gallery-thumb${index === 0 ? ' is-active' : ''}" type="button" data-image="${imageUrl}" aria-label="Show product image ${index + 1}">
                   <img src="${imageUrl}" alt="${escapeHtml(product.name)} image ${index + 1}" loading="lazy" />
-                </a>
+                </button>
               `
             )
             .join('')}
@@ -80,6 +86,34 @@
     return `<div class="detail-price${product.price == null ? ' muted' : ''}">${escapeHtml(current)}</div>`;
   }
 
+  function checkoutLabel(checkoutUrl, sourceName) {
+    try {
+      const hostname = new URL(checkoutUrl).hostname.replace(/^www\./, '');
+      return `Checkout on ${sourceName || hostname}`;
+    } catch (error) {
+      return `Checkout on ${sourceName || 'source site'}`;
+    }
+  }
+
+  function wireGallery() {
+    const mainImage = document.getElementById('mainProductImage');
+    if (!mainImage) {
+      return;
+    }
+
+    document.querySelectorAll('.gallery-thumb').forEach((button) => {
+      button.addEventListener('click', () => {
+        const nextImage = button.dataset.image;
+        if (!nextImage) {
+          return;
+        }
+        mainImage.src = nextImage;
+        document.querySelectorAll('.gallery-thumb').forEach((thumb) => thumb.classList.remove('is-active'));
+        button.classList.add('is-active');
+      });
+    });
+  }
+
   function renderProduct(product, catalog) {
     document.title = `${product.name} | North Active`;
 
@@ -98,7 +132,7 @@
       <div>${detailMedia(product)}</div>
       <div class="detail-panel detail-copy">
         <div class="detail-crumbs">
-          <a href="./">Shop</a>
+          <a href="${shopPath()}">Shop</a>
           <span>•</span>
           <p>${escapeHtml(product.category)}</p>
         </div>
@@ -130,7 +164,8 @@
             <button class="quantity-button" id="qtyUp" type="button" aria-label="Increase quantity">+</button>
           </div>
           <button class="product-button" id="addToBagButton" type="button">Add to bag</button>
-          <a class="product-link" href="./cart.html">Go to cart</a>
+          <a class="product-link" href="${product.checkoutUrl}" target="_blank" rel="noreferrer">${escapeHtml(checkoutLabel(product.checkoutUrl, catalog.source.checkoutName))}</a>
+          <a class="secondary-button" href="${cartPath()}">Go to cart</a>
         </div>
         <div class="detail-source-card">
           <h3>Source information</h3>
@@ -139,7 +174,7 @@
             <div class="summary-row"><p>Source label</p><strong>${escapeHtml(product.sourceLabel || product.sourceName)}</strong></div>
             <div class="summary-row"><p>Checkout redirect</p><strong>${escapeHtml(catalog.source.checkoutName)}</strong></div>
             ${sourcePage ? `<div class="summary-row"><p>Source page</p><a href="${sourcePage}" target="_blank" rel="noreferrer">Open hosted source page</a></div>` : ''}
-            <div class="summary-row"><p>Checkout URL</p><a href="${product.checkoutUrl || catalog.source.checkoutUrl}" target="_blank" rel="noreferrer">${escapeHtml(catalog.source.checkoutName)}</a></div>
+            <div class="summary-row"><p>Product webpage</p><a href="${productPath(product)}">${productPath(product)}</a></div>
           </div>
         </div>
         ${product.variants.length ? `
@@ -163,6 +198,8 @@
         ` : ''}
       </div>
     `;
+
+    wireGallery();
 
     const qtyInput = document.getElementById('qtyInput');
     const clampQuantity = () => Math.max(1, Number(qtyInput.value) || 1);
@@ -201,7 +238,7 @@
     relatedGrid.innerHTML = related
       .map((item) => `
         <article class="product-card">
-          <a class="product-media-link" href="./product.html?id=${encodeURIComponent(item.id)}">
+          <a class="product-media-link" href="${productPath(item)}">
             <div class="product-art" style="--tone-start:${item.toneStart}; --tone-end:${item.toneEnd};">
               <span class="product-badge">${escapeHtml(item.badge)}</span>
               ${item.image ? `<div class="product-photo-wrap"><img class="product-photo" src="${item.image}" alt="${escapeHtml(item.name)}" loading="lazy" /></div><div class="product-photo-scrim" aria-hidden="true"></div>` : '<div class="product-silhouette" aria-hidden="true"></div>'}
@@ -210,7 +247,7 @@
           </a>
           <div class="product-body">
             <div class="product-topline">
-              <h3 class="product-title"><a href="./product.html?id=${encodeURIComponent(item.id)}">${escapeHtml(item.name)}</a></h3>
+              <h3 class="product-title"><a href="${productPath(item)}">${escapeHtml(item.name)}</a></h3>
               <span class="product-price${item.price == null ? ' muted' : ''}">${escapeHtml(formatPrice(item.price, item.currency))}</span>
             </div>
             <p class="product-subline">${escapeHtml(item.description)}</p>
@@ -230,9 +267,16 @@
       const product = findProduct(catalog, requestedId);
 
       if (!product) {
-        productDetail.innerHTML = emptyMarkup('Product not found', 'This product is not currently available in the /NA catalog.');
+        productDetail.innerHTML = emptyMarkup('Product unavailable', 'This product could not be found in the current hosted catalog.');
         relatedGrid.innerHTML = '';
         return;
+      }
+
+      if (!document.body.dataset.productId && window.location.pathname.endsWith('/product.html')) {
+        const canonical = productPath(product);
+        if (canonical) {
+          window.history.replaceState({}, '', canonical);
+        }
       }
 
       renderProduct(product, catalog);

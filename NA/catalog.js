@@ -7,7 +7,8 @@
     showToast,
     setSourceStatus,
     loadingMarkup,
-    updateBagCount
+    updateBagCount,
+    productPath
   } = window.NAStore;
 
   const state = {
@@ -129,7 +130,7 @@
   }
 
   function productCardMarkup(product) {
-    const detailUrl = `./product.html?id=${encodeURIComponent(product.id)}`;
+    const detailUrl = productPath(product);
     const sourceLink = product.url || product.sourceUrl || state.catalog.source.sourceUrl || state.catalog.source.checkoutUrl;
 
     return `

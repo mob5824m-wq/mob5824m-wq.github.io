@@ -14,7 +14,9 @@
     updateBagCount,
     loadingMarkup,
     emptyMarkup,
-    cartCount
+    cartCount,
+    productPath,
+    shopPath
   } = window.NAStore;
 
   const cartItems = document.getElementById('cartItems');
@@ -45,7 +47,7 @@
         <div class="empty-state">
           <h3>Your bag is empty.</h3>
           <p>Add something from the /NA shop to start building a checkout handoff.</p>
-          <a class="product-link" href="./">Return to shop</a>
+          <a class="product-link" href="${shopPath()}">Return to shop</a>
         </div>
       `;
       return;
@@ -58,7 +60,7 @@
           <div class="cart-item-copy">
             <div class="cart-item-top">
               <div>
-                <h3><a href="./product.html?id=${encodeURIComponent(line.product.id)}">${escapeHtml(line.product.name)}</a></h3>
+                <h3><a href="${productPath(line.product)}">${escapeHtml(line.product.name)}</a></h3>
                 <p>${escapeHtml(line.product.description)}</p>
               </div>
               <div class="cart-line-total">${escapeHtml(formatPrice(line.lineTotal, line.product.currency))}</div>
@@ -115,6 +117,16 @@
     rerender();
   }
 
+  function checkoutNote(checkout) {
+    if (checkout.mode === 'single-source') {
+      return 'All selected items point to the same Athleta source page, so checkout can send the shopper there directly.';
+    }
+    if (checkout.mode === 'multi-source') {
+      return 'These items come from more than one source page, so checkout opens the closest matching Athleta page and keeps the source links below available.';
+    }
+    return 'Checkout will redirect to Athleta to continue shopping.';
+  }
+
   function renderSummary(lines) {
     const subtotal = cartSubtotal(lines);
     const checkout = getCheckoutTarget(catalog.source, lines);
@@ -143,14 +155,12 @@
       <div class="summary-rows">
         <div class="summary-row"><p>Items</p><strong>${cartCount()}</strong></div>
         <div class="summary-row"><p>Subtotal</p><strong>${escapeHtml(formatPrice(subtotal, catalog.source.currency || 'CAD'))}</strong></div>
+        <div class="summary-row"><p>Checkout pages involved</p><strong>${checkout.sourceCount || 1}</strong></div>
         <div class="summary-row summary-total-row"><p>Total shown on this page</p><div class="summary-total">${escapeHtml(formatPrice(subtotal, catalog.source.currency || 'CAD'))}</div></div>
       </div>
       <button class="checkout-button" id="checkoutButton" type="button">Checkout on ${escapeHtml(checkout.name)}</button>
       <button class="secondary-button" id="clearCartButton" type="button">Clear bag</button>
-      <p class="summary-note">
-        This storefront keeps the cart on your site, then sends shoppers to ${escapeHtml(checkout.name)} to finish checkout.
-        If the external site does not support prefilled carts, shoppers may need to re-add items there.
-      </p>
+      <p class="summary-note">${escapeHtml(checkoutNote(checkout))}</p>
       <div class="summary-sources">
         ${links.map((link) => `<a href="${link.url}" target="_blank" rel="noreferrer">${escapeHtml(link.label)}</a>`).join('')}
       </div>
@@ -191,7 +201,7 @@
       rerender();
     } catch (error) {
       cartItems.innerHTML = emptyMarkup('Cart unavailable', 'The storefront could not load product data right now.');
-      cartSummary.innerHTML = emptyMarkup('Summary unavailable', 'Please try again when the backend source is available.');
+      cartSummary.innerHTML = emptyMarkup('Summary unavailable', 'Please try again when the hosted catalog is available.');
     }
   }
 

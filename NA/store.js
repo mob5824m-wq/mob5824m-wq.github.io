@@ -1,8 +1,19 @@
 (() => {
-  const STATIC_CATALOG_URL = '../data/athleta-storefront.json';
-  const API_URL = '../api/products';
-  const FALLBACK_URL = '../data/fallback-products.json';
-  const CATALOG_CACHE_KEY = 'na-catalog-cache-v2';
+  function resolveRepoPrefix() {
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    const naIndex = parts.findIndex((part) => part.toLowerCase() === 'na');
+    if (naIndex <= 0) {
+      return '';
+    }
+    return `/${parts.slice(0, naIndex).join('/')}`;
+  }
+
+  const REPO_PREFIX = resolveRepoPrefix();
+  const STORE_BASE = `${REPO_PREFIX}/NA`;
+  const STATIC_CATALOG_URL = `${REPO_PREFIX}/data/athleta-storefront.json`;
+  const API_URL = `${REPO_PREFIX}/api/products`;
+  const FALLBACK_URL = `${REPO_PREFIX}/data/fallback-products.json`;
+  const CATALOG_CACHE_KEY = 'na-catalog-cache-v3';
   const CART_KEY = 'na-cart-v1';
   const DEFAULT_CHECKOUT_URL = 'https://athleta.gapcanada.ca/';
   const DEFAULT_CHECKOUT_NAME = 'Athleta Canada';
@@ -97,6 +108,23 @@
     return Array.from(new Set((Array.isArray(values) ? values : []).map((value) => String(value).trim()).filter(Boolean)));
   }
 
+  function shopPath() {
+    return `${STORE_BASE}/`;
+  }
+
+  function cartPath() {
+    return `${STORE_BASE}/cart.html`;
+  }
+
+  function legacyProductPath(id) {
+    return `${STORE_BASE}/product.html?id=${encodeURIComponent(id)}`;
+  }
+
+  function productPath(productOrSlug) {
+    const slug = typeof productOrSlug === 'string' ? productOrSlug : productOrSlug?.slug;
+    return `${STORE_BASE}/products/${encodeURIComponent(slug || '')}/`;
+  }
+
   function normalizeSource(source = {}) {
     const checkoutUrl = safeUrl(source.checkoutUrl || DEFAULT_CHECKOUT_URL) || DEFAULT_CHECKOUT_URL;
     const displayName = String(source.displayName || source.checkoutName || 'Catalog source').trim();
@@ -128,7 +156,7 @@
     };
   }
 
-  function normalizeVariants(variants, productUrl, fallbackImage, currency) {
+  function normalizeVariants(variants, productUrl, fallbackImage) {
     if (!Array.isArray(variants)) {
       return [];
     }
@@ -166,13 +194,15 @@
     const image = safeUrl(product?.image || '');
     const gallery = uniqueStrings(product?.gallery || product?.images || []).map(safeUrl).filter(Boolean);
     const id = String(product?.id || productUrl || `${category}-${name}-${index}`);
-    const slug = slugify(product?.slug || `${name}-${category}`);
+    const slug = slugify(product?.slug || `${name}-${id}`);
     const palette = getPalette(`${name}-${category}-${id}`);
     const reviews = normalizeReviews(product?.reviews);
     const details = product?.details && typeof product.details === 'object' ? product.details : {};
-    const variants = normalizeVariants(product?.variants, productUrl, image, currency);
+    const variants = normalizeVariants(product?.variants, productUrl, image);
     const inventoryStatus = String(product?.inventoryStatus || product?.inventory_status || variants[0]?.inventoryStatus || '').trim();
-    const inventoryCount = Number.isFinite(Number(product?.inventoryCount ?? product?.inventory_count)) ? Number(product?.inventoryCount ?? product?.inventory_count) : variants.reduce((sum, variant) => sum + (variant.inventoryCount || 0), 0) || null;
+    const inventoryCount = Number.isFinite(Number(product?.inventoryCount ?? product?.inventory_count))
+      ? Number(product?.inventoryCount ?? product?.inventory_count)
+      : variants.reduce((sum, variant) => sum + (variant.inventoryCount || 0), 0) || null;
 
     const allImages = uniqueStrings([image, ...gallery, ...variants.flatMap((variant) => variant.images)]).filter(Boolean);
 
@@ -352,11 +382,25 @@
     return readCart().reduce((sum, item) => sum + item.quantity, 0);
   }
 
+  function findCatalogProduct(catalogProducts, requestedId) {
+    const id = String(requestedId || '');
+    const byId = catalogProducts.find((product) => product.id === id || product.slug === id);
+    if (byId) {
+      return byId;
+    }
+
+    const numericIndex = Number(id);
+    if (Number.isInteger(numericIndex) && numericIndex >= 1 && numericIndex <= catalogProducts.length) {
+      return catalogProducts[numericIndex - 1];
+    }
+
+    return null;
+  }
+
   function cartDetails(catalogProducts) {
-    const catalogById = new Map(catalogProducts.map((product) => [product.id, product]));
     return readCart()
       .map((item) => {
-        const product = catalogById.get(item.id);
+        const product = findCatalogProduct(catalogProducts, item.id);
         if (!product) {
           return null;
         }
@@ -374,10 +418,29 @@
   }
 
   function getCheckoutTarget(source, lines) {
-    const firstLine = lines[0];
+    if (!lines.length) {
+      return {
+        url: safeUrl(source.checkoutUrl || DEFAULT_CHECKOUT_URL) || DEFAULT_CHECKOUT_URL,
+        name: String(source.checkoutName || DEFAULT_CHECKOUT_NAME).trim() || DEFAULT_CHECKOUT_NAME,
+        mode: 'default',
+        sourceCount: 0
+      };
+    }
+
+    const grouped = new Map();
+    lines.forEach((line) => {
+      const url = safeUrl(line.product.checkoutUrl || line.product.url || source.checkoutUrl || DEFAULT_CHECKOUT_URL) || DEFAULT_CHECKOUT_URL;
+      const current = grouped.get(url) || 0;
+      grouped.set(url, current + line.quantity);
+    });
+
+    const [bestUrl] = [...grouped.entries()].sort((a, b) => b[1] - a[1])[0] || [DEFAULT_CHECKOUT_URL, 0];
+
     return {
-      url: safeUrl(firstLine?.product.checkoutUrl || source.checkoutUrl || DEFAULT_CHECKOUT_URL) || DEFAULT_CHECKOUT_URL,
-      name: String(source.checkoutName || DEFAULT_CHECKOUT_NAME).trim() || DEFAULT_CHECKOUT_NAME
+      url: bestUrl,
+      name: String(source.checkoutName || DEFAULT_CHECKOUT_NAME).trim() || DEFAULT_CHECKOUT_NAME,
+      mode: grouped.size === 1 ? 'single-source' : 'multi-source',
+      sourceCount: grouped.size
     };
   }
 
@@ -465,6 +528,10 @@
     escapeHtml,
     slugify,
     safeUrl,
+    shopPath,
+    cartPath,
+    legacyProductPath,
+    productPath,
     addToCart,
     updateCartQuantity,
     removeFromCart,
@@ -480,6 +547,7 @@
     setSourceStatus,
     loadingMarkup,
     emptyMarkup,
-    DEFAULT_CHECKOUT_NAME
+    DEFAULT_CHECKOUT_NAME,
+    findCatalogProduct
   };
 })();

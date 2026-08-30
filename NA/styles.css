@@ -608,7 +608,7 @@ a {
 .cart-items-panel,
 .cart-summary-panel,
 .story-card {
-  padding: 18px;
+  padding: 22px;
 }
 
 .product-topline,
@@ -869,6 +869,10 @@ a {
 
 .variant-card small {
   color: var(--muted);
+}
+
+.variant-card span {
+  font-weight: 700;
 }
 
 .related-section {
@@ -1172,5 +1176,15 @@ a {
 
   .quantity-stepper {
     grid-template-columns: 48px 1fr 48px;
+  }
+}
+ch;
+  }
+
+  .quantity-stepper {
+    grid-template-columns: 48px 1fr 48px;
+  }
+}
+d-template-columns: 48px 1fr 48px;
   }
 }

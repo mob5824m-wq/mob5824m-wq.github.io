@@ -5,7 +5,8 @@ This repo now includes a storefront mounted at `/NA/`.
 ## Pages
 
 - `/NA/` – catalog page
-- `/NA/product.html?id=...` – product detail page
+- `/NA/products/<product-slug>/` – individual product webpages
+- `/NA/product.html?id=...` – legacy product detail route
 - `/NA/cart.html` – persistent shopping bag and checkout handoff page
 
 The root `/` redirects to `/NA/`.
@@ -45,15 +46,24 @@ Edit `source.config.json` to connect an approved remote source:
 
 - The frontend first loads products from `data/athleta-storefront.json`
 - That hosted storefront file is generated from `athleta-combined-catalog.json`
+- Each product now has its own static page under `/NA/products/<product-slug>/`
 - Product cards and product pages use the hosted image links from your JSON
-- Product pages show source information, reviews, variants, and gallery images when present
+- Product pages show swappable gallery images, source information, reviews, variants, and checkout links
 - The cart stores items locally in the browser
-- The cart checkout button redirects shoppers to Athleta Canada
+- The cart checkout button redirects shoppers to Athleta Canada using the closest matching product/category source page
 - The backend `/api/products` still exists as an optional server-side source path
+
+## Rebuild hosted pages/data
+
+If you update `athleta-combined-catalog.json`, regenerate the hosted storefront data and per-product pages with:
+
+```bash
+python3 scripts/build_na_catalog.py
+```
 
 ## Note
 
 GitHub Pages can host the static `/NA/` files and JSON files, but it cannot run `server.py`. For that reason:
 
-- on plain GitHub Pages, the `/NA/` storefront can work directly from the hosted JSON files in the repo
+- on plain GitHub Pages, the `/NA/` storefront works directly from the hosted JSON files in the repo
 - for live remote catalog proxying beyond the committed JSON, deploy the Python backend on a host that supports server-side code
