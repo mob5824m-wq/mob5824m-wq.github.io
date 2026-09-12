@@ -16,7 +16,18 @@
   const CATALOG_CACHE_KEY = 'na-catalog-cache-v3';
   const CART_KEY = 'na-cart-v1';
   const DEFAULT_CHECKOUT_URL = 'https://athleta.gapcanada.ca/';
-  const DEFAULT_CHECKOUT_NAME = 'Athleta Canada';
+  const DEFAULT_CHECKOUT_NAME = 'Partner site';
+
+  function sanitizeRetailerText(value, fallback = '') {
+    const text = String(value || '').trim();
+    if (!text) {
+      return fallback;
+    }
+    if (/athleta/i.test(text)) {
+      return fallback;
+    }
+    return text;
+  }
 
   const palettePool = [
     ['#8c6a5d', '#d7c0b5'],
@@ -127,17 +138,17 @@
 
   function normalizeSource(source = {}) {
     const checkoutUrl = safeUrl(source.checkoutUrl || DEFAULT_CHECKOUT_URL) || DEFAULT_CHECKOUT_URL;
-    const displayName = String(source.displayName || source.checkoutName || 'Catalog source').trim();
+    const displayName = sanitizeRetailerText(source.displayName || source.checkoutName, 'Catalog source');
 
     return {
       mode: String(source.mode || 'fallback').trim(),
-      message: String(source.message || 'Catalog loaded.').trim(),
+      message: sanitizeRetailerText(source.message, 'Catalog loaded.'),
       sourceUrl: safeUrl(source.sourceUrl || ''),
       displayName,
       parser: String(source.parser || '').trim(),
       fetchedAt: Number.isFinite(Number(source.fetchedAt)) ? Number(source.fetchedAt) : null,
       checkoutUrl,
-      checkoutName: String(source.checkoutName || DEFAULT_CHECKOUT_NAME).trim(),
+      checkoutName: sanitizeRetailerText(source.checkoutName, DEFAULT_CHECKOUT_NAME),
       currency: String(source.currency || 'CAD').trim() || 'CAD'
     };
   }
@@ -179,18 +190,18 @@
   function normalizeProduct(product, index, source) {
     const name = String(product?.name || `Product ${index + 1}`).trim();
     const category = String(product?.category || 'Featured').trim();
-    const description = String(product?.description || 'Catalog item loaded through the storefront proxy.').trim();
-    const fit = String(product?.fit || product?.brand || 'Everyday fit').trim();
+    const description = sanitizeRetailerText(product?.description, 'Catalog item loaded through the hosted storefront.');
+    const fit = sanitizeRetailerText(product?.fit, 'Everyday fit');
     const colors = uniqueStrings(product?.colors);
-    const badge = String(product?.badge || product?.brand || 'Catalog').trim();
+    const badge = sanitizeRetailerText(product?.badge, category || 'Catalog');
     const price = coercePrice(product?.price);
     const regularPrice = coercePrice(product?.regularPrice ?? product?.regular_price);
     const currency = String(product?.currency || source.currency || 'CAD').toUpperCase();
     const productUrl = safeUrl(product?.url || product?.sourceUrl || source.sourceUrl || '');
     const checkoutUrl = safeUrl(product?.checkoutUrl || productUrl || source.checkoutUrl || DEFAULT_CHECKOUT_URL) || DEFAULT_CHECKOUT_URL;
-    const sourceName = String(product?.sourceName || source.displayName || 'Catalog source').trim();
+    const sourceName = sanitizeRetailerText(product?.sourceName || source.displayName, 'Partner source');
     const sourceUrl = safeUrl(product?.sourceUrl || source.sourceUrl || productUrl || checkoutUrl || '');
-    const sourceLabel = String(product?.sourceLabel || product?.source_label || sourceName).trim();
+    const sourceLabel = sanitizeRetailerText(product?.sourceLabel || product?.source_label || sourceName, 'Open source page');
     const image = safeUrl(product?.image || '');
     const gallery = uniqueStrings(product?.gallery || product?.images || []).map(safeUrl).filter(Boolean);
     const id = String(product?.id || productUrl || `${category}-${name}-${index}`);

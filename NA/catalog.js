@@ -170,7 +170,7 @@
   function renderProducts() {
     const items = filteredProducts();
     heroProductCount.textContent = String(state.catalog.products.length || 0);
-    heroSourceName.textContent = state.catalog.source.checkoutName || 'Athleta';
+    heroSourceName.textContent = state.catalog.source.checkoutName || 'Partner';
     resultsText.textContent = `${items.length} product${items.length === 1 ? '' : 's'} shown`;
 
     if (!items.length) {
@@ -199,7 +199,7 @@
   }
 
   async function init() {
-    productGrid.innerHTML = loadingMarkup('Loading catalog…', 'The /NA storefront is loading your hosted Athleta catalog JSON.');
+    productGrid.innerHTML = loadingMarkup('Loading catalog…', 'The storefront is loading your hosted catalog JSON.');
 
     try {
       state.catalog = await loadCatalog();

@@ -14,7 +14,11 @@ NA_PRODUCTS_DIR = ROOT / "NA" / "products"
 na_PRODUCTS_DIR = ROOT / "na" / "products"
 NA_DIRECT_DIR = ROOT / "NA"
 na_DIRECT_DIR = ROOT / "na"
-ASSET_VERSION = "20260830e"
+ASSET_VERSION = "20260830f"
+GENERIC_SOURCE_NAME = "Partner source"
+GENERIC_SOURCE_LABEL = "Open source page"
+GENERIC_CHECKOUT_NAME = "Partner site"
+GENERIC_SOURCE_MESSAGE = "Using the hosted catalog JSON from this branch."
 
 
 def slugify(value: str) -> str:
@@ -37,6 +41,13 @@ def unique_strings(values):
             seen.add(value)
             out.append(value)
     return out
+
+
+def first_nonempty(*values: str) -> str:
+    for value in values:
+        if isinstance(value, str) and value.strip():
+            return value.strip()
+    return ""
 
 
 def build_storefront_items(source_items: list[dict]) -> list[OrderedDict]:
@@ -96,8 +107,13 @@ def build_storefront_items(source_items: list[dict]) -> list[OrderedDict]:
 
         review = item.get("reviews") or {}
         total_colors = (item.get("colors_and_images") or {}).get("total_colors") or len(color_names)
-        brand = item.get("brand") or "Athleta"
         category = item.get("category") or details.get("type") or "featured"
+        display_type = first_nonempty(
+            titleize(details.get("clothing_type") or ""),
+            titleize(details.get("type") or ""),
+            titleize(category),
+            "Activewear",
+        )
         description_bits = [titleize(category)]
         if total_colors:
             description_bits.append(f"{total_colors} color option" + ("s" if total_colors != 1 else ""))
@@ -113,23 +129,23 @@ def build_storefront_items(source_items: list[dict]) -> list[OrderedDict]:
                 [
                     ("id", item_id),
                     ("slug", slug),
-                    ("name", item.get("name") or "Athleta item"),
+                    ("name", item.get("name") or "Product item"),
                     ("category", titleize(category)),
-                    ("brand", brand),
-                    ("badge", brand),
+                    ("brand", GENERIC_SOURCE_NAME),
+                    ("badge", display_type),
                     ("description", description),
                     ("price", price),
                     ("regularPrice", regular_price),
                     ("currency", "CAD"),
-                    ("fit", titleize(details.get("clothing_type") or details.get("type") or category)),
+                    ("fit", display_type),
                     ("inventoryStatus", inventory_status),
                     ("inventoryCount", inventory_count),
                     ("colors", color_names[:12]),
                     ("image", image_candidates[0] if image_candidates else ""),
                     ("gallery", image_candidates[:10]),
                     ("reviews", {"score": review.get("score"), "count": review.get("count")}),
-                    ("sourceName", "Athleta Canada"),
-                    ("sourceLabel", item.get("source_label") or "Athleta source page"),
+                    ("sourceName", GENERIC_SOURCE_NAME),
+                    ("sourceLabel", GENERIC_SOURCE_LABEL),
                     ("sourceUrl", source_url),
                     ("url", source_url),
                     ("checkoutUrl", source_url),
@@ -299,13 +315,13 @@ def main() -> None:
             {
                 "source": {
                     "mode": "static-json",
-                    "message": "Using the bundled Athleta catalog JSON from this branch.",
+                    "message": GENERIC_SOURCE_MESSAGE,
                     "sourceUrl": "https://athleta.gapcanada.ca/",
-                    "displayName": "Athleta Canada Catalog",
+                    "displayName": "North Active Catalog",
                     "parser": "prebuilt-json",
                     "fetchedAt": None,
                     "checkoutUrl": "https://athleta.gapcanada.ca/",
-                    "checkoutName": "Athleta Canada",
+                    "checkoutName": GENERIC_CHECKOUT_NAME,
                     "currency": "CAD",
                 },
                 "items": storefront_items,

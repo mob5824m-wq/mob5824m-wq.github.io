@@ -1,6 +1,6 @@
 # North Active Shop
 
-This repo now includes a storefront mounted at `/na/` with uppercase `/NA/` aliases.
+This repo includes a storefront mounted at `/na/` with uppercase `/NA/` aliases.
 
 ## Pages
 
@@ -37,8 +37,8 @@ Edit `source.config.json` to connect an approved remote source:
   "cacheTtlSeconds": 900,
   "mode": "auto",
   "userAgent": "NorthActiveCatalogProxy/1.0",
-  "checkoutUrl": "https://athleta.gapcanada.ca/",
-  "checkoutName": "Athleta Canada",
+  "checkoutUrl": "https://partner.example/",
+  "checkoutName": "Partner site",
   "currency": "CAD"
 }
 ```
@@ -47,14 +47,14 @@ Edit `source.config.json` to connect an approved remote source:
 
 - The frontend first loads products from `data/athleta-storefront.json`
 - That hosted storefront file is generated from `athleta-combined-catalog.json`
-- Each product now has its own static page under `/NA/products/<product-slug>/`
+- Each product has its own static page under `/na/<product-slug>/`
 - Product cards and product pages use the hosted image links from your JSON
 - Product pages show swappable gallery images, source information, reviews, variants, and checkout links
 - The cart stores items locally in the browser
-- The cart checkout button redirects shoppers to Athleta Canada using the closest matching product/category source page
+- The cart checkout button redirects shoppers to the closest matching product or category source page
 - The backend `/api/products` still exists as an optional server-side source path
 
-## Rebuild hosted pages/data
+## Rebuild hosted pages and data
 
 If you update `athleta-combined-catalog.json`, regenerate the hosted storefront data and per-product pages with:
 
@@ -66,5 +66,5 @@ python3 scripts/build_na_catalog.py
 
 GitHub Pages can host the static `/NA/` files and JSON files, but it cannot run `server.py`. For that reason:
 
-- on plain GitHub Pages, the `/NA/` storefront works directly from the hosted JSON files in the repo
+- on plain GitHub Pages, the storefront works directly from the hosted JSON files in the repo
 - for live remote catalog proxying beyond the committed JSON, deploy the Python backend on a host that supports server-side code

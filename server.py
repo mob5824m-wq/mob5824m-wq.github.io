@@ -28,7 +28,7 @@ DEFAULT_CONFIG = {
     "mode": "auto",
     "userAgent": "NorthActiveCatalogProxy/1.0",
     "checkoutUrl": "https://athleta.gapcanada.ca/",
-    "checkoutName": "Athleta Canada",
+    "checkoutName": "Partner site",
     "currency": "CAD",
 }
 
@@ -416,7 +416,7 @@ def build_catalog_payload(force_refresh: bool = False) -> dict[str, Any]:
     if not source_url:
         hosted_payload = load_hosted_catalog_payload(
             config,
-            "Using the hosted Athleta catalog JSON from this branch."
+            "Using the hosted catalog JSON from this branch."
         )
         if hosted_payload:
             return hosted_payload

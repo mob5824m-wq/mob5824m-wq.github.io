@@ -119,12 +119,12 @@
 
   function checkoutNote(checkout) {
     if (checkout.mode === 'single-source') {
-      return 'All selected items point to the same Athleta source page, so checkout can send the shopper there directly.';
+      return 'All selected items point to the same source page, so checkout can send the shopper there directly.';
     }
     if (checkout.mode === 'multi-source') {
-      return 'These items come from more than one source page, so checkout opens the closest matching Athleta page and keeps the source links below available.';
+      return 'These items come from more than one source page, so checkout opens the closest matching partner page and keeps the source links below available.';
     }
-    return 'Checkout will redirect to Athleta to continue shopping.';
+    return 'Checkout will redirect to the partner site to continue shopping.';
   }
 
   function renderSummary(lines) {
@@ -140,7 +140,7 @@
             <h2 class="summary-title">Bag summary</h2>
           </div>
         </div>
-        ${emptyMarkup('No items selected', 'Once products are added, checkout will redirect to Athleta.')}
+        ${emptyMarkup('No items selected', 'Once products are added, checkout will redirect to the partner site.')}
       `;
       return;
     }
@@ -167,7 +167,7 @@
       <div class="notice-card">
         <h3>Checkout destination</h3>
         <div class="summary-row"><p>Partner</p><strong>${escapeHtml(checkout.name)}</strong></div>
-        <div class="summary-row"><p>Redirect URL</p><a href="${checkout.url}" target="_blank" rel="noreferrer">${checkout.url}</a></div>
+        <div class="summary-row"><p>Redirect URL</p><a href="${checkout.url}" target="_blank" rel="noreferrer">Open checkout destination</a></div>
       </div>
     `;
 

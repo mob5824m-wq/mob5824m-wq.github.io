@@ -250,7 +250,7 @@
         variant.inventoryStatus || 'Availability varies by source',
         `${viewState.variants.length} colour option${viewState.variants.length === 1 ? '' : 's'}`,
         product.details?.styleId ? `Style ID ${product.details.styleId}` : '',
-        `Checkout handoff available through ${catalog.source.checkoutName}`
+        'External checkout handoff available'
       ].filter(Boolean);
 
       detailBullets.innerHTML = bullets.map((bullet) => `<li>${escapeHtml(bullet)}</li>`).join('');
@@ -417,7 +417,7 @@
 
   async function init() {
     const requestedId = getRequestedId();
-    productDetail.innerHTML = loadingMarkup('Loading product…', 'Fetching product details from your hosted Athleta catalog JSON.');
+    productDetail.innerHTML = loadingMarkup('Loading product…', 'Fetching product details from your hosted catalog JSON.');
     relatedGrid.innerHTML = '';
 
     try {
