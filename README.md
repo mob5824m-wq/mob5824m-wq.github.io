@@ -1,106 +1,70 @@
-# mob5824m-wq.github.io
+# North Active Shop
 
-My projects site. Plain HTML, CSS and vanilla JS — no build step, no npm, no
-framework. Push and it's live.
+This repo includes a storefront mounted at `/na/` with uppercase `/NA/` aliases.
 
-**<https://mob5824m-wq.github.io/>**
+## Pages
 
+- `/na/` – catalog page
+- `/na/<product-slug>/` – individual product webpages
+- `/na/product.html?id=...` – legacy product detail route
+- `/na/cart.html` – persistent shopping bag and checkout handoff page
+- `/NA/...` – uppercase aliases for compatibility
+
+The root `/` redirects to `/na/`.
+
+## Backend
+
+Run locally with:
+
+```bash
+python3 server.py
 ```
-index.html                page structure (rarely needs editing)
-data/content.js           ← ALL CONTENT LIVES HERE
-assets/css/style.css      design tokens at the top, then components
-assets/js/main.js         rendering + interactions
-assets/img/               icons, og.jpg
-assets/img/shots/         project screenshots
-404.html                  themed not-found page
-serve.py                  local preview server (not deployed)
-.nojekyll                 stops GitHub Pages running Jekyll
-```
 
-## Editing content
+Endpoints:
 
-Everything is in **`data/content.js`**. Two objects: `window.SITE` (name,
-tagline, about, skills, stats, timeline, contact links) and `window.PROJECTS`
-(one entry per card). Save, refresh, done — nothing to rebuild.
+- `/api/health`
+- `/api/products`
 
-**Empty fields hide themselves.** Clear `about` and the About section and its
-nav link disappear. No links, no Contact section. Fewer than two tags and the
-filter bar doesn't render. Nothing ever looks half-built.
+## Source configuration
 
-### Adding a project
+Edit `source.config.json` to connect an approved remote source:
 
-Only `title` is required.
-
-```js
+```json
 {
-  title: "My Project",
-  blurb: "One line shown on the card.",
-  description: "Longer text shown in the popup.",
-  tags: ["Web app", "Python"],          // these become the filter buttons
-  year: "2026",
-  status: "Live",                       // "Live" | "In progress" | "Archived"
-  featured: false,                      // true = card spans two columns
-  icon: "book",                         // book|bot|antenna|terminal|code|spark
-  shot: "assets/img/shots/thing.png",   // optional screenshot banner
-  shotPos: "top",                       // where to anchor the 16:9 crop
-  highlights: ["Bullet in the popup"],
-  links: [{ label: "Source", href: "https://..." }]
+  "sourceUrl": "https://your-approved-source.example/collection",
+  "sourceName": "Your Approved Source",
+  "allowedHosts": ["your-approved-source.example"],
+  "cacheTtlSeconds": 900,
+  "mode": "auto",
+  "userAgent": "NorthActiveCatalogProxy/1.0",
+  "checkoutUrl": "https://partner.example/",
+  "checkoutName": "Partner site",
+  "currency": "CAD"
 }
 ```
 
-A card with a `shot` shows it as a banner and hides its icon; if the file 404s
-the icon comes back automatically. `shotPos` takes any CSS `object-position`
-(`top`, `center 12%`, …). See `assets/img/shots/README.md` — short version is
-**PNG for UI screenshots, JPEG for photos**, since JPEG fringes small text.
+## Current behavior
 
-### Timeline states
+- The frontend first loads products from `data/athleta-storefront.json`
+- That hosted storefront file is generated from `athleta-combined-catalog.json`
+- Each product has its own static page under `/na/<product-slug>/`
+- Product cards and product pages use the hosted image links from your JSON
+- Product pages show swappable gallery images, source information, reviews, variants, and checkout links
+- The cart stores items locally in the browser
+- The cart checkout button redirects shoppers to the closest matching product or category source page
+- The backend `/api/products` still exists as an optional server-side source path
 
-`SITE.timeline` colour-codes itself from the label:
+## Rebuild hosted pages and data
 
-| Label     | Dot    | Effect                                           |
-| --------- | ------ | ------------------------------------------------ |
-| `Shipped` | green  | green label, connector runs green then hands off |
-| `Next`    | orange | orange label                                     |
-| anything  | accent | the default                                      |
-
-Set `done: true` or `next: true` to force a state regardless of the wording.
-
-## Restyling
-
-The top of `assets/css/style.css` is design tokens. Change `--accent` and
-`--accent-2` and the whole site follows — buttons, glow, links, dots. Dark and
-light palettes are defined separately just below, along with `--ship` and
-`--next` for the timeline.
-
-## What's wired up
-
-- Dark/light toggle — remembers the choice, respects `prefers-color-scheme`
-- Tag filtering, project dialogs with ←/→ navigation and deep links (`#slug`)
-- Scrollspy nav, scroll reveals, optional typewriter hero
-- Accessible: skip link, focus rings and restore, ARIA states, full
-  `prefers-reduced-motion` support, works without JS
-- SEO: canonical URL, OpenGraph/Twitter cards, JSON-LD, sitemap, robots.txt
-- Installable — `site.webmanifest` plus a full icon set
-- Zero dependencies (the only network request is Google Fonts)
-
-## Local preview
+If you update `athleta-combined-catalog.json`, regenerate the hosted storefront data and per-product pages with:
 
 ```bash
-python3 serve.py 8000
-# http://localhost:8000
+python3 scripts/build_na_catalog.py
 ```
 
-`serve.py` disables caching so edits show up on a normal refresh — plain
-`python3 -m http.server` serves stale CSS/JS and will waste your time.
+## Note
 
-Asset URLs in `index.html` carry a `?v=` string. **Bump it when you change
-`style.css` or `main.js`**, otherwise returning visitors keep the old copy.
+GitHub Pages can host the static `/NA/` files and JSON files, but it cannot run `server.py`. For that reason:
 
-## Deploying
-
-Served from the repo root, so pushing the default branch is enough.
-**Settings → Pages** → *Deploy from a branch* → `main` → `/ (root)`.
-
-## Licence
-
-[MIT](LICENSE).
+- on plain GitHub Pages, the storefront works directly from the hosted JSON files in the repo
+- for live remote catalog proxying beyond the committed JSON, deploy the Python backend on a host that supports server-side code

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>North Active | Shop</title>
+    <meta
+      name="description"
+      content="North Active storefront with a polished landing page, hosted catalog, product pages, and external checkout handoff."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css?v=20260830f" />
+  </head>
+  <body data-page="catalog">
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="North Active home">
+          <span class="brand-mark"><span class="brand-mark-inner">NA</span></span>
+          <span class="brand-copy">
+            <strong>North Active</strong>
+            <small>curated active storefront</small>
+          </span>
+        </a>
+
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#featured">Featured</a>
+          <a href="#catalog">Shop</a>
+          <a href="#story">About</a>
+          <a href="../na/cart.html">Cart</a>
+        </nav>
+
+        <a class="bag-button" id="bagButton" href="../na/cart.html" aria-label="Shopping cart">
+          <span>Bag</span>
+          <span class="bag-count" id="bagCount">0</span>
+        </a>
+      </header>
+
+      <main id="home">
+        <section class="hero hero-premium">
+          <div class="hero-copy">
+            <div class="hero-kicker-row">
+              <p class="eyebrow">North Active /na</p>
+              <span class="hero-source-pill">Hosted catalog. Premium browsing. External checkout.</span>
+            </div>
+
+            <div class="hero-logo-lockup" aria-hidden="true">
+              <span class="hero-logo-badge">NA</span>
+              <div>
+                <p class="hero-logo-title">North Active</p>
+                <small>Movement essentials in a cleaner storefront</small>
+              </div>
+            </div>
+
+            <h1>A sharper landing page for your activewear storefront.</h1>
+            <p class="hero-text">
+              North Active turns your hosted catalog into a more premium shopping experience with
+              a stronger brand feel, cleaner entry point, product pages for every item, and a simple handoff
+              to an external checkout when shoppers are ready to continue.
+            </p>
+
+            <div class="hero-actions">
+              <a class="button button-dark" href="#catalog">Shop the catalog</a>
+              <a class="button button-light" href="../na/cart.html">Open cart</a>
+            </div>
+
+            <div class="hero-highlights" aria-label="Store highlights">
+              <span class="hero-highlight">Hosted catalog JSON</span>
+              <span class="hero-highlight">Direct product pages</span>
+              <span class="hero-highlight">External checkout handoff</span>
+            </div>
+
+            <ul class="hero-stats" aria-label="Store statistics">
+              <li><strong id="heroProductCount">--</strong><span>catalog items</span></li>
+              <li><strong>1</strong><span>premium storefront</span></li>
+              <li><strong id="heroSourceName">Partner</strong><span>checkout partner</span></li>
+            </ul>
+          </div>
+
+          <div class="hero-visual hero-scene" aria-hidden="true">
+            <div class="hero-glow hero-glow-one"></div>
+            <div class="hero-glow hero-glow-two"></div>
+
+            <article class="scene-card scene-card-primary">
+              <p>Shop /na</p>
+              <strong>Editorial storefront styling with faster product entry points</strong>
+            </article>
+
+            <article class="scene-card scene-card-floating">
+              <span class="scene-eyebrow">Featured flow</span>
+              <div class="scene-stat-grid">
+                <div>
+                  <strong>Browse</strong>
+                  <small>filter by category</small>
+                </div>
+                <div>
+                  <strong>Select</strong>
+                  <small>open a product page</small>
+                </div>
+                <div>
+                  <strong>Review</strong>
+                  <small>colour-specific images</small>
+                </div>
+                <div>
+                  <strong>Checkout</strong>
+                  <small>redirect to partner</small>
+                </div>
+              </div>
+            </article>
+
+            <article class="scene-card scene-card-bottom">
+              <span class="scene-chip">Brand refresh</span>
+              <p>Soft neutrals, elevated cards, and a stronger North Active logo treatment.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="featured-strip featured-strip-premium" id="featured">
+          <article>
+            <p>Better first impression</p>
+            <strong>A more branded homepage with a cleaner visual hierarchy</strong>
+          </article>
+          <article>
+            <p>Product-focused flow</p>
+            <strong>Filters, detail pages, and image-led browsing stay front and center</strong>
+          </article>
+          <article>
+            <p>Source-aware shopping</p>
+            <strong>Your site hosts the experience while the partner site handles the final checkout</strong>
+          </article>
+        </section>
+
+        <section class="catalog-section" id="catalog">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Catalog</p>
+              <h2>Shop by feel, fit, and function.</h2>
+            </div>
+            <div class="section-summary">
+              <p class="section-note">
+                Storefront products load from your hosted catalog JSON, with the backend still available as an optional fallback.
+              </p>
+              <p class="source-status" id="sourceStatus">Checking catalog source…</p>
+            </div>
+          </div>
+
+          <div class="toolbar" aria-label="Catalog controls">
+            <label class="search-field">
+              <span class="sr-only">Search products</span>
+              <input id="searchInput" type="search" placeholder="Search leggings, fleece, jackets…" autocomplete="off" />
+            </label>
+
+            <div class="filter-pills" id="categoryFilters" role="tablist" aria-label="Product categories"></div>
+
+            <label class="sort-field">
+              <span class="sr-only">Sort products</span>
+              <select id="sortSelect">
+                <option value="featured">Sort: Featured</option>
+                <option value="price-asc">Price: Low to high</option>
+                <option value="price-desc">Price: High to low</option>
+                <option value="name-asc">Name: A to Z</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="results-bar">
+            <p id="resultsText">Loading products…</p>
+            <button class="clear-button" id="clearFilters" type="button">Clear filters</button>
+          </div>
+
+          <div class="product-grid" id="productGrid" aria-live="polite"></div>
+        </section>
+
+        <section class="story-section" id="story">
+          <div class="story-card story-main">
+            <p class="eyebrow">Store behavior</p>
+            <h3>North Active owns the presentation. The partner site handles the last-mile checkout.</h3>
+            <p>
+              The landing page now feels more like a real storefront instead of a plain catalog wrapper.
+              Shoppers browse on your site, open dedicated product pages, explore colour-specific images,
+              and then hand off to the partner site when they are ready to buy.
+            </p>
+          </div>
+          <div class="story-card">
+            <h4>What shoppers can do</h4>
+            <ul>
+              <li>Browse a premium storefront landing page</li>
+              <li>Filter the hosted catalog quickly</li>
+              <li>Open direct product pages for every item</li>
+              <li>Continue to the partner site for checkout</li>
+            </ul>
+          </div>
+          <div class="story-card">
+            <h4>What powers it</h4>
+            <ul>
+              <li>Hosted catalog file from your branch</li>
+              <li>Shared storefront styling and logo system</li>
+              <li>Static product pages under <span class="inline-code">/na/&lt;slug&gt;/</span></li>
+              <li>Optional backend support for future feeds</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="./store.js?v=20260830f"></script>
+    <script src="./catalog.js?v=20260830f"></script>
+  </body>
+</html>

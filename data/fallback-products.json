@@ -1,0 +1,148 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Stride Sculpt 7/8 Tight",
+      "category": "Leggings",
+      "price": 98,
+      "badge": "Best seller",
+      "description": "Supportive high-rise compression with a brushed finish for studio, walks, and travel days.",
+      "colors": ["Espresso", "Black", "Heather Taupe"],
+      "fit": "High rise",
+      "currency": "CAD",
+      "sourceName": "North Active Demo Catalog"
+    },
+    {
+      "id": 2,
+      "name": "Cloudsoft Half-Zip",
+      "category": "Tops",
+      "price": 89,
+      "badge": "New",
+      "description": "An easy pullover with a polished collar and lightweight warmth for everyday layering.",
+      "colors": ["Ivory", "Stone", "Mist Blue"],
+      "fit": "Relaxed fit",
+      "currency": "CAD",
+      "sourceName": "North Active Demo Catalog"
+    },
+    {
+      "id": 3,
+      "name": "Transit Wide-Leg Pant",
+      "category": "Bottoms",
+      "price": 118,
+      "badge": "Travel",
+      "description": "Drapey technical fabric with an elevated silhouette that works from airport to errands.",
+      "colors": ["Ink", "Olive", "Mushroom"],
+      "fit": "Wide leg",
+      "currency": "CAD",
+      "sourceName": "North Active Demo Catalog"
+    },
+    {
+      "id": 4,
+      "name": "Summit Quilted Vest",
+      "category": "Outerwear",
+      "price": 148,
+      "badge": "Limited",
+      "description": "Light insulation and a clean matte shell for transitional weather and casual layering.",
+      "colors": ["Clay", "Onyx", "Pebble"],
+      "fit": "Easy fit",
+      "currency": "CAD",
+      "sourceName": "North Active Demo Catalog"
+    },
+    {
+      "id": 5,
+      "name": "Flow Rib Bra",
+      "category": "Tops",
+      "price": 54,
+      "badge": "Studio",
+      "description": "Soft rib support with smooth straps and a barely-there feel for yoga and low-impact days.",
+      "colors": ["Rose Dust", "Black", "Sand"],
+      "fit": "Light support",
+      "currency": "CAD",
+      "sourceName": "North Active Demo Catalog"
+    },
+    {
+      "id": 6,
+      "name": "Weekend Wrap Jacket",
+      "category": "Outerwear",
+      "price": 132,
+      "badge": "Fresh drop",
+      "description": "A belted wrap jacket with stretch lining and just enough structure to dress up your layers.",
+      "colors": ["Camel", "Ivory"],
+      "fit": "Relaxed fit",
+      "currency": "CAD",
+      "sourceName": "North Active Demo Catalog"
+    },
+    {
+      "id": 7,
+      "name": "Ease Move Tank",
+      "category": "Tops",
+      "price": 44,
+      "badge": "Everyday",
+      "description": "Soft technical jersey tank with a scooped hem and breathable finish for warm sessions.",
+      "colors": ["Graphite", "Dune", "White"],
+      "fit": "Classic fit",
+      "currency": "CAD",
+      "sourceName": "North Active Demo Catalog"
+    },
+    {
+      "id": 8,
+      "name": "Trailsoft Cargo Jogger",
+      "category": "Bottoms",
+      "price": 110,
+      "badge": "Utility",
+      "description": "Streamlined cargo pockets and a flattering tapered leg make this a strong off-duty staple.",
+      "colors": ["Fern", "Oak", "Black"],
+      "fit": "Tapered leg",
+      "currency": "CAD",
+      "sourceName": "North Active Demo Catalog"
+    },
+    {
+      "id": 9,
+      "name": "Altitude Mock Neck",
+      "category": "Tops",
+      "price": 76,
+      "badge": "Cold weather",
+      "description": "A silky knit mock neck designed to sit smoothly under puffers, coats, and fleece layers.",
+      "colors": ["Truffle", "Ivory", "Black"],
+      "fit": "Slim fit",
+      "currency": "CAD",
+      "sourceName": "North Active Demo Catalog"
+    },
+    {
+      "id": 10,
+      "name": "Core Glide Short",
+      "category": "Bottoms",
+      "price": 58,
+      "badge": "Run",
+      "description": "Featherweight short with a smooth waistband and inner brief for movement-first training.",
+      "colors": ["Onyx", "Fig", "Deep Navy"],
+      "fit": "Mid rise",
+      "currency": "CAD",
+      "sourceName": "North Active Demo Catalog"
+    },
+    {
+      "id": 11,
+      "name": "Studio Balance Bodysuit",
+      "category": "Tops",
+      "price": 92,
+      "badge": "One piece",
+      "description": "Clean seamlines and four-way stretch create a sleek layer for classes and styled outfits.",
+      "colors": ["Black", "Moss", "Cocoa"],
+      "fit": "Body skimming",
+      "currency": "CAD",
+      "sourceName": "North Active Demo Catalog"
+    },
+    {
+      "id": 12,
+      "name": "Harbor Softshell Trench",
+      "category": "Outerwear",
+      "price": 178,
+      "badge": "Statement",
+      "description": "Water-resistant softshell trench with a modern drape and enough polish for city commutes.",
+      "colors": ["Sandstone", "Black"],
+      "fit": "Longline",
+      "currency": "CAD",
+      "sourceName": "North Active Demo Catalog"
+    }
+  ]
+}
