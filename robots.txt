@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mob5824m-wq.github.io/sitemap.xml
