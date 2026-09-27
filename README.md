@@ -1,70 +1,43 @@
-# North Active Shop
+# mob5824m-wq.github.io
 
-This repo includes a storefront mounted at `/na/` with uppercase `/NA/` aliases.
+Personal website, projects portfolio, and Discord bot legal compliance documentation. Plain HTML, CSS and vanilla JS — no build step, no npm, no framework. Push and it's live on GitHub Pages.
+
+**<https://mob5824m-wq.github.io/>**
+
+```
+index.html                Home page & project showcase portfolio
+terms.html                Terms of Service for Punishment Manager Discord bot
+privacy.html              Privacy Policy for Punishment Manager Discord bot
+na/                       North Active curated athletic wear storefront (/NA/ alias supported)
+data/content.js           ← Portfolio content & project definitions
+assets/css/style.css      Design tokens, portfolio styles, and legal documentation layouts
+assets/js/main.js         Dynamic portfolio rendering, dark/light theme, dialog modals
+assets/img/               Icons, social graph images (og.jpg), and screenshots
+serve.py                  Local preview server (caching disabled)
+.nojekyll                 Stops GitHub Pages running Jekyll
+sitemap.xml               Search engine indexing sitemap
+```
 
 ## Pages
 
-- `/na/` – catalog page
-- `/na/<product-slug>/` – individual product webpages
-- `/na/product.html?id=...` – legacy product detail route
-- `/na/cart.html` – persistent shopping bag and checkout handoff page
-- `/NA/...` – uppercase aliases for compatibility
+- **`/` (`index.html`)**: Interactive project showcase portfolio with dark/light mode toggle, tag filtering, modal details, and links.
+- **`/terms.html`**: Terms of Service for the **Punishment Manager** Discord bot (acceptable use, permissions, commands, liabilities).
+- **`/privacy.html`**: Privacy Policy for the **Punishment Manager** Discord bot (data collection, SQLite persistence, retention, deletion rights).
+- **`/na/`**: North Active curated activewear storefront catalog and cart handoff.
 
-The root `/` redirects to `/na/`.
+## Editing Portfolio Content
 
-## Backend
+Portfolio projects and personal bio details live in **`data/content.js`**.
+- `window.SITE`: Brand name, availability status, typewriter slogans, bio paragraphs, skills, timeline, and contact links.
+- `window.PROJECTS`: Projects list with titles, blurbs, tags, years, highlights, screenshots, and URLs.
 
-Run locally with:
-
-```bash
-python3 server.py
-```
-
-Endpoints:
-
-- `/api/health`
-- `/api/products`
-
-## Source configuration
-
-Edit `source.config.json` to connect an approved remote source:
-
-```json
-{
-  "sourceUrl": "https://your-approved-source.example/collection",
-  "sourceName": "Your Approved Source",
-  "allowedHosts": ["your-approved-source.example"],
-  "cacheTtlSeconds": 900,
-  "mode": "auto",
-  "userAgent": "NorthActiveCatalogProxy/1.0",
-  "checkoutUrl": "https://partner.example/",
-  "checkoutName": "Partner site",
-  "currency": "CAD"
-}
-```
-
-## Current behavior
-
-- The frontend first loads products from `data/athleta-storefront.json`
-- That hosted storefront file is generated from `athleta-combined-catalog.json`
-- Each product has its own static page under `/na/<product-slug>/`
-- Product cards and product pages use the hosted image links from your JSON
-- Product pages show swappable gallery images, source information, reviews, variants, and checkout links
-- The cart stores items locally in the browser
-- The cart checkout button redirects shoppers to the closest matching product or category source page
-- The backend `/api/products` still exists as an optional server-side source path
-
-## Rebuild hosted pages and data
-
-If you update `athleta-combined-catalog.json`, regenerate the hosted storefront data and per-product pages with:
+## Local Preview
 
 ```bash
-python3 scripts/build_na_catalog.py
+python3 serve.py 8000
+# Visit http://localhost:8000 in your browser
 ```
 
-## Note
+## Licence
 
-GitHub Pages can host the static `/NA/` files and JSON files, but it cannot run `server.py`. For that reason:
-
-- on plain GitHub Pages, the storefront works directly from the hosted JSON files in the repo
-- for live remote catalog proxying beyond the committed JSON, deploy the Python backend on a host that supports server-side code
+[MIT](LICENSE).
