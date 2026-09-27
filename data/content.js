@@ -64,7 +64,7 @@ window.SITE = {
     { when: "Shipped", what: "Classroom library — live, self-hosted, running on real shelves", done: true },
     { when: "Shipped", what: "RaspAP + WebOne — one script, one flashable Pi image", done: true },
     { when: "Now",     what: "Polishing this site and the library's kiosk" },
-    { when: "Next",    what: "Writing Punishment Manager, a Discord moderation bot" }
+    { when: "Shipped", what: "Punishment Manager — Discord moderation bot with role management", done: true }
   ],
 
   /* --- Contact --------------------------------------------- */
@@ -130,19 +130,17 @@ window.PROJECTS = [
   {
     title: "Punishment Manager",
     blurb:
-      "A moderation bot for Discord: temporarily strips a member's roles, " +
-      "then restores them automatically when the timer runs out.",
+      "A moderation bot for Discord: temporarily swaps member roles, " +
+      "schedules automated timer expiration, and logs actions with embedded alerts.",
     description:
-      "Built with discord.py. An admin picks a member, a duration and a reason. The bot " +
-      "removes their roles, " +
-      "applies a Punishment role, and DMs them a private explanation in the punishment " +
-      "channel. When the time is up it swaps the role for 'Punishment over' and puts the " +
-      "original roles back. Every case is written to a log channel and a local database, " +
-      "and all server, role and channel IDs live in a config file so other servers can " +
-      "run it without touching the code.",
+      "Built with discord.py. An admin or moderator selects a member, a duration, and an optional reason. The bot " +
+      "applies the configured punishment role, posts embeds to staff channels, and sends the user a direct " +
+      "message with details. When the duration expires, it transitions the user to the post-punishment role " +
+      "automatically. State is persisted in a local SQLite database with automated recovery on restart. " +
+      "Includes dedicated Terms of Service and Privacy Policy documentation for Discord compliance.",
     tags: ["Discord", "Bot", "Python", "Moderation"],
     year: "2026",
-    status: "Next",
+    status: "Live",
     icon: "bot",
     highlights: [
       "Timed punishments that restore the member's original roles automatically",
@@ -153,7 +151,9 @@ window.PROJECTS = [
       "Alerts the mod log if a role can't be restored, plus periodic database backups"
     ],
     links: [
-      { label: "Source", href: "https://github.com/mob5824m-wq/Punishment-Manager" }
+      { label: "Source", href: "https://github.com/mob5824m-wq/Punishment-Manager" },
+      { label: "Terms of Service", href: "terms.html" },
+      { label: "Privacy Policy", href: "privacy.html" }
     ]
   },
   {
