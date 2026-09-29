@@ -9,6 +9,7 @@ index.html                Home page & project showcase portfolio
 terms.html                Terms of Service for Punishment Manager Discord bot
 privacy.html              Privacy Policy for Punishment Manager Discord bot
 na/                       North Active curated athletic wear storefront (/NA/ alias supported)
+cubeclash/                Pixelated voxel sandbox game (vanilla JS + Canvas)
 data/content.js           ← Portfolio content & project definitions
 assets/css/style.css      Design tokens, portfolio styles, and legal documentation layouts
 assets/js/main.js         Dynamic portfolio rendering, dark/light theme, dialog modals
@@ -24,6 +25,20 @@ sitemap.xml               Search engine indexing sitemap
 - **`/terms.html`**: Terms of Service for the **Punishment Manager** Discord bot (acceptable use, permissions, commands, liabilities).
 - **`/privacy.html`**: Privacy Policy for the **Punishment Manager** Discord bot (data collection, SQLite persistence, retention, deletion rights).
 - **`/na/`**: North Active curated activewear storefront catalog and cart handoff.
+- **`/cubeclash`**: CubeClash, a self-contained pixelated first-person voxel sandbox with Survival and Creative modes, touch controls, local high scores, and no build step.
+
+## CubeClash
+
+The game is a standalone static page in `cubeclash/` and uses no runtime or build dependencies. Survival and Creative sessions both support block mining/placement, slime mobs, pause/restart, and device-local high scores.
+
+- **Move/strafe:** `WASD`; mobile D-pad forward/back
+- **Look:** click the world to lock the mouse, then move to look left/right/up/down (`Esc` unlocks and pauses); click-drag fallback, arrow keys, or mobile swipe
+- **Inventory/gear:** press `I` or tap the backpack; select blocks, craft swords and leaf/bark armor, and equip a loadout
+- **Fight:** press `Space`, click the sword button or a slime, or tap mobile `FIGHT`; move closer if out of reach
+- **Mine:** click/tap what you’re facing or press `F`; mobile Mine button
+- **Build:** right-click or press `E`; choose a block with `1`–`9` or the hotbar
+- **Creative flight:** double-tap `Space` to toggle; hold `Space` to rise and `Shift` to descend
+- **Pause:** `Esc` or `P`; scores are stored in browser `localStorage`
 
 ## Editing Portfolio Content
 
