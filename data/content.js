@@ -27,7 +27,7 @@ window.SITE = {
 
   /* --- Hero stats — [] hides the row ----------------------- */
   stats: [
-    { value: "3",       label: "Projects" },
+    { value: "4",       label: "Projects" },
     { value: "Vanilla", label: "No frameworks" },
     { value: "MIT",     label: "Open source" }
   ],
@@ -184,6 +184,36 @@ window.PROJECTS = [
     ],
     links: [
       { label: "Source", href: "https://github.com/mob5824m-wq/RaspAP-WebOne" }
+    ]
+  },
+  {
+    title: "CubeClash",
+    blurb:
+      "A pixelated first-person voxel sandbox: mine blocks, build a world, and take on " +
+      "the slime rush in Survival or Creative mode.",
+    description:
+      "A self-contained browser game built with vanilla JavaScript and Canvas. Explore a procedurally " +
+      "generated voxel island, chop trees, crack ore, place nine kinds of blocks, and fight animated " +
+      "slimes. Craft swords, equip protective leaf-and-bark armor, and manage your loadout from the " +
+      "inventory. Survival adds hearts, hostile mobs and a score chase; Creative gives you unlimited " +
+      "blocks, a safe space to build, and Creative flight toggled by double-tapping Space. Keyboard, " +
+      "mouse and touch controls, pause/restart states, pixel effects and a local high-score table " +
+      "are all built in — no account, install or framework needed.",
+    tags: ["Game", "JavaScript", "Canvas", "Pixel art", "Sandbox"],
+    year: "2026",
+    status: "Live",
+    icon: "spark",
+    highlights: [
+      "Two modes: fight back in Survival or build freely in Creative",
+      "Double-tap Space to fly in Creative; hold Space to rise and Shift to descend",
+      "Mine and place nine block types, then craft weapons and equip protective armor",
+      "Open a full inventory/loadout screen; mouse look works up, down, and all around",
+      "Animated slimes, health, score multipliers, particles and screen shake",
+      "Keyboard and mouse controls, plus a responsive mobile touch pad",
+      "Pause, instant restart and a persistent local high-score table"
+    ],
+    links: [
+      { label: "Play CubeClash", href: "/cubeclash" }
     ]
   }
 ];

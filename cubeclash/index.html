@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#09120f">
+  <meta name="description" content="CubeClash is a first-person pixelated voxel sandbox. Mine and build, craft weapons, equip armor, and survive the slime rush.">
+  <title>CubeClash — Pixel Sandbox</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="../" aria-label="Back to mob5824 projects">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" role="presentation">
+            <path d="m20 3 16 9v17l-16 9L4 29V12z" fill="#b8ff55"/>
+            <path d="m20 3 16 9-16 9-16-9z" fill="#e3ff9a"/>
+            <path d="m4 12 16 9v17L4 29z" fill="#64d978"/>
+            <path d="m36 12-16 9v17l16-9z" fill="#31aa81"/>
+            <path d="m20 11 8 4.5-8 4.5-8-4.5z" fill="#f1ffd2" opacity=".8"/>
+          </svg>
+        </span>
+        <span class="brand-copy"><strong>CubeClash</strong><small>PIXEL SANDBOX</small></span>
+      </a>
+      <div class="topbar-center"><span class="online-dot"></span><span>LOCAL WORLD</span><span class="top-divider">/</span><span id="header-mode">READY TO PLAY</span></div>
+      <div class="topbar-right">
+        <div class="best-badge"><span>BEST RUN</span><strong id="header-best">000000</strong></div>
+        <a class="home-link" href="../" aria-label="Return to home page" title="Return to home page">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5M6.5 10v9h11v-9M10 19v-5h4v5"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <main class="game-main">
+      <section class="game-stage" id="game-stage" aria-label="CubeClash game">
+        <canvas id="world-canvas" aria-label="First-person pixel voxel world. Use WASD to move. Click the world to lock the mouse; move it to look left, right, up, and down. Press I for inventory, gear, armor, and weapons. Click to mine or fight, and E to build." tabindex="0"></canvas>
+        <div class="screen-vignette" aria-hidden="true"></div>
+        <div class="hit-flash" id="hit-flash" aria-hidden="true"></div>
+
+        <div class="game-hud is-hidden" id="game-hud">
+          <div class="hud-top-left">
+            <div class="health-card">
+              <span class="hud-label">HEARTS</span>
+              <span class="hearts" id="hearts" aria-label="5 hearts"></span>
+            </div>
+            <div class="world-chip"><span class="sun-pixel" aria-hidden="true"></span><span id="world-clock">DAY 01 · 00:00</span></div>
+            <div class="flight-chip" id="flight-status" hidden><span aria-hidden="true">✦</span> FLIGHT ON</div>
+          </div>
+          <div class="hud-top-right">
+            <div class="score-card"><span class="hud-label">SCORE</span><strong id="hud-score">000000</strong><span class="score-best" id="hud-best">BEST 000000</span></div>
+            <button class="hud-button inventory-button" id="inventory-button" type="button" aria-label="Open inventory" title="Inventory (I)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16l1 12H3L4 8Z"/><path d="M8 9V6a4 4 0 0 1 8 0v3M9 13h6"/></svg>
+            </button>
+            <button class="hud-button attack-button" id="attack-button" type="button" aria-label="Attack the nearest slime" title="Attack nearby slime (Space)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 4 6 6-10 10-6-6L14 4Z"/><path d="m13 5 6 6M4 20l4-4"/></svg>
+            </button>
+            <button class="hud-button look-button" id="look-toggle" type="button" aria-label="Enable mouse look" title="Enable mouse look · click the world to lock">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12s3.2-6 9-6 9 6 9 6-3.2 6-9 6-9-6-9-6Z"/><circle cx="12" cy="12" r="2.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>
+            </button>
+            <button class="hud-button sound-button" id="sound-toggle" type="button" aria-label="Mute sound" title="Toggle sound">
+              <svg class="sound-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4zM17 9a5 5 0 0 1 0 6M19.5 6.5a8.5 8.5 0 0 1 0 11"/></svg>
+              <svg class="sound-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6l-5 4zM17 9l5 6M22 9l-5 6"/></svg>
+            </button>
+            <button class="hud-button pause-button" id="pause-button" type="button" aria-label="Pause game" title="Pause (Esc)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h3v14H8zM15 5h3v14h-3z"/></svg>
+            </button>
+          </div>
+          <div class="toast" id="toast" role="status" aria-live="polite"></div>
+          <div class="hotbar-wrap">
+            <div class="hotbar" id="hotbar" role="toolbar" aria-label="Block selection"></div>
+            <div class="hotbar-tip">SELECT BLOCK <span>1—9</span></div>
+          </div>
+          <div class="reticle" id="reticle" aria-hidden="true"></div>
+          <div class="touch-controls" id="touch-controls" aria-label="Touch controls">
+            <div class="touch-pad" role="group" aria-label="Movement and looking">
+              <button class="dpad up" type="button" data-move="up" aria-label="Move up">▲</button>
+              <button class="dpad left" type="button" data-move="left" aria-label="Turn left">◀</button>
+              <button class="dpad right" type="button" data-move="right" aria-label="Turn right">▶</button>
+              <button class="dpad down" type="button" data-move="down" aria-label="Move down">▼</button>
+            </div>
+            <div class="touch-actions" role="group" aria-label="Actions">
+              <button class="touch-action action-attack" type="button" data-action="attack" aria-label="Attack nearby slime"><span class="action-glyph">✦</span><span>FIGHT</span></button>
+              <button class="touch-action action-mine" type="button" data-action="mine" aria-label="Mine nearby block"><span class="action-glyph">▧</span><span>MINE</span></button>
+              <button class="touch-action action-build" type="button" data-action="build" aria-label="Place selected block"><span class="action-glyph">＋</span><span>BUILD</span></button>
+            </div>
+          </div>
+        </div>
+
+        <section class="overlay active" id="start-screen" aria-labelledby="game-title">
+          <div class="start-panel screen-panel">
+            <div class="start-main">
+              <div class="eyebrow"><span class="eyebrow-mark"></span> ONE WORLD. TWO WAYS TO PLAY.</div>
+              <h1 id="game-title">Cube<span>Clash</span><i class="title-cursor" aria-hidden="true"></i></h1>
+              <p class="start-copy">Mine fast. Build smarter. Keep the slimes off your back.</p>
+              <div class="mode-picker" aria-label="Choose a game mode">
+                <button class="mode-button survival-choice" type="button" data-start="survival">
+                  <span class="mode-icon heart-icon" aria-hidden="true">♥</span>
+                  <span class="mode-details"><strong>SURVIVAL</strong><small>HEARTS ON · SLIMES FIGHT BACK</small></span>
+                  <span class="mode-arrow" aria-hidden="true">↗</span>
+                </button>
+                <button class="mode-button creative-choice" type="button" data-start="creative">
+                  <span class="mode-icon build-icon" aria-hidden="true">▧</span>
+                  <span class="mode-details"><strong>CREATIVE</strong><small>UNLIMITED BLOCKS · DOUBLE-SPACE TO FLY</small></span>
+                  <span class="mode-arrow" aria-hidden="true">↗</span>
+                </button>
+              </div>
+              <div class="quick-tip"><span class="tip-spark">✦</span><span><strong>Quick start:</strong> press <kbd>SPACE</kbd> or the sword button to fight slimes. Press <kbd>I</kbd> for inventory and gear; mine with <kbd>F</kbd>, build with <kbd>E</kbd>.</span></div>
+            </div>
+            <aside class="scores-panel" aria-labelledby="scores-title">
+              <div class="scores-heading"><div><span class="eyebrow">LOCAL RECORDS</span><h2 id="scores-title">High scores</h2></div><span class="trophy" aria-hidden="true">♜</span></div>
+              <div id="start-scores" class="score-list"></div>
+              <p class="scores-foot">SAVED ON THIS DEVICE</p>
+            </aside>
+          </div>
+          <div class="overlay-foot"><span><kbd>WASD</kbd> MOVE <i>·</i> CLICK WORLD, MOVE MOUSE TO LOOK UP/DOWN <i>·</i> <kbd>I</kbd> INVENTORY <i>·</i> <kbd>SPACE</kbd> FIGHT <i>·</i> <kbd>F</kbd> MINE <i>·</i> <kbd>E</kbd> BUILD</span><span>NO DOWNLOAD · NO ACCOUNT</span></div>
+        </section>
+
+        <section class="overlay" id="pause-screen" aria-labelledby="pause-title" aria-hidden="true">
+          <div class="pause-panel screen-panel">
+            <div class="pause-icon" aria-hidden="true"><span></span><span></span></div>
+            <div class="eyebrow">TAKE A BREATHER</div>
+            <h2 id="pause-title">World paused</h2>
+            <p class="pause-summary">Your world is waiting. Score: <strong id="pause-score">000000</strong></p>
+            <div class="screen-actions">
+              <button class="primary-button" type="button" data-resume>BACK TO IT <span>→</span></button>
+              <button class="secondary-button" type="button" data-restart>RESTART WORLD</button>
+              <button class="text-button" type="button" data-menu>RETURN TO TITLE</button>
+            </div>
+            <p class="pause-foot">PRESS <kbd>ESC</kbd> OR <kbd>P</kbd> TO RESUME</p>
+          </div>
+        </section>
+
+        <section class="overlay" id="gameover-screen" aria-labelledby="gameover-title" aria-hidden="true">
+          <div class="gameover-panel screen-panel">
+            <div class="gameover-copy">
+              <div class="eyebrow danger-eyebrow"><span class="danger-dot"></span> RUN COMPLETE</div>
+              <h2 id="gameover-title">Slime got you.</h2>
+              <p>The block world wins this round. Shake it off and jump straight back in.</p>
+              <div class="run-score"><span>FINAL SCORE</span><strong id="final-score">000000</strong><small id="final-detail">DAY 01 · 0 SLIMES · 0 BLOCKS</small></div>
+              <div class="screen-actions">
+                <button class="primary-button" type="button" data-restart>RUN IT BACK <span>↻</span></button>
+                <button class="secondary-button" type="button" data-menu>BACK TO TITLE</button>
+              </div>
+            </div>
+            <aside class="scores-panel gameover-scores"><div class="scores-heading"><div><span class="eyebrow">ALL-TIME</span><h2>High scores</h2></div><span class="trophy" aria-hidden="true">♜</span></div><div id="end-scores" class="score-list"></div><p class="scores-foot">SAVED ON THIS DEVICE</p></aside>
+          </div>
+        </section>
+
+        <section class="overlay inventory-overlay" id="inventory-screen" aria-labelledby="inventory-title" aria-hidden="true">
+          <div class="inventory-panel screen-panel">
+            <header class="inventory-heading">
+              <div><span class="eyebrow">BACKPACK · GEAR</span><h2 id="inventory-title">Inventory</h2></div>
+              <button class="inventory-close" id="inventory-close" type="button" aria-label="Close inventory">CLOSE <kbd>I</kbd> <span>×</span></button>
+            </header>
+            <div class="inventory-layout">
+              <div class="inventory-main">
+                <section class="inventory-section" aria-labelledby="items-title">
+                  <div class="inventory-section-heading"><h3 id="items-title">ITEMS</h3><span>CLICK A BLOCK TO SELECT IT</span></div>
+                  <div class="inventory-items" id="inventory-items"></div>
+                </section>
+                <section class="inventory-section crafting-section" aria-labelledby="crafting-title">
+                  <div class="inventory-section-heading"><h3 id="crafting-title">CRAFTING</h3><span>TURN MATERIALS INTO GEAR</span></div>
+                  <div class="crafting-list" id="crafting-list"></div>
+                </section>
+              </div>
+              <aside class="equipment-panel" aria-labelledby="equipment-title">
+                <div class="inventory-section-heading"><h3 id="equipment-title">EQUIPPED</h3><span>LOADOUT</span></div>
+                <div class="equipment-slots" id="equipment-slots"></div>
+                <div class="armor-rating" id="armor-rating">ARMOR 0% · NO PROTECTION</div>
+                <p class="equipment-note">Armor reduces damage from slime attacks. Stronger weapons hit harder.</p>
+              </aside>
+            </div>
+            <div class="inventory-footer"><span><kbd>I</kbd> / <kbd>ESC</kbd> CLOSE · WORLD PAUSED WHILE PACK IS OPEN</span><span>CLICK EQUIP TO CHANGE YOUR LOADOUT</span></div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="page-footer"><span><i class="footer-cube"></i> CUBECLASH <span class="footer-muted">· A TINY PIXEL SANDBOX</span></span><span class="desktop-hint"><kbd>WASD</kbd> MOVE / STRAFE <i>·</i> CLICK WORLD, MOVE MOUSE TO LOOK UP/DOWN <i>·</i> <kbd>I</kbd> INVENTORY / GEAR <i>·</i> <kbd>SPACE</kbd> FIGHT <i>·</i> CREATIVE: DOUBLE-SPACE FLY · SHIFT DOWN <i>·</i> CLICK / <kbd>F</kbd> MINE <i>·</i> RIGHT CLICK / <kbd>E</kbd> BUILD</span><a href="../">← mob5824 projects</a></footer>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
