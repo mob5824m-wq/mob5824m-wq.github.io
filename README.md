@@ -6,8 +6,8 @@ Personal website, projects portfolio, and Discord bot legal compliance documenta
 
 ```
 index.html                Home page & project showcase portfolio
-terms.html                Terms of Service for Punishment Manager Discord bot
-privacy.html              Privacy Policy for Punishment Manager Discord bot
+terms.html                Terms of Service for Sentinel and Lofi Girl Discord bots
+privacy.html              Privacy Policy for Sentinel and Lofi Girl Discord bots
 na/                       North Active curated athletic wear storefront (/NA/ alias supported)
 cubeclash/                Pixelated voxel sandbox game (vanilla JS + Canvas)
 data/content.js           ← Portfolio content & project definitions
@@ -22,8 +22,8 @@ sitemap.xml               Search engine indexing sitemap
 ## Pages
 
 - **`/` (`index.html`)**: Interactive project showcase portfolio with dark/light mode toggle, tag filtering, modal details, and links.
-- **`/terms.html`**: Terms of Service for the **Punishment Manager** Discord bot (acceptable use, permissions, commands, liabilities).
-- **`/privacy.html`**: Privacy Policy for the **Punishment Manager** Discord bot (data collection, SQLite persistence, retention, deletion rights).
+- **`/terms.html`**: Terms of Service for the **Sentinel** and **Lofi Girl** Discord bot projects (acceptable use, permissions, music rights, and service limits).
+- **`/privacy.html`**: Privacy Policy for **Sentinel** and **Lofi Girl**, including self-hosted Sentinel data, retention, and data-request guidance.
 - **`/na/`**: North Active curated activewear storefront catalog and cart handoff.
 - **`/cubeclash`**: CubeClash, a self-contained pixelated first-person voxel sandbox with Survival and Creative modes, touch controls, local high scores, and no build step.
 
