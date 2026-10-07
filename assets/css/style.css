@@ -692,10 +692,15 @@ a { color: inherit; }
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+  /* In the single-column layout, a sticky TOC would cover the legal text. */
+  .legal-layout .legal-nav {
+    position: static;
+  }
 }
 .legal-nav {
   position: sticky;
   top: 5rem;
+  z-index: 20;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);

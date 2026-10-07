@@ -64,7 +64,7 @@ window.SITE = {
     { when: "Shipped", what: "Classroom library — live, self-hosted, running on real shelves", done: true },
     { when: "Shipped", what: "RaspAP + WebOne — one script, one flashable Pi image", done: true },
     { when: "Now",     what: "Polishing this site and the library's kiosk" },
-    { when: "Shipped", what: "Punishment Manager — Discord moderation bot with role management", done: true }
+    { when: "Shipped", what: "Sentinel — Discord server-management bot for moderation, tickets, and applications", done: true }
   ],
 
   /* --- Contact --------------------------------------------- */
@@ -128,30 +128,30 @@ window.PROJECTS = [
      public page.
      --------------------------------------------------------- */
   {
-    title: "Punishment Manager",
+    title: "Sentinel",
     blurb:
-      "A moderation bot for Discord: temporarily swaps member roles, " +
-      "schedules automated timer expiration, and logs actions with embedded alerts.",
+      "A cross-platform Discord server-management bot for moderation, " +
+      "warnings, rules, reaction roles, tickets, and applications.",
     description:
-      "Built with discord.py. An admin or moderator selects a member, a duration, and an optional reason. The bot " +
-      "applies the configured punishment role, posts embeds to staff channels, and sends the user a direct " +
-      "message with details. When the duration expires, it transitions the user to the post-punishment role " +
-      "automatically. State is persisted in a local SQLite database with automated recovery on restart. " +
-      "Includes dedicated Terms of Service and Privacy Policy documentation for Discord compliance.",
-    tags: ["Discord", "Bot", "Python", "Moderation"],
+      "A self-hostable Python bot built with discord.py. Sentinel gives server staff tools for timed role-based " +
+      "moderation, warnings, published rules and reaction-role menus, private ticket workflows, and application " +
+      "forms with staff review. An authenticated local web dashboard manages supported features and history. " +
+      "Configuration and server records are stored by the instance on its host, including a local SQLite database; " +
+      "the server operator controls access, hosting, and retention.",
+    tags: ["Discord", "Bot", "Python", "Moderation", "Self-hosted"],
     year: "2026",
     status: "Live",
     icon: "bot",
     highlights: [
-      "Timed punishments that restore the member's original roles automatically",
-      "Dry-run mode previews which roles would be removed before anything changes",
-      "Protected and exempt lists so staff roles can't be stripped by accident",
-      "Case history with lookup, extend, edit-reason and manual removal commands",
-      "Startup validation checks every configured role, channel and permission",
-      "Alerts the mod log if a role can't be restored, plus periodic database backups"
+      "Timed role-based punishments, pardons, warnings, and member history",
+      "Publish rules with acceptance roles and build reaction-role menus",
+      "Create private tickets and manage staff queues",
+      "Collect application answers and review submissions with staff",
+      "Authenticated dashboard for server settings, moderation, tickets, and applications",
+      "SQLite persistence lets active punishment timers survive bot restarts"
     ],
     links: [
-      { label: "Source", href: "https://github.com/mob5824m-wq/Punishment-Manager" },
+      { label: "Source", href: "https://github.com/mob5824m-wq/Sentinel" },
       { label: "Terms of Service", href: "terms.html" },
       { label: "Privacy Policy", href: "privacy.html" }
     ]
