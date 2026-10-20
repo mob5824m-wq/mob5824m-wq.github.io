@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-product="lofi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0a0b10">
+  <meta name="author" content="mob5824">
+  <meta name="description" content="Lofi is a self-hosted Discord music bot for continuous voice playback from streams, a local music library, or locally generated beats.">
+  <link rel="canonical" href="https://mob5824m-wq.github.io/discord-lofi/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="mob5824 projects">
+  <meta property="og:url" content="https://mob5824m-wq.github.io/discord-lofi/">
+  <meta property="og:title" content="Lofi — a soundtrack for your Discord server">
+  <meta property="og:description" content="A self-hosted Discord voice bot with online stations, a local library, generated music, and an authenticated dashboard.">
+  <meta property="og:image" content="https://mob5824m-wq.github.io/assets/img/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Lofi — Discord music bot</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css?v=20261020a">
+  <link rel="stylesheet" href="../assets/css/project-pages.css?v=20261020c">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Lofi",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Windows, macOS, Linux",
+      "description": "A self-hosted Discord music bot for continuous voice playback from streams, local audio files, or locally generated music.",
+      "url": "https://mob5824m-wq.github.io/discord-lofi/",
+      "codeRepository": "https://github.com/mob5824m-wq/Discord-lofi"
+    }
+  </script>
+</head>
+<body class="product-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="../" aria-label="mob5824 projects home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">mob5824</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#sources">Audio sources</a>
+        <a href="#features">Features</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="https://github.com/mob5824m-wq/Discord-lofi" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        <button class="theme-toggle" type="button" aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="product-hero container" aria-labelledby="product-title">
+      <div class="product-copy">
+        <p class="product-kicker"><span class="product-kicker-dot" aria-hidden="true"></span>Self-hosted · Discord voice · Music</p>
+        <h1 class="product-title" id="product-title">Find your <span class="product-gradient">server’s rhythm.</span></h1>
+        <p class="product-lede">Lofi is a self-hosted Discord music bot that keeps the room playing—choose an online station, your own local library, or an original beat rendered on the machine running it.</p>
+        <div class="product-actions">
+          <a class="btn btn-primary" href="https://github.com/mob5824m-wq/Discord-lofi/releases/latest" target="_blank" rel="noopener noreferrer">Get the latest release <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-ghost" href="https://github.com/mob5824m-wq/Discord-lofi/blob/main/docs/SETUP.md" target="_blank" rel="noopener noreferrer">Setup guide</a>
+        </div>
+        <ul class="product-meta" aria-label="Project details">
+          <li>Python</li><li>Windows · macOS · Linux</li><li>Self-hosted</li><li>MIT licensed</li>
+        </ul>
+      </div>
+
+      <div class="product-visual" aria-hidden="true">
+        <div class="lofi-player">
+          <div class="lofi-player-top"><span>Now playing</span><span>VOICE · CONNECTED</span></div>
+          <div class="album-art"><span class="album-moon"></span></div>
+          <div class="waveform">
+            <i style="--bar:9px"></i><i style="--bar:18px"></i><i style="--bar:13px"></i><i style="--bar:25px"></i><i style="--bar:16px"></i><i style="--bar:29px"></i><i style="--bar:12px"></i><i style="--bar:21px"></i><i style="--bar:15px"></i><i style="--bar:27px"></i><i style="--bar:10px"></i><i style="--bar:19px"></i><i style="--bar:13px"></i><i style="--bar:24px"></i><i style="--bar:8px"></i>
+          </div>
+          <div class="track-copy"><strong>Studio Lofi</strong><span>Original beats · generated locally</span></div>
+          <div class="source-chips"><span>YOUTUBE</span><span>SOMAFM</span><span>LOCAL FILES</span><span>GENERATIVE</span></div>
+        </div>
+        <span class="visual-caption">Illustrative listening view</span>
+      </div>
+    </section>
+
+    <section class="container" aria-label="Lofi project highlights">
+      <div class="product-proof">
+        <div class="product-proof-item"><strong>Four audio paths</strong><span>Streams, local files, and generated music</span></div>
+        <div class="product-proof-item"><strong>Your own instance</strong><span>Playback and dashboard run on your host</span></div>
+        <div class="product-proof-item"><strong>Slash-command controls</strong><span>No privileged Discord intents required</span></div>
+      </div>
+    </section>
+
+    <section class="product-section container" id="sources" aria-labelledby="sources-title">
+      <div class="product-section-head">
+        <p class="product-section-kicker">Pick a source</p>
+        <h2 class="product-section-title" id="sources-title">One bot. Four ways to play.</h2>
+        <p class="product-section-sub">Mix and match the built-in station types or add a source you control. Network stations depend on the provider and connection; local and generated audio can run without an internet connection to the source.</p>
+      </div>
+      <div class="product-feature-grid">
+        <article class="product-feature-card">
+          <span class="product-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M17 9a5 5 0 0 1 0 6M19.5 6.5a8.5 8.5 0 0 1 0 11"/></svg></span>
+          <h3>Broadcasts</h3>
+          <p>Play supported YouTube live broadcasts such as Lofi Girl, Chillhop, and Synthwave Boy, with reconnect handling for streams.</p>
+        </article>
+        <article class="product-feature-card">
+          <span class="product-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12h3l2-6 4 12 3-8 2 2h4"/><circle cx="12" cy="12" r="9"/></svg></span>
+          <h3>Radio streams</h3>
+          <p>Add SomaFM ambient channels or another compatible HTTP(S) audio stream. The configured host connects to the source.</p>
+        </article>
+        <article class="product-feature-card">
+          <span class="product-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM8 9h8M8 12h5M8 15h8"/><path d="M7 5V3M17 5V3"/></svg></span>
+          <h3>Your own library</h3>
+          <p>Shuffle audio files from a local folder on the bot host. The folder is yours to manage and does not need a music service account.</p>
+        </article>
+        <article class="product-feature-card">
+          <span class="product-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <h3>Studio Lofi</h3>
+          <p>Generate original instrumental tracks on the host itself. No network stream or third-party recording is needed for this station.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="product-section container" id="features" aria-labelledby="features-title">
+      <div class="product-section-head">
+        <p class="product-section-kicker">More than a play button</p>
+        <h2 class="product-section-title" id="features-title">Keep listening simple to run.</h2>
+      </div>
+      <div class="workflow-grid">
+        <article class="workflow-step"><span class="workflow-number">01 / CONTROL</span><h3>Commands where you need them</h3><p>Use Discord slash commands for stations, queues, playback, volume, and per-server setup.</p></article>
+        <article class="workflow-step"><span class="workflow-number">02 / DASHBOARD</span><h3>Manage the details</h3><p>The token-protected dashboard shows current playback, station settings, and listening history. It binds to the local machine by default.</p></article>
+        <article class="workflow-step"><span class="workflow-number">03 / CONTINUITY</span><h3>Let the music run</h3><p>Configure autostart, idle disconnect, announcements, and channel status to suit your server.</p></article>
+      </div>
+      <div class="product-callout">
+        <div><h3>Run Lofi on your own machine</h3><p>Releases include installers and portable builds. Review the setup guide, secure your bot token, and check the music rights and service terms that apply to your sources.</p></div>
+        <a class="btn btn-ghost" href="https://github.com/mob5824m-wq/Discord-lofi/releases/latest" target="_blank" rel="noopener noreferrer">Browse releases <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="product-legal-links" aria-label="Lofi policies">
+        <a href="terms.html">Lofi Terms of Service</a>
+        <a href="privacy.html">Lofi Privacy Policy</a>
+        <a href="https://github.com/mob5824m-wq/Discord-lofi" target="_blank" rel="noopener noreferrer">GitHub repository ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year">2026</span> mob5824 · Lofi is an independent, self-hosted project.</p>
+      <a href="../" class="to-top">← All projects</a>
+    </div>
+  </footer>
+  <script src="../assets/js/project-pages.js?v=20261020a"></script>
+</body>
+</html>

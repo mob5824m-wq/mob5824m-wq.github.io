@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-product="lofi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0a0b10">
+  <meta name="author" content="mob5824">
+  <meta name="description" content="Privacy Policy for Lofi, explaining local playback history, dashboard data, audio sources, and self-hosted instance controls.">
+  <link rel="canonical" href="https://mob5824m-wq.github.io/discord-lofi/privacy.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Privacy Policy — Lofi">
+  <meta property="og:url" content="https://mob5824m-wq.github.io/discord-lofi/privacy.html">
+  <meta property="og:description" content="What Lofi processes and stores locally, how audio providers are involved, and how to request access or deletion.">
+  <title>Privacy Policy — Lofi</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css?v=20261020a">
+  <link rel="stylesheet" href="../assets/css/project-pages.css?v=20261020c">
+</head>
+<body class="product-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="bg-grid" aria-hidden="true"></div><div class="bg-glow" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true"></span><span class="brand-name">Lofi</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      <div class="nav-links" id="nav-links">
+        <a href="index.html">Project</a><a href="terms.html">Terms of Service</a><a href="privacy.html" aria-current="page">Privacy Policy</a>
+        <a href="https://github.com/mob5824m-wq/Discord-lofi" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        <button class="theme-toggle" type="button" aria-label="Switch theme" title="Switch theme"><svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8-1.8"/></svg><svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg></button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="container legal-page">
+    <header class="legal-header">
+      <div class="legal-badge">Lofi · Privacy &amp; Data Practices</div>
+      <h1 class="legal-title">Privacy Policy</h1>
+      <p class="legal-meta"><span>Effective: <strong>October 20, 2026</strong></span><span>Last updated: <strong>October 20, 2026</strong></span><span>Project: <strong>Lofi (Discord-lofi)</strong></span><span>Maintainer: <strong>mob5824</strong></span></p>
+    </header>
+
+    <div class="legal-layout">
+      <aside class="legal-nav" aria-label="Table of contents">
+        <div class="legal-nav-title">Sections</div>
+        <a href="#scope">1. Scope &amp; hosting</a><a href="#information">2. Information processed</a><a href="#use">3. How it is used</a>
+        <a href="#storage">4. Storage &amp; retention</a><a href="#sharing">5. Sharing &amp; audio sources</a><a href="#choices">6. Access &amp; deletion</a>
+        <a href="#security">7. Security</a><a href="#children">8. Children</a><a href="#website">9. This website</a><a href="#changes">10. Changes</a><a href="#contact">11. Contact</a>
+      </aside>
+
+      <div class="legal-content">
+        <article class="legal-card" id="scope">
+          <h2><span class="section-num">01</span> Scope &amp; Hosting</h2>
+          <p>This policy describes information handled by Lofi, the self-hosted Discord music bot published in the Discord-lofi repository by mob5824, when its features are used. It applies to an instance operated by or for the Maintainer. It does not replace Discord’s privacy policy or the policies of audio, hosting, or other services.</p>
+          <p>Each self-hosted instance stores its own configuration and history on the machine selected by its operator. The Maintainer does not automatically receive that local data and cannot access or delete records from an instance they do not operate. If you use a community-hosted copy, contact its operator about their practices.</p>
+        </article>
+
+        <article class="legal-card" id="information">
+          <h2><span class="section-num">02</span> Information Processed</h2>
+          <p>Depending on enabled features, station type, and use, a Lofi instance may process or store:</p>
+          <div class="legal-table-wrapper"><table class="legal-table">
+            <thead><tr><th>Category</th><th>Examples</th><th>Why it is used</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Discord and server details</strong></td><td>Server, channel, and user IDs; voice-channel state; slash-command and playback-control activity.</td><td>Connect to the right server and voice channel, authorize actions, and operate playback.</td></tr>
+              <tr><td><strong>Playback history</strong></td><td>Server ID, station name or ID, track title, voice-channel ID, requester ID when available, start/end times, end reason, listening duration, and peak listener count.</td><td>Support dashboard history, activity, and listening summaries. Track-play rows may also include station, title, time, server, and listener count.</td></tr>
+              <tr><td><strong>Configuration and credentials</strong></td><td>Discord bot token, dashboard key, per-server settings, custom station URLs, and optional channel or station settings.</td><td>Connect to Discord and remember operator-selected settings. Credentials must be kept secret.</td></tr>
+              <tr><td><strong>Local library and generated audio</strong></td><td>When enabled, filenames and audio metadata needed to scan a local music folder; rendered Studio Lofi cache files.</td><td>Find and play the operator’s local audio or cache music generated on the host. Local paths may be shown to authenticated dashboard users.</td></tr>
+              <tr><td><strong>Dashboard and technical data</strong></td><td>A temporary dashboard session cookie; the client network address used for login throttling and login security logs; runtime diagnostics.</td><td>Authenticate dashboard users, limit repeated login failures, and operate or troubleshoot the instance.</td></tr>
+            </tbody>
+          </table></div>
+          <p>Lofi uses Discord slash commands and does not require privileged Message Content, Presence, or Members Gateway intents in its published setup. Discord still processes information on its platform. Lofi is built for outbound music playback, not for recording voice conversations; audio from local or generated sources is sent to Discord voice when played.</p>
+        </article>
+
+        <article class="legal-card" id="use">
+          <h2><span class="section-num">03</span> How Information Is Used</h2>
+          <p>The instance uses information to connect to Discord, join or leave voice channels, play the selected source, handle commands, show current playback and history to authenticated dashboard users, store operator settings, and diagnose operational problems. User IDs may be associated with playback requests or dashboard actions when available.</p>
+          <p>For online audio stations, Lofi connects from its host to the configured stream or source provider. For local files and Studio Lofi, audio is read or generated on the host and sent through Discord voice for playback to the connected channel.</p>
+        </article>
+
+        <article class="legal-card" id="storage">
+          <h2><span class="section-num">04</span> Storage &amp; Retention</h2>
+          <p>By default, Lofi stores its SQLite database (<code>lofi.db</code>), configuration, logs, and generated-audio cache on the host running the bot. The exact location can vary by operating system and operator configuration. The operator may move the data directory, database, or log, and may store backups with a selected host or provider.</p>
+          <ul>
+            <li>Playback sessions, track plays, and activity events do not have a universal automatic expiry in the published implementation. They remain until the operator deletes or resets the database.</li>
+            <li>Configuration and logs remain according to the operator’s setup. The application log may rotate, but copies made by a service manager, host, or backup system are outside the bot’s control.</li>
+            <li>Generated audio cache files can be recreated and may be deleted by the operator. The operator’s local music library is maintained separately from the database.</li>
+          </ul>
+          <p>Removing the bot from a Discord server or uninstalling the program does not necessarily erase its data directory, backups, bot token stored in the environment or configuration, or messages already sent through Discord.</p>
+        </article>
+
+        <article class="legal-card" id="sharing">
+          <h2><span class="section-num">05</span> Sharing &amp; Audio Sources</h2>
+          <ul>
+            <li><strong>Discord:</strong> The bot sends commands, playback status, and audio to Discord. Voice participants can hear audio while it is played. Discord handles account, server, interaction, and voice traffic under its own privacy practices.</li>
+            <li><strong>Online station providers:</strong> When a network station is used, the bot host connects to YouTube, a radio provider such as SomaFM, or the operator’s configured source. Those providers may receive ordinary connection data, such as the host’s public IP address and requested stream URL, and apply their own logging and privacy practices.</li>
+            <li><strong>Instance operator and host:</strong> The operator and people with access to the machine, dashboard, database, configuration, logs, or backups may be able to view the information described above. Infrastructure providers may process stored files or network traffic for that operator.</li>
+            <li><strong>This website:</strong> Project pages are hosted by GitHub Pages and request fonts from Google Fonts. Those providers may process connection information under their own policies.</li>
+          </ul>
+          <p>The Maintainer does not automatically receive data from independently hosted copies and does not sell their local playback records.</p>
+        </article>
+
+        <article class="legal-card" id="choices">
+          <h2><span class="section-num">06</span> Access, Correction &amp; Deletion</h2>
+          <ul>
+            <li><strong>Self-hosted or community-hosted Lofi:</strong> Contact the instance operator. Only that operator controls the database, configuration, logs, and backups and can handle requests about those records.</li>
+            <li><strong>An instance operated by the Maintainer:</strong> Email <a class="footer-link" href="mailto:mob5824@duck.com">mob5824@duck.com</a> with “Lofi privacy request” and enough information to locate the instance and record. Do not send a bot token or dashboard key.</li>
+            <li><strong>Discord or audio-provider records:</strong> Contact the relevant provider for information it controls. Removing Lofi does not remove information those services retain.</li>
+          </ul>
+          <p>Requests are limited to information the recipient controls and may require verification. Deleted database entries may remain in backups until those backups expire or are replaced.</p>
+        </article>
+
+        <article class="legal-card" id="security">
+          <h2><span class="section-num">07</span> Security</h2>
+          <p>The Lofi dashboard is bound to the local machine by default and requires a private dashboard key. This reduces exposure but cannot guarantee security. The instance operator is responsible for protecting the bot token, dashboard key, host, local files, database, logs, and backups. Use HTTPS and appropriate network restrictions if enabling remote dashboard access.</p>
+          <p>Do not share credentials with the Maintainer or put them in public issues, screenshots, logs, or source control. If a credential is exposed, rotate it using the relevant provider’s controls.</p>
+        </article>
+
+        <article class="legal-card" id="children">
+          <h2><span class="section-num">08</span> Children’s Privacy</h2>
+          <p>Lofi is not intended for anyone below Discord’s minimum age requirement or a higher minimum age that applies in their location. Server operators should consider the ages of their members and must not collect information from children contrary to applicable law. Contact the instance operator if you believe information was collected improperly.</p>
+        </article>
+
+        <article class="legal-card" id="website">
+          <h2><span class="section-num">09</span> This Website</h2>
+          <p>The project and policy pages are static pages hosted by GitHub Pages. They do not contain a submission form or first-party analytics. The theme preference may be saved in your browser’s local storage; the site code does not send that preference to Lofi. Google Fonts is requested from Google to render the selected typefaces. GitHub and Google may process connection data under their own policies.</p>
+        </article>
+
+        <article class="legal-card" id="changes">
+          <h2><span class="section-num">10</span> Changes to This Policy</h2>
+          <p>This policy may be updated when Lofi’s implementation, deployments, or legal requirements change. A revised “Last updated” date will appear at the top of this page. An independently hosted instance may have additional practices set by its operator.</p>
+        </article>
+
+        <article class="legal-card" id="contact">
+          <h2><span class="section-num">11</span> Contact</h2>
+          <p>For questions about this policy or privacy requests concerning an instance operated by the Maintainer, contact <a class="footer-link" href="mailto:mob5824@duck.com">mob5824@duck.com</a>. Include “Lofi privacy” in the subject and do not include credentials.</p>
+          <p>Project: <a class="footer-link" href="https://github.com/mob5824m-wq/Discord-lofi" target="_blank" rel="noopener noreferrer">github.com/mob5824m-wq/Discord-lofi</a> · <a class="footer-link" href="terms.html">Terms of Service</a></p>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-inner"><p>© <span id="year">2026</span> mob5824 · <a href="index.html" class="footer-link">Lofi</a> · <a href="terms.html" class="footer-link">Terms of Service</a></p><a href="#top" class="to-top">Back to top ↑</a></div></footer>
+  <script src="../assets/js/project-pages.js?v=20261020a"></script>
+</body>
+</html>

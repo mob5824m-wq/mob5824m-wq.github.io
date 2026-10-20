@@ -27,13 +27,13 @@ window.SITE = {
 
   /* --- Hero stats — [] hides the row ----------------------- */
   stats: [
-    { value: "4",       label: "Projects" },
+    { value: "6",       label: "Projects" },
     { value: "Vanilla", label: "No frameworks" },
     { value: "MIT",     label: "Open source" }
   ],
 
   /* --- About -----------------------------------------------
-     Drawn from the patterns in your three repos. Reword freely
+     Drawn from the patterns in your projects. Reword freely
      — this is the part visitors read to decide who you are.
      --------------------------------------------------------- */
   about: [
@@ -64,7 +64,8 @@ window.SITE = {
     { when: "Shipped", what: "Classroom library — live, self-hosted, running on real shelves", done: true },
     { when: "Shipped", what: "RaspAP + WebOne — one script, one flashable Pi image", done: true },
     { when: "Now",     what: "Polishing this site and the library's kiosk" },
-    { when: "Shipped", what: "Sentinel — Discord server-management bot for moderation, tickets, and applications", done: true }
+    { when: "Shipped", what: "Sentinel — Discord moderation, applications, and a self-hosted dashboard", done: true },
+    { when: "Shipped", what: "Combat Master — staff announcements, tickets, polls, and events for Discord", done: true }
   ],
 
   /* --- Contact --------------------------------------------- */
@@ -103,7 +104,7 @@ window.PROJECTS = [
     year: "2026",
     status: "Live",
     featured: true,
-    icon: "book",        // book | bot | antenna | terminal | code | spark
+    icon: "book",        // book | bot | antenna | terminal | code | spark | music
     shot: "assets/img/shots/classroom-library.jpg",
     shotPos: "center 12%",   // crop past the nav bar to the welcome panel
     highlights: [
@@ -119,7 +120,8 @@ window.PROJECTS = [
       "Installable and offline-capable, with dark mode, larger text and a dyslexia-friendly font"
     ],
     links: [
-      { label: "Source", href: "https://github.com/mob5824m-wq/classroomlib" }
+      { label: "Project page", href: "classroom-library/" },
+      { label: "Source & setup", href: "https://github.com/mob5824m-wq/classroomlib" }
     ]
   },
   /* ---------------------------------------------------------
@@ -130,30 +132,94 @@ window.PROJECTS = [
   {
     title: "Sentinel",
     blurb:
-      "A cross-platform Discord server-management bot for moderation, " +
-      "warnings, rules, reaction roles, tickets, and applications.",
+      "A cross-platform, self-hosted Discord bot for role-based moderation, " +
+      "warnings, member applications, and an authenticated staff dashboard.",
     description:
-      "A self-hostable Python bot built with discord.py. Sentinel gives server staff tools for timed role-based " +
-      "moderation, warnings, published rules and reaction-role menus, private ticket workflows, and application " +
-      "forms with staff review. An authenticated local web dashboard manages supported features and history. " +
-      "Configuration and server records are stored by the instance on its host, including a local SQLite database; " +
-      "the server operator controls access, hosting, and retention.",
+      "Sentinel is a self-hosted Python Discord bot for server staff. Its /manage command group handles " +
+      "timed role punishments and pardons, warnings and member history, plus application forms and staff " +
+      "review. An authenticated dashboard manages connected servers, moderation, applications, settings, " +
+      "and history. The instance stores records locally in SQLite on the host you choose; you control " +
+      "its access, backups, and retention.",
     tags: ["Discord", "Bot", "Python", "Moderation", "Self-hosted"],
     year: "2026",
     status: "Live",
     icon: "bot",
     highlights: [
-      "Timed role-based punishments, pardons, warnings, and member history",
-      "Publish rules with acceptance roles and build reaction-role menus",
-      "Create private tickets and manage staff queues",
-      "Collect application answers and review submissions with staff",
-      "Authenticated dashboard for server settings, moderation, tickets, and applications",
-      "SQLite persistence lets active punishment timers survive bot restarts"
+      "Timed role punishments, pardons, warnings, and member history",
+      "Role and permission safeguards before moderation actions are applied",
+      "Create application forms, collect answers, and review decisions with staff",
+      "Authenticated dashboard for connected servers, moderation, applications, settings, and history",
+      "Local SQLite records keep active punishment timers across restarts",
+      "Installers for Windows, macOS, and Linux, including ARM64 builds"
     ],
     links: [
+      { label: "Project page", href: "sentinel/" },
+      { label: "Latest release", href: "https://github.com/mob5824m-wq/Sentinel/releases/latest" },
       { label: "Source", href: "https://github.com/mob5824m-wq/Sentinel" },
-      { label: "Terms of Service", href: "terms.html" },
-      { label: "Privacy Policy", href: "privacy.html" }
+      { label: "Terms of Service", href: "sentinel/terms.html" },
+      { label: "Privacy Policy", href: "sentinel/privacy.html" }
+    ]
+  },
+  {
+    title: "Lofi (Discord-lofi)",
+    blurb:
+      "A self-hosted Discord voice bot for continuous lofi: radio streams, your music library, " +
+      "or beats generated on the machine running it.",
+    description:
+      "Lofi is a self-hosted Discord music bot with a token-authenticated dashboard. Choose network " +
+      "stations such as YouTube broadcasts and SomaFM streams, shuffle audio from a local music folder, " +
+      "or generate original Studio Lofi tracks offline. It keeps playback history and activity on the " +
+      "host in SQLite, supports per-server settings, and can run on Windows, macOS, Linux, and ARM64. " +
+      "You run the instance and choose its audio sources, hosting, and retention.",
+    tags: ["Discord", "Music", "Python", "Audio", "Self-hosted"],
+    year: "2026",
+    status: "Open source",
+    icon: "music",
+    highlights: [
+      "Choose from YouTube broadcasts, SomaFM streams, a local music library, or locally generated Studio Lofi",
+      "Continuous playback with idle disconnect, queueing, playback controls, and per-server settings",
+      "Authenticated dashboard with playback controls, station management, and listening history",
+      "SQLite stores playback sessions, track plays, listener counts, and activity events on the host",
+      "No privileged Discord intents are required; the bot uses slash commands",
+      "Native installers and portable builds for Windows, macOS, Linux, and ARM64"
+    ],
+    links: [
+      { label: "Project page", href: "discord-lofi/" },
+      { label: "Latest release", href: "https://github.com/mob5824m-wq/Discord-lofi/releases/latest" },
+      { label: "Source", href: "https://github.com/mob5824m-wq/Discord-lofi" },
+      { label: "Terms of Service", href: "discord-lofi/terms.html" },
+      { label: "Privacy Policy", href: "discord-lofi/privacy.html" }
+    ]
+  },
+
+  {
+    title: "Combat Master",
+    blurb:
+      "A self-hosted Discord staff bot for announcements, schedules, polls, events, tickets, and roles, " +
+      "with a browser dashboard.",
+    description:
+      "Combat Master is a self-hosted discord.py staff-operations bot organized under the /manage command group. " +
+      "Staff can publish and schedule announcements, create polls and events, open private support tickets, " +
+      "manage reaction roles and role menus, configure welcome messages, and review an audit log. A browser " +
+      "dashboard runs in the same process; configuration, SQLite records, and logs stay in the operator's " +
+      "data directory. It is an operations toolkit, not a moderation-punishment or applications bot.",
+    tags: ["Discord", "Bot", "Python", "Staff tools", "Self-hosted"],
+    year: "2026",
+    status: "Open source",
+    icon: "terminal",
+    highlights: [
+      "Post announcements now, later, or repeatedly, with templates, approval, quiet hours, and scheduled pins",
+      "Run button polls and events with RSVP reactions and reminders",
+      "Create private support tickets and save staff transcripts before ticket channels are deleted",
+      "Manage reaction roles, dropdown role menus, and new-member welcome messages",
+      "Review staff actions in an audit log and operate through the shared browser dashboard",
+      "Self-hosted Python bot with SQLite, a local data directory, and Windows/Linux launch scripts"
+    ],
+    links: [
+      { label: "Project page", href: "combat-master/" },
+      { label: "Source & setup", href: "https://github.com/mob5824m-wq/Combat-Master" },
+      { label: "Terms of Service", href: "combat-master/terms.html" },
+      { label: "Privacy Policy", href: "combat-master/privacy.html" }
     ]
   },
   {
@@ -183,7 +249,8 @@ window.PROJECTS = [
       "Four SSH modes (off, password, public key, both) plus configurable Wi-Fi country"
     ],
     links: [
-      { label: "Source", href: "https://github.com/mob5824m-wq/RaspAP-WebOne" }
+      { label: "Project page", href: "raspap-webone/" },
+      { label: "Source & setup", href: "https://github.com/mob5824m-wq/RaspAP-WebOne" }
     ]
   },
   {
@@ -213,7 +280,7 @@ window.PROJECTS = [
       "Pause, instant restart and a persistent local high-score table"
     ],
     links: [
-      { label: "Play CubeClash", href: "/cubeclash" }
+      { label: "Project page & play", href: "/cubeclash" }
     ]
   }
 ];

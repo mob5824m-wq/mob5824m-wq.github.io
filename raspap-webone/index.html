@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-product="raspap">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0a0b10">
+  <meta name="author" content="mob5824">
+  <meta name="description" content="Build one flashable 64-bit Raspberry Pi image with RaspAP and WebOne. A resumable Bash builder offers both a GUI and CLI on Debian, Ubuntu, or macOS with Docker.">
+  <link rel="canonical" href="https://mob5824m-wq.github.io/raspap-webone/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="mob5824 projects">
+  <meta property="og:url" content="https://mob5824m-wq.github.io/raspap-webone/">
+  <meta property="og:title" content="RaspAP + WebOne — One image, ready to flash">
+  <meta property="og:description" content="A GUI and CLI image builder that combines the official RaspAP Lite image with WebOne, then outputs a flashable 64-bit Raspberry Pi image.">
+  <meta property="og:image" content="https://mob5824m-wq.github.io/assets/img/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>RaspAP + WebOne — One image, ready to flash</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css?v=20261020a">
+  <link rel="stylesheet" href="../assets/css/project-pages.css?v=20261020c">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "RaspAP + WebOne image builder",
+      "applicationCategory": "DeveloperApplication",
+      "description": "A Bash GUI and CLI that builds a flashable arm64 Raspberry Pi image with RaspAP and the WebOne proxy.",
+      "url": "https://mob5824m-wq.github.io/raspap-webone/",
+      "codeRepository": "https://github.com/mob5824m-wq/RaspAP-WebOne",
+      "license": "https://github.com/mob5824m-wq/RaspAP-WebOne/blob/main/LICENSE"
+    }
+  </script>
+</head>
+<body class="product-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="../" aria-label="mob5824 projects home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">mob5824</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#features">Features</a>
+        <a href="#workflow">How it works</a>
+        <a href="https://github.com/mob5824m-wq/RaspAP-WebOne" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        <button class="theme-toggle" type="button" aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8-1.8"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="product-hero container" aria-labelledby="product-title">
+      <div class="product-copy">
+        <p class="product-kicker"><span class="product-kicker-dot" aria-hidden="true"></span>Raspberry Pi · Linux · MIT</p>
+        <h1 class="product-title" id="product-title">A retro-web hotspot, <span class="product-gradient">ready to flash.</span></h1>
+        <p class="product-lede">One Bash builder combines the official 64-bit RaspAP Lite image with WebOne, then writes a Raspberry Pi image you can flash. Choose a graphical window or drive the build from the terminal.</p>
+        <div class="product-actions">
+          <a class="btn btn-primary" href="https://github.com/mob5824m-wq/RaspAP-WebOne" target="_blank" rel="noopener noreferrer">View source &amp; setup <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-ghost" href="#features">Explore the builder</a>
+        </div>
+        <ul class="product-meta" aria-label="Project details">
+          <li>Bash</li><li>arm64 image</li><li>GUI + CLI</li><li>Debian · Ubuntu · macOS/Docker</li>
+        </ul>
+      </div>
+
+      <figure class="product-visual product-visual--image">
+        <img class="product-screenshot" src="../assets/img/shots/raspap-gui.png" alt="RaspAP and WebOne image-builder desktop interface with fields for the hostname, user, Wi-Fi, and SSH options" width="789" height="601" fetchpriority="high" decoding="async">
+        <figcaption class="visual-caption">RaspAP + WebOne · Build GUI</figcaption>
+      </figure>
+    </section>
+
+    <section class="container" aria-label="RaspAP plus WebOne highlights">
+      <div class="product-proof">
+        <div class="product-proof-item"><strong>One flashable image</strong><span>RaspAP hotspot plus WebOne proxy</span></div>
+        <div class="product-proof-item"><strong>GUI or CLI</strong><span>Choose a window or terminal workflow</span></div>
+        <div class="product-proof-item"><strong>Resume-friendly</strong><span>Checkpoints, validation, and checksums</span></div>
+      </div>
+    </section>
+
+    <section class="product-section container" id="features" aria-labelledby="features-title">
+      <div class="product-section-head">
+        <p class="product-section-kicker">From a Debian script to a Pi</p>
+        <h2 class="product-section-title" id="features-title">Build the network in one pass.</h2>
+        <p class="product-section-sub">Customize the hotspot and access settings before writing the image, with progress and recovery built into the build flow.</p>
+      </div>
+      <div class="product-feature-grid">
+        <article class="product-feature-card">
+          <span class="product-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21v-8"/><circle cx="12" cy="10" r="2.5"/><path d="M7.4 15.1a6.5 6.5 0 0 1 0-9.2M16.6 5.9a6.5 6.5 0 0 1 0 9.2M4.6 18a10.5 10.5 0 0 1 0-15M19.4 3a10.5 10.5 0 0 1 0 15"/></svg></span>
+          <h3>Hotspot plus proxy</h3>
+          <p>Start with RaspAP Lite and add WebOne, a web proxy intended to help older browsers and devices reach more of today’s web.</p>
+        </article>
+        <article class="product-feature-card">
+          <span class="product-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01M8 13h8M8 16h5"/></svg></span>
+          <h3>Graphical or command line</h3>
+          <p>Use the Tk interface to configure a build, or pass the same settings as CLI flags. Launchers can elevate permissions and start the required host workflow.</p>
+        </article>
+        <article class="product-feature-card">
+          <span class="product-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM8 8h8M8 12h5"/><path d="m14 16 2 2 4-4"/></svg></span>
+          <h3>Configure before flashing</h3>
+          <p>Set a hostname, login, hotspot name and password, Wi-Fi country, and SSH mode before the image is written. Choose password, public-key, both, or no SSH.</p>
+        </article>
+        <article class="product-feature-card">
+          <span class="product-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 5h10l4 4v10H5zM15 5v4h4M8 13h8M8 16h5"/><path d="m4 2 2 2M20 20l2 2"/></svg></span>
+          <h3>Verify downloads</h3>
+          <p>The builder checks GitHub release SHA-256 checksums for downloaded components unless you deliberately skip verification.</p>
+        </article>
+        <article class="product-feature-card">
+          <span class="product-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M5.5 9A7 7 0 0 1 18 6l2 2M4 16l2 2a7 7 0 0 0 12.5-3"/></svg></span>
+          <h3>New, update, or resume</h3>
+          <p>Build a fresh image, update an existing one, or rerun the same command after an interrupted build. Checkpoints help pick up where the process stopped.</p>
+        </article>
+        <article class="product-feature-card">
+          <span class="product-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6 5.6 18.4"/></svg></span>
+          <h3>Flash a single arm64 image</h3>
+          <p>Write the finished <code>.img</code> to a microSD card with Raspberry Pi Imager, then configure the Pi and connect the network.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="product-section container" id="workflow" aria-labelledby="workflow-title">
+      <div class="product-section-head">
+        <p class="product-section-kicker">From host machine to hotspot</p>
+        <h2 class="product-section-title" id="workflow-title">Build. Flash. Connect.</h2>
+        <p class="product-section-sub">The builder runs on a Debian or Ubuntu host, or on macOS using Docker Desktop. It needs elevated permissions and roughly 9 GB of free space for a full new build.</p>
+      </div>
+      <div class="workflow-grid">
+        <article class="workflow-step"><span class="workflow-number">01 / CONFIGURE</span><h3>Choose network settings</h3><p>Set the hostname, account, Wi-Fi details, country, and SSH policy in the GUI or CLI. Check inputs before the build starts.</p></article>
+        <article class="workflow-step"><span class="workflow-number">02 / BUILD</span><h3>Create the image</h3><p>The script downloads and customizes the official image, installs WebOne, verifies downloads, and saves the finished image with a checksum.</p></article>
+        <article class="workflow-step"><span class="workflow-number">03 / FLASH</span><h3>Boot the Raspberry Pi</h3><p>Flash the image with Raspberry Pi Imager, enable any desired first-boot SSH settings, then connect to the hotspot and proxy.</p></article>
+      </div>
+      <div class="product-callout">
+        <div><h3>Review the first-boot security settings.</h3><p>Choose your own hostname, account, and Wi-Fi credentials in the build. The official RaspAP image uses a default web-admin login, so change it in RaspAP as soon as the device starts.</p></div>
+        <a class="btn btn-ghost" href="https://github.com/mob5824m-wq/RaspAP-WebOne#run-it" target="_blank" rel="noopener noreferrer">Read the run guide <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="product-legal-links" aria-label="RaspAP WebOne project links">
+        <a href="https://github.com/mob5824m-wq/RaspAP-WebOne" target="_blank" rel="noopener noreferrer">GitHub repository ↗</a>
+        <a href="https://github.com/mob5824m-wq/RaspAP-WebOne/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License ↗</a>
+        <a href="../">All projects</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year">2026</span> mob5824 · RaspAP + WebOne image builder.</p>
+      <a href="../" class="to-top">← All projects</a>
+    </div>
+  </footer>
+  <script src="../assets/js/project-pages.js?v=20261020a"></script>
+</body>
+</html>

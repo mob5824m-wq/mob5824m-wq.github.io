@@ -190,7 +190,9 @@
     code:
       "<path d='M8.5 8.5 4 12l4.5 3.5'/><path d='M15.5 8.5 20 12l-4.5 3.5'/><path d='M13.5 5.5l-3 13'/>",
     spark:
-      "<path d='M12 3v18'/><path d='M3 12h18'/><path d='M5.6 5.6l12.8 12.8'/><path d='M18.4 5.6 5.6 18.4'/>"
+      "<path d='M12 3v18'/><path d='M3 12h18'/><path d='M5.6 5.6l12.8 12.8'/><path d='M18.4 5.6 5.6 18.4'/>",
+    music:
+      "<path d='M9 18V5l12-2v13'/><circle cx='6' cy='18' r='3'/><circle cx='18' cy='16' r='3'/><path d='M9 9l12-2'/>"
   };
 
   function iconSvg(name) {
