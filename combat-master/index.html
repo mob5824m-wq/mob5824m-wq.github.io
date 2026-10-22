@@ -50,6 +50,7 @@
       </button>
       <div class="nav-links" id="nav-links">
         <a href="#features">Features</a>
+        <a href="#install-usage">Install &amp; Use</a>
         <a href="#workflow">How it works</a>
         <a href="terms.html">Terms</a>
         <a href="privacy.html">Privacy</a>
@@ -137,6 +138,70 @@
           <h3>Browser dashboard</h3>
           <p>Use the same operations in a browser dashboard running in the bot process. It listens on loopback by default; remote exposure is an operator-managed security decision.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="product-section container" id="install-usage" aria-labelledby="install-usage-title">
+      <div class="product-section-head">
+        <p class="product-section-kicker">Installation &amp; Setup</p>
+        <h2 class="product-section-title" id="install-usage-title">Host Combat Master for your staff.</h2>
+        <p class="product-section-sub">Self-hosted Python bot with SQLite, data isolation, and a browser operations dashboard.</p>
+      </div>
+
+      <div class="install-guide-grid">
+        <div class="guide-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Installation Steps
+          </h3>
+          <ol class="guide-steps">
+            <li class="guide-step">
+              <p><strong>1. Clone the repository</strong></p>
+              <div class="guide-code"><code>git clone https://github.com/mob5824m-wq/Combat-Master.git &amp;&amp; cd Combat-Master</code></div>
+            </li>
+            <li class="guide-step">
+              <p><strong>2. Install requirements</strong></p>
+              <div class="guide-code"><code>python3 -m pip install -r requirements.txt</code></div>
+              <span class="guide-step-note">Requires Python 3.9 or higher.</span>
+            </li>
+            <li class="guide-step">
+              <p><strong>3. Configure Token</strong></p>
+              <div class="guide-code"><code>export DISCORD_TOKEN="your-bot-token"</code></div>
+              <span class="guide-step-note">Or place credentials in <code>data/config.json</code>.</span>
+            </li>
+            <li class="guide-step">
+              <p><strong>4. Run the Bot</strong></p>
+              <div class="guide-code"><code>python3 bot.py</code></div>
+              <span class="guide-step-note">Launch helpers: <code>scripts/run_linux.sh</code> or <code>scripts\run_windows.bat</code>.</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="guide-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            How to Use
+          </h3>
+          <ol class="guide-steps">
+            <li class="guide-step">
+              <p><strong>1. Configure server channels &amp; staff role</strong></p>
+              <div class="guide-code"><code>/manage setup staff_role:@Staff announcement_channel:#announcements staff_channel:#staff-log</code></div>
+            </li>
+            <li class="guide-step">
+              <p><strong>2. Announcements &amp; Schedules</strong></p>
+              <div class="guide-code"><code>/manage announce</code></div>
+              <span class="guide-step-note">Schedule future posts with <code>/manage schedule delay:2h</code> or repeating posts with <code>/manage repeat</code>.</span>
+            </li>
+            <li class="guide-step">
+              <p><strong>3. Interactive Polls &amp; Tickets</strong></p>
+              <p class="guide-step-note">Create vote button polls with <code>/manage poll create</code> and deploy support channels with <code>/manage ticket panel</code>.</p>
+            </li>
+            <li class="guide-step">
+              <p><strong>4. Web Operations Dashboard</strong></p>
+              <p class="guide-step-note">Open <code>http://localhost:8000</code> to manage polls, tickets, schedules, and view audit history.</p>
+            </li>
+          </ol>
+        </div>
       </div>
     </section>
 

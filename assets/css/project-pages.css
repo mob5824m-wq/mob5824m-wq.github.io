@@ -41,6 +41,62 @@ html[data-product="raspap"][data-theme="light"] {
   --accent: #137d9d;
   --accent-2: #627f0a;
 }
+html[data-product="soundtrail"][data-theme="dark"] {
+  --accent: #7ee787;
+  --accent-2: #58a6ff;
+}
+html[data-product="soundtrail"][data-theme="light"] {
+  --accent: #1a7f37;
+  --accent-2: #0969da;
+}
+html[data-product="soundtrail-bot"][data-theme="dark"] {
+  --accent: #58a6ff;
+  --accent-2: #7ee787;
+}
+html[data-product="soundtrail-bot"][data-theme="light"] {
+  --accent: #0969da;
+  --accent-2: #1a7f37;
+}
+html[data-product="pixelnas"][data-theme="dark"] {
+  --accent: #4dd4c0;
+  --accent-2: #8a9bff;
+}
+html[data-product="pixelnas"][data-theme="light"] {
+  --accent: #0f9d8c;
+  --accent-2: #5569ed;
+}
+html[data-product="kobo"][data-theme="dark"] {
+  --accent: #ffb86c;
+  --accent-2: #8be9fd;
+}
+html[data-product="kobo"][data-theme="light"] {
+  --accent: #c05621;
+  --accent-2: #007791;
+}
+html[data-product="bookrecs"][data-theme="dark"] {
+  --accent: #f1fa8c;
+  --accent-2: #50fa7b;
+}
+html[data-product="bookrecs"][data-theme="light"] {
+  --accent: #b7791f;
+  --accent-2: #2f855a;
+}
+html[data-product="ledger"][data-theme="dark"] {
+  --accent: #ff79c6;
+  --accent-2: #bd93f9;
+}
+html[data-product="ledger"][data-theme="light"] {
+  --accent: #b83280;
+  --accent-2: #6b46c1;
+}
+html[data-product="myinstants"][data-theme="dark"] {
+  --accent: #ff6b6b;
+  --accent-2: #feca57;
+}
+html[data-product="myinstants"][data-theme="light"] {
+  --accent: #ee5253;
+  --accent-2: #e67e22;
+}
 
 .product-page .nav-links { gap: 1.15rem; }
 .product-page .nav-links a { font-size: .88rem; }
@@ -476,3 +532,75 @@ html[data-product="raspap"][data-theme="light"] {
 @media (prefers-reduced-motion: reduce) {
   .product-feature-card { transition: none; }
 }
+
+/* ── Install & Usage Guides ──────────────────────────────── */
+.install-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.guide-card {
+  padding: 1.6rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+}
+.guide-card h3 {
+  margin: 0 0 .9rem;
+  font-size: 1.15rem;
+  letter-spacing: -.02em;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  color: var(--accent);
+}
+.guide-card h3 svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.guide-steps {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: var(--text);
+  font-size: .92rem;
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+}
+.guide-step p {
+  margin: 0 0 .35rem;
+  line-height: 1.55;
+}
+.guide-step-note {
+  color: var(--muted);
+  font-size: .86rem;
+}
+.guide-code {
+  position: relative;
+  margin: .35rem 0 0;
+  padding: .65rem .85rem;
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: .82rem;
+  color: var(--text);
+  line-height: 1.45;
+}
+.guide-code code {
+  font-family: inherit;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+@media (max-width: 860px) {
+  .install-guide-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

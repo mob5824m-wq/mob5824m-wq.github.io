@@ -52,6 +52,7 @@
       <div class="nav-links" id="nav-links">
         <a href="#sources">Audio sources</a>
         <a href="#features">Features</a>
+        <a href="#install-usage">Install &amp; Use</a>
         <a href="terms.html">Terms</a>
         <a href="privacy.html">Privacy</a>
         <a href="https://github.com/mob5824m-wq/Discord-lofi" target="_blank" rel="noopener noreferrer">Source ↗</a>
@@ -127,6 +128,70 @@
           <h3>Studio Lofi</h3>
           <p>Generate original instrumental tracks on the host itself. No network stream or third-party recording is needed for this station.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="product-section container" id="install-usage" aria-labelledby="install-usage-title">
+      <div class="product-section-head">
+        <p class="product-section-kicker">Installation &amp; Setup</p>
+        <h2 class="product-section-title" id="install-usage-title">Deploy Lofi in your voice channel.</h2>
+        <p class="product-section-sub">Runs on Python 3.9+ with FFmpeg. Play stream presets, local MP3s, or offline algorithmic beats.</p>
+      </div>
+
+      <div class="install-guide-grid">
+        <div class="guide-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Installation Steps
+          </h3>
+          <ol class="guide-steps">
+            <li class="guide-step">
+              <p><strong>1. Clone the repository</strong></p>
+              <div class="guide-code"><code>git clone https://github.com/mob5824m-wq/Discord-lofi.git &amp;&amp; cd Discord-lofi</code></div>
+            </li>
+            <li class="guide-step">
+              <p><strong>2. Install requirements &amp; verify audio</strong></p>
+              <div class="guide-code"><code>pip install -r requirements.txt &amp;&amp; python3 bot.py --check</code></div>
+              <span class="guide-step-note">Requires FFmpeg installed on the host system.</span>
+            </li>
+            <li class="guide-step">
+              <p><strong>3. Configure Bot Token</strong></p>
+              <div class="guide-code"><code>export DISCORD_TOKEN="your-bot-token"</code></div>
+            </li>
+            <li class="guide-step">
+              <p><strong>4. Start Lofi</strong></p>
+              <div class="guide-code"><code>python3 bot.py</code></div>
+              <span class="guide-step-note">Or run <code>python3 bot.py --demo</code> to test the web dashboard without a bot token.</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="guide-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            How to Use
+          </h3>
+          <ol class="guide-steps">
+            <li class="guide-step">
+              <p><strong>1. Join a voice channel</strong></p>
+              <p class="guide-step-note">Join any voice channel in your Discord server.</p>
+            </li>
+            <li class="guide-step">
+              <p><strong>2. Play streams or stations</strong></p>
+              <div class="guide-code"><code>/play station:SomaFM</code></div>
+              <span class="guide-step-note">Use <code>/play stream:&lt;url&gt;</code> or <code>/play local</code> for host MP3s.</span>
+            </li>
+            <li class="guide-step">
+              <p><strong>3. Offline Studio Lofi</strong></p>
+              <div class="guide-code"><code>/play studio</code></div>
+              <span class="guide-step-note">Synthesizes and renders original lofi beats directly on the machine without internet.</span>
+            </li>
+            <li class="guide-step">
+              <p><strong>4. Web Dashboard</strong></p>
+              <p class="guide-step-note">Open <code>http://localhost:8080</code> with your dashboard access token to manage queue, station presets, and playback history.</p>
+            </li>
+          </ol>
+        </div>
       </div>
     </section>
 
