@@ -51,6 +51,7 @@
       </button>
       <div class="nav-links" id="nav-links">
         <a href="#features">Features</a>
+        <a href="#install-usage">Install &amp; Use</a>
         <a href="#workflow">How it works</a>
         <a href="https://github.com/mob5824m-wq/RaspAP-WebOne" target="_blank" rel="noopener noreferrer">Source ↗</a>
         <button class="theme-toggle" type="button" aria-label="Switch theme" title="Switch theme">
@@ -127,6 +128,61 @@
           <h3>Flash a single arm64 image</h3>
           <p>Write the finished <code>.img</code> to a microSD card with Raspberry Pi Imager, then configure the Pi and connect the network.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="product-section container" id="install-usage" aria-labelledby="install-usage-title">
+      <div class="product-section-head">
+        <p class="product-section-kicker">Installation &amp; Setup</p>
+        <h2 class="product-section-title" id="install-usage-title">Build and deploy your image.</h2>
+        <p class="product-section-sub">One Debian/Ubuntu Bash builder with a Tkinter window or pure CLI interface.</p>
+      </div>
+
+      <div class="install-guide-grid">
+        <div class="guide-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Installation Steps
+          </h3>
+          <ol class="guide-steps">
+            <li class="guide-step">
+              <p><strong>1. Clone on Debian, Ubuntu, or macOS (Docker)</strong></p>
+              <div class="guide-code"><code>git clone https://github.com/mob5824m-wq/RaspAP-WebOne.git &amp;&amp; cd RaspAP-WebOne</code></div>
+            </li>
+            <li class="guide-step">
+              <p><strong>2. Make launcher scripts executable</strong></p>
+              <div class="guide-code"><code>chmod +x build.sh launch-gui.sh launch-cli.sh</code></div>
+              <span class="guide-step-note">Requires sudo permissions and ~9 GB free disk space.</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="guide-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            How to Use
+          </h3>
+          <ol class="guide-steps">
+            <li class="guide-step">
+              <p><strong>1. Build via GUI Wizard</strong></p>
+              <div class="guide-code"><code>./launch-gui.sh</code></div>
+              <span class="guide-step-note">Launches the graphical configuration builder (escalates with sudo automatically).</span>
+            </li>
+            <li class="guide-step">
+              <p><strong>2. Or build headless in terminal</strong></p>
+              <div class="guide-code"><code>sudo ./build.sh</code></div>
+              <span class="guide-step-note">Downloads RaspAP Lite, loop mounts with qemu/binfmt, and injects WebOne proxy.</span>
+            </li>
+            <li class="guide-step">
+              <p><strong>3. Flash to MicroSD Card</strong></p>
+              <p class="guide-step-note">Use Raspberry Pi Imager to write the output <code>.img</code> file from <code>output/</code> to your SD card.</p>
+            </li>
+            <li class="guide-step">
+              <p><strong>4. Boot and connect vintage devices</strong></p>
+              <p class="guide-step-note">Connect to the RaspAP Wi-Fi network (default IP <code>10.3.141.1</code>), and configure retro browsers to HTTP proxy port <code>8080</code>.</p>
+            </li>
+          </ol>
+        </div>
       </div>
     </section>
 

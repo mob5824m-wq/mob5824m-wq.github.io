@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-product="ledger">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0a0b10">
+  <meta name="author" content="mob5824">
+  <meta name="description" content="Ledger KW is a dependency-free civic web app that queries public property ownership and building permit records across Kitchener and Waterloo directly from the browser.">
+  <link rel="canonical" href="https://mob5824m-wq.github.io/city-search/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="mob5824 projects">
+  <meta property="og:url" content="https://mob5824m-wq.github.io/city-search/">
+  <meta property="og:title" content="Ledger KW — Kitchener &amp; Waterloo Property Search">
+  <meta property="og:description" content="Search public property ownership portfolios and building permits in Kitchener and Waterloo directly from open-data GIS services.">
+  <meta property="og:image" content="https://mob5824m-wq.github.io/assets/img/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Ledger KW — Kitchener &amp; Waterloo Property Search</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css?v=20261020a">
+  <link rel="stylesheet" href="../assets/css/project-pages.css?v=20261020c">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Ledger KW",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Civic web app querying public property records, corporate ownership portfolios, and building permits across Kitchener and Waterloo.",
+      "url": "https://mob5824m-wq.github.io/city-search/",
+      "codeRepository": "https://github.com/mob5824m-wq/City-Search",
+      "license": "https://github.com/mob5824m-wq/City-Search/blob/main/LICENSE"
+    }
+  </script>
+</head>
+<body class="product-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="../" aria-label="mob5824 projects home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">mob5824</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#features">Features</a>
+        <a href="#install-usage">Install &amp; Use</a>
+        <a href="#workflow">Data &amp; Privacy</a>
+        <a href="https://github.com/mob5824m-wq/City-Search" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        <button class="theme-toggle" type="button" aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8-1.8"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="product-hero container" aria-labelledby="product-title">
+      <div class="product-copy">
+        <p class="product-kicker"><span class="product-kicker-dot" aria-hidden="true"></span>Civic Tech · Open Data · GIS · MIT</p>
+        <h1 class="product-title" id="product-title">Search civic records in <span class="product-gradient">Kitchener &amp; Waterloo.</span></h1>
+        <p class="product-lede">A fast, dependency-free web tool that queries municipal open-data services directly from the browser. Look up corporate and institutional property portfolios, or search any civic address to view historical building permits and interactive vector maps.</p>
+        <div class="product-actions">
+          <a class="btn btn-primary" href="https://github.com/mob5824m-wq/City-Search" target="_blank" rel="noopener noreferrer">View source on GitHub <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-ghost" href="#install-usage">Installation &amp; Usage</a>
+        </div>
+        <ul class="product-meta" aria-label="Project details">
+          <li>Vanilla JS</li><li>ArcGIS REST</li><li>Keyless SVG Map</li><li>CSV Export</li><li>Zero Backend</li>
+        </ul>
+      </div>
+
+      <figure class="product-visual product-visual--terminal">
+        <div class="product-code-box" style="padding: 1.5rem; background: var(--surface-2); border-radius: var(--radius); border: 1px solid var(--border); font-family: var(--mono); font-size: .85rem; line-height: 1.6;">
+          <div style="color: var(--accent); margin-bottom: .6rem; font-weight: 600;">Search query</div>
+          <div>Owner: <span style="color: var(--accent-2);">DREWLO HOLDINGS INC</span></div>
+          <div style="margin-top: .6rem; color: var(--muted); font-size: .8rem;">&mdash;&mdash; Results: 14 Properties in Kitchener &mdash;&mdash;</div>
+          <div style="color: var(--text);">&bull; 100 Queen St N &mdash; 42 Units (High-rise)</div>
+          <div style="color: var(--text);">&bull; 250 Victoria St S &mdash; Commercial Plaza</div>
+          <div style="color: var(--muted); font-size: .78rem; margin-top: .4rem;">[Export CSV] [Print Dossier] [View on Map]</div>
+        </div>
+        <figcaption class="visual-caption">Ledger KW · Owner &amp; Address Lookup</figcaption>
+      </figure>
+    </section>
+
+    <section class="container" aria-label="Ledger KW highlights">
+      <div class="product-proof">
+        <div class="product-proof-item"><strong>Direct Client-Side Queries</strong><span>Connects directly to ArcGIS FeatureServer endpoints</span></div>
+        <div class="product-proof-item"><strong>Keyless Vector Maps</strong><span>Projected SVG map with relative coordinates &amp; drafting grid</span></div>
+        <div class="product-proof-item"><strong>Privacy Compliance</strong><span>Respects MFIPPA open data rules (residential owners withheld)</span></div>
+      </div>
+    </section>
+
+    <section class="product-section container" id="features" aria-labelledby="features-title">
+      <div class="product-section-head">
+        <p class="product-section-kicker">Transparent Civic Data</p>
+        <h2 class="product-section-title" id="features-title">Accessible public records for everyone.</h2>
+        <p class="product-section-sub">No paywalls, subscriptions, or login forms. Explore municipal property footprints with honest data explanations.</p>
+      </div>
+
+      <div class="product-feature-grid">
+        <article class="product-feature-card">
+          <span class="product-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+          <h3>Owner Portfolios</h3>
+          <p>Search a business, university, or numbered corporation to see every commercial building and parcel linked to it, grouped cleanly by civic address.</p>
+        </article>
+        <article class="product-feature-card">
+          <span class="product-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+          <h3>Building Permits</h3>
+          <p>Search any street address in Kitchener or Waterloo to view construction permit dates, declared project values, contractor scopes, and current status.</p>
+        </article>
+        <article class="product-feature-card">
+          <span class="product-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></span>
+          <h3>Offline-Capable Map</h3>
+          <p>Displays street layers from keyless ArcGIS Online or falls back to an SVG coordinate drafting canvas so parcels are always positioned reliably.</p>
+        </article>
+        <article class="product-feature-card">
+          <span class="product-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>
+          <h3>CSV &amp; Print Export</h3>
+          <p>Download full structured CSV datasets for research or press Print for clean ink-saving black-and-white property dossiers.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Installation & Usage -->
+    <section class="product-section container" id="install-usage" aria-labelledby="install-usage-title">
+      <div class="product-section-head">
+        <p class="product-section-kicker">Installation &amp; Setup</p>
+        <h2 class="product-section-title" id="install-usage-title">Run Ledger KW.</h2>
+        <p class="product-section-sub">No build step or npm packages required. Launch instantly using Python or any static web server.</p>
+      </div>
+
+      <div class="install-guide-grid">
+        <div class="guide-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Installation Steps
+          </h3>
+          <ol class="guide-steps">
+            <li class="guide-step">
+              <p><strong>1. Clone the repository</strong></p>
+              <div class="guide-code"><code>git clone https://github.com/mob5824m-wq/City-Search.git &amp;&amp; cd City-Search</code></div>
+            </li>
+            <li class="guide-step">
+              <p><strong>2. Start preview server</strong></p>
+              <div class="guide-code"><code>python3 server.py</code></div>
+              <span class="guide-step-note">Or run <code>python3 -m http.server 8000</code> or <code>npm start</code>.</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="guide-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            How to Use
+          </h3>
+          <ol class="guide-steps">
+            <li class="guide-step">
+              <p><strong>1. Open application</strong></p>
+              <div class="guide-code"><code>http://localhost:8000</code></div>
+            </li>
+            <li class="guide-step">
+              <p><strong>2. Search corporate owner portfolios</strong></p>
+              <p class="guide-step-note">Type a corporate or institutional name (e.g. "University of Waterloo" or "Drewlo") to see all attributed properties and units.</p>
+            </li>
+            <li class="guide-step">
+              <p><strong>3. Search civic address records</strong></p>
+              <p class="guide-step-note">Enter any street number and name in Kitchener or Waterloo to view building permit records, construction costs, and ward information.</p>
+            </li>
+            <li class="guide-step">
+              <p><strong>4. Export data</strong></p>
+              <p class="guide-step-note">Click <strong>Export CSV</strong> to save tabular data, or use browser print for clean printout records.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section container" id="workflow" aria-labelledby="workflow-title">
+      <div class="product-section-head">
+        <p class="product-section-kicker">Data Governance</p>
+        <h2 class="product-section-title" id="workflow-title">Ontario Open Data transparency.</h2>
+        <p class="product-section-sub">Public open data has distinct legal boundaries under Ontario law.</p>
+      </div>
+      <div class="workflow-grid">
+        <article class="workflow-step"><span class="workflow-number">MFIPPA</span><h3>Privacy Protection</h3><p>Individual residential homeowners are marked PRIVATE under provincial privacy legislation and excluded from open data.</p></article>
+        <article class="workflow-step"><span class="workflow-number">ONLAND</span><h3>Title Searches</h3><p>This is not a legal title search. For official legal ownership, users are directed to official ONLAND and MPAC registries.</p></article>
+        <article class="workflow-step"><span class="workflow-number">OPEN</span><h3>Direct GIS Endpoints</h3><p>All data is retrieved live from the cities' ArcGIS open data servers with zero intermediate tracking or scraping databases.</p></article>
+      </div>
+      <div class="product-legal-links" aria-label="Ledger KW project links">
+        <a href="https://github.com/mob5824m-wq/City-Search" target="_blank" rel="noopener noreferrer">GitHub repository ↗</a>
+        <a href="https://open-kitchenergis.opendata.arcgis.com/" target="_blank" rel="noopener noreferrer">Kitchener Open Data ↗</a>
+        <a href="https://data.waterloo.ca/" target="_blank" rel="noopener noreferrer">Waterloo Open Data ↗</a>
+        <a href="../">All projects</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year">2026</span> mob5824 · Ledger KW is open source under the MIT License.</p>
+      <a href="../" class="to-top">← All projects</a>
+    </div>
+  </footer>
+  <script src="../assets/js/project-pages.js?v=20261020a"></script>
+</body>
+</html>

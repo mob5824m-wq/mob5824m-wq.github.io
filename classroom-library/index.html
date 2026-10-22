@@ -51,6 +51,7 @@
       </button>
       <div class="nav-links" id="nav-links">
         <a href="#features">Features</a>
+        <a href="#install-usage">Install &amp; Use</a>
         <a href="#workflow">How it works</a>
         <a href="https://github.com/mob5824m-wq/classroomlib" target="_blank" rel="noopener noreferrer">Source ↗</a>
         <button class="theme-toggle" type="button" aria-label="Switch theme" title="Switch theme">
@@ -127,6 +128,56 @@
           <h3>Works across devices</h3>
           <p>A small Node server provides one shared library for classroom devices. The app is responsive and installable, with a browser-local fallback for offline use.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="product-section container" id="install-usage" aria-labelledby="install-usage-title">
+      <div class="product-section-head">
+        <p class="product-section-kicker">Installation &amp; Setup</p>
+        <h2 class="product-section-title" id="install-usage-title">Get Classroom Library running.</h2>
+        <p class="product-section-sub">Start it locally on your laptop, or run it on a classroom server with zero build steps or external dependencies.</p>
+      </div>
+
+      <div class="install-guide-grid">
+        <div class="guide-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Installation Steps
+          </h3>
+          <ol class="guide-steps">
+            <li class="guide-step">
+              <p><strong>1. Clone the repository</strong></p>
+              <div class="guide-code"><code>git clone https://github.com/mob5824m-wq/classroomlib.git &amp;&amp; cd classroomlib</code></div>
+            </li>
+            <li class="guide-step">
+              <p><strong>2. Start the Node server</strong></p>
+              <div class="guide-code"><code>node server.js</code></div>
+              <span class="guide-step-note">Requires Node.js 16+. No external npm packages or database install needed.</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="guide-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            How to Use
+          </h3>
+          <ol class="guide-steps">
+            <li class="guide-step">
+              <p><strong>1. Open the library in your browser</strong></p>
+              <div class="guide-code"><code>http://localhost:8080</code></div>
+              <span class="guide-step-note">For classroom tablets or Chromebooks, use <code>http://&lt;lan-ip&gt;:8080</code>.</span>
+            </li>
+            <li class="guide-step">
+              <p><strong>2. Configure teacher settings</strong></p>
+              <p class="guide-step-note">Sign in as admin (<code>admin</code> / <code>admin123</code>) to configure your room number, add books, set loan lengths, and manage student accounts.</p>
+            </li>
+            <li class="guide-step">
+              <p><strong>3. Student Kiosk &amp; Barcode Checkout</strong></p>
+              <p class="guide-step-note">Navigate to <code>/kiosk</code> for a walk-up station where students scan EAN-13 barcodes using webcam, USB scanner, or manual code entry.</p>
+            </li>
+          </ol>
+        </div>
       </div>
     </section>
 

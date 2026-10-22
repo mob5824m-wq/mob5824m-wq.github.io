@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>mob5824 — Projects</title>
-<meta name="description" content="Projects by mob5824 — a classroom library, Sentinel and Combat Master Discord bots, Lofi music bot, Raspberry Pi image builder, and CubeClash." />
+<meta name="description" content="Projects by mob5824 — Classroom Library, Soundtrail, Sentinel, Pixel Photo NAS, Discord bots, Kobo Arc 7 Freedom, Raspberry Pi image builder, CubeClash, and open-source civic tools." />
 <meta name="color-scheme" content="dark light" />
 <meta name="theme-color" content="#0a0b10" media="(prefers-color-scheme: dark)" />
 <meta name="theme-color" content="#fbfbfd" media="(prefers-color-scheme: light)" />
@@ -16,14 +16,14 @@
 <meta property="og:url" content="https://mob5824m-wq.github.io/" />
 <meta property="og:site_name" content="mob5824" />
 <meta property="og:title" content="mob5824 — Projects" />
-<meta property="og:description" content="Projects by mob5824 — a classroom library, Sentinel and Combat Master Discord bots, Lofi music bot, Raspberry Pi image builder, and CubeClash." />
+<meta property="og:description" content="Projects by mob5824 — Classroom Library, Soundtrail, Sentinel, Pixel Photo NAS, Discord bots, Kobo Arc 7 Freedom, Raspberry Pi image builder, CubeClash, and open-source civic tools." />
 <meta property="og:image" content="https://mob5824m-wq.github.io/assets/img/og.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content="mob5824 — projects, tools and experiments" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="mob5824 — Projects" />
-<meta name="twitter:description" content="Projects by mob5824 — a classroom library, Sentinel and Combat Master Discord bots, Lofi music bot, Raspberry Pi image builder, and CubeClash." />
+<meta name="twitter:description" content="Projects by mob5824 — Classroom Library, Soundtrail, Sentinel, Pixel Photo NAS, Discord bots, Kobo Arc 7 Freedom, Raspberry Pi image builder, CubeClash, and open-source civic tools." />
 <meta name="twitter:image" content="https://mob5824m-wq.github.io/assets/img/og.jpg" />
 
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
@@ -120,38 +120,93 @@
       <div class="grid">
         <article class="card project noscript-card">
           <h3>Classroom Library</h3>
-          <p>A full library system for a Grade 7&ndash;8 classroom &mdash; checkout, holds,
-             barcodes and reading logs, in vanilla JS.</p>
+          <p>A full library system for a Grade 7&ndash;8 classroom &mdash; checkout, holds, barcodes and reading logs, in vanilla JS.</p>
+          <p><strong>Install:</strong> <code>git clone https://github.com/mob5824m-wq/classroomlib.git && node server.js</code></p>
+          <p><strong>Use:</strong> Open <code>http://localhost:8080</code> (or LAN IP). Sign in as admin (<code>admin/admin123</code>). Use <code>/kiosk</code> for student self-checkout.</p>
           <p><a href="classroom-library/">Project page</a> · <a href="https://github.com/mob5824m-wq/classroomlib" rel="noopener">Source &amp; setup</a></p>
         </article>
         <article class="card project noscript-card">
+          <h3>Soundtrail</h3>
+          <p>Location-based music companion Android app integrating Spotify, YouTube Music, SoundCloud, and Jellyfin with on-device mood mixes and Android Auto.</p>
+          <p><strong>Install:</strong> Build with Gradle: <code>./gradlew :app:assembleDebug</code> and install via <code>adb install app-debug.apk</code> (Android 8.0+).</p>
+          <p><strong>Use:</strong> Drop music pins on the Map tab, generate AI mixes on the Mood tab, or connect to Android Auto in your car.</p>
+          <p><a href="soundtrail/">Project page</a> · <a href="https://github.com/mob5824m-wq/SoundTrail" rel="noopener">Source</a></p>
+        </article>
+        <article class="card project noscript-card">
           <h3>Sentinel</h3>
-          <p>A self-hosted Discord bot for role-based moderation, warnings,
-             applications, and an authenticated staff dashboard.</p>
+          <p>A self-hosted Discord bot for role-based moderation, warnings, applications, and an authenticated staff dashboard.</p>
+          <p><strong>Install:</strong> <code>pip install -r requirements.txt</code>, set <code>DISCORD_TOKEN</code>, run <code>python3 bot.py</code>.</p>
+          <p><strong>Use:</strong> Configure via <code>/manage setup</code>. Moderation via <code>/manage punish</code> and <code>/manage warn</code>. Web dashboard on <code>http://localhost:8000</code>.</p>
           <p><a href="sentinel/">Project page</a> · <a href="https://github.com/mob5824m-wq/Sentinel" rel="noopener">Source</a></p>
         </article>
         <article class="card project noscript-card">
+          <h3>Pixel Photo NAS</h3>
+          <p>Turn any Google Pixel 1&ndash;5 into a 24/7 Samba photo &amp; video NAS with automated compression and Google Photos unlimited backup.</p>
+          <p><strong>Install:</strong> Install Server APK on Pixel 1&ndash;5; install Household Client APK on family phones (or run Python <code>server/</code>).</p>
+          <p><strong>Use:</strong> Start NAS daemon on Pixel, enable Google Photos backup for <code>PixelNAS</code>, scan Wi-Fi in the Household app to sync photos.</p>
+          <p><a href="pixel-photo-nas/">Project page</a> · <a href="https://github.com/mob5824m-wq/Photo-Convert-Aindroid" rel="noopener">Source</a></p>
+        </article>
+        <article class="card project noscript-card">
           <h3>Lofi (Discord-lofi)</h3>
-          <p>A self-hosted Discord voice bot for radio streams, your local music,
-             and original beats generated on the host.</p>
+          <p>A self-hosted Discord voice bot for radio streams, your local music, and original beats generated on the host.</p>
+          <p><strong>Install:</strong> <code>pip install -r requirements.txt</code>, verify with <code>python3 bot.py --check</code>, set <code>DISCORD_TOKEN</code>.</p>
+          <p><strong>Use:</strong> Join a voice channel and run <code>/play station:SomaFM</code> or <code>/play local</code>. Manage via <code>http://localhost:8080</code>.</p>
           <p><a href="discord-lofi/">Project page</a> · <a href="https://github.com/mob5824m-wq/Discord-lofi" rel="noopener">Source</a></p>
         </article>
         <article class="card project noscript-card">
           <h3>Combat Master</h3>
-          <p>A self-hosted Discord staff bot for announcements, polls, events,
-             tickets, roles, and a browser dashboard.</p>
+          <p>A self-hosted Discord staff bot for announcements, polls, events, tickets, roles, and a browser dashboard.</p>
+          <p><strong>Install:</strong> <code>pip install -r requirements.txt</code>, set <code>DISCORD_TOKEN</code>, run <code>python3 bot.py</code>.</p>
+          <p><strong>Use:</strong> Configure with <code>/manage setup</code>. Run announcements (<code>/manage announce</code>), button polls, and ticket panels.</p>
           <p><a href="combat-master/">Project page</a> · <a href="https://github.com/mob5824m-wq/Combat-Master" rel="noopener">Source</a></p>
         </article>
         <article class="card project noscript-card">
+          <h3>Soundtrail Support Bot</h3>
+          <p>A discord.py support bot with private tickets, transcripts, announcements, polls, and an operations dashboard.</p>
+          <p><strong>Install:</strong> <code>pip install -r requirements.txt</code>, set <code>DISCORD_TOKEN</code>, run <code>python3 bot.py</code>.</p>
+          <p><strong>Use:</strong> Run <code>/manage setup</code> and <code>/manage ticket panel</code>. Staff manage tickets and download transcripts from dashboard.</p>
+          <p><a href="soundtrail-bot/">Project page</a> · <a href="https://github.com/mob5824m-wq/Soundtrail-Bot" rel="noopener">Source</a></p>
+        </article>
+        <article class="card project noscript-card">
           <h3>RaspAP + WebOne image builder</h3>
-          <p>One Debian script that builds a flashable 64-bit Raspberry Pi image:
-             a Wi-Fi hotspot with a retro-web proxy baked in.</p>
+          <p>One Debian script that builds a flashable 64-bit Raspberry Pi image: a Wi-Fi hotspot with a retro-web proxy baked in.</p>
+          <p><strong>Install:</strong> <code>git clone https://github.com/mob5824m-wq/RaspAP-WebOne.git && chmod +x build.sh</code>.</p>
+          <p><strong>Use:</strong> Run <code>./launch-gui.sh</code> or <code>sudo ./build.sh</code>. Flash output <code>.img</code> with Raspberry Pi Imager.</p>
           <p><a href="raspap-webone/">Project page</a> · <a href="https://github.com/mob5824m-wq/RaspAP-WebOne" rel="noopener">Source &amp; setup</a></p>
         </article>
         <article class="card project noscript-card">
+          <h3>Kobo Arc 7 Freedom</h3>
+          <p>Anti-brick verified root, OTA web installer, Aurora Store, F-Droid, 60fps UI, and native ARMv7 Linux toolchain for Kobo Arc 7 &amp; 7HD.</p>
+          <p><strong>Install:</strong> Open OTA portal in tablet browser at <code>https://mob5824m-wq.github.io/Kobo-Arc-7-freedom/</code> or start local Wi-Fi server.</p>
+          <p><strong>Use:</strong> Tap 1-Tap Root, install modern APKs via Aurora Store and F-Droid, and use native <code>python3</code>/<code>apt</code> in terminal.</p>
+          <p><a href="kobo-arc-7-freedom/">Project page</a> · <a href="https://github.com/mob5824m-wq/Kobo-Arc-7-freedom" rel="noopener">Source</a></p>
+        </article>
+        <article class="card project noscript-card">
+          <h3>Classroom Book Recommendations</h3>
+          <p>A personalized book recommendation system for classrooms with unique student code logins and Open Library integration.</p>
+          <p><strong>Install:</strong> <code>git clone https://github.com/mob5824m-wq/Classroom-book-recs.git && node server.js</code>.</p>
+          <p><strong>Use:</strong> Sign in as teacher (<code>admin/admin123</code>) to manage books and student codes. Students take the preferences questionnaire.</p>
+          <p><a href="classroom-book-recs/">Project page</a> · <a href="https://github.com/mob5824m-wq/Classroom-book-recs" rel="noopener">Source &amp; setup</a></p>
+        </article>
+        <article class="card project noscript-card">
+          <h3>Ledger KW</h3>
+          <p>Search public property and building records in Kitchener and Waterloo by owner name or address directly from the browser.</p>
+          <p><strong>Install:</strong> <code>git clone https://github.com/mob5824m-wq/City-Search.git && python3 server.py</code>.</p>
+          <p><strong>Use:</strong> Search corporate owners or addresses to view building permits, property portfolios, and vector maps.</p>
+          <p><a href="city-search/">Project page</a> · <a href="https://github.com/mob5824m-wq/City-Search" rel="noopener">Source</a></p>
+        </article>
+        <article class="card project noscript-card">
+          <h3>MyInstants Clone</h3>
+          <p>A responsive soundboard web app with 60+ buttons, real MP3 audio streaming, Web Audio synth fallback, and custom sound uploads.</p>
+          <p><strong>Install:</strong> <code>git clone https://github.com/mob5824m-wq/Myinstantsclone.git && python3 -m http.server 8000</code>.</p>
+          <p><strong>Use:</strong> Tap any sound button to trigger instant playback, search by category, save favorites, or upload your own audio files.</p>
+          <p><a href="myinstants-clone/">Project page</a> · <a href="https://github.com/mob5824m-wq/Myinstantsclone" rel="noopener">Source</a></p>
+        </article>
+        <article class="card project noscript-card">
           <h3>CubeClash</h3>
-          <p>A pixelated first-person voxel sandbox with Survival and Creative modes,
-             keyboard and touch controls, and local high scores.</p>
+          <p>A pixelated first-person voxel sandbox with Survival and Creative modes, keyboard and touch controls, and local high scores.</p>
+          <p><strong>Install:</strong> <code>python3 serve.py 8000</code> or open online directly in browser.</p>
+          <p><strong>Use:</strong> WASD to move, left-click to mine/fight, E to place blocks, I for inventory/crafting, double-tap Space to fly in Creative.</p>
           <p><a href="/cubeclash">Project page &amp; play</a></p>
         </article>
       </div>

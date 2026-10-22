@@ -51,6 +51,7 @@
       </button>
       <div class="nav-links" id="nav-links">
         <a href="#features">Features</a>
+        <a href="#install-usage">Install &amp; Use</a>
         <a href="#workflow">How it works</a>
         <a href="terms.html">Terms</a>
         <a href="privacy.html">Privacy</a>
@@ -141,6 +142,70 @@
           <h3>Persistent local records</h3>
           <p>SQLite keeps active punishment timers available after a restart and holds warning, history, and application records on your host.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="product-section container" id="install-usage" aria-labelledby="install-usage-title">
+      <div class="product-section-head">
+        <p class="product-section-kicker">Installation &amp; Setup</p>
+        <h2 class="product-section-title" id="install-usage-title">Deploy Sentinel on your host.</h2>
+        <p class="product-section-sub">Cross-platform Discord bot running locally on Python 3.9+ with SQLite storage and web management dashboard.</p>
+      </div>
+
+      <div class="install-guide-grid">
+        <div class="guide-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Installation Steps
+          </h3>
+          <ol class="guide-steps">
+            <li class="guide-step">
+              <p><strong>1. Clone the repository</strong></p>
+              <div class="guide-code"><code>git clone https://github.com/mob5824m-wq/Sentinel.git &amp;&amp; cd Sentinel</code></div>
+            </li>
+            <li class="guide-step">
+              <p><strong>2. Install Python requirements</strong></p>
+              <div class="guide-code"><code>python3 -m pip install -r requirements.txt</code></div>
+              <span class="guide-step-note">Requires Python 3.9 or higher.</span>
+            </li>
+            <li class="guide-step">
+              <p><strong>3. Configure Discord Bot Token</strong></p>
+              <div class="guide-code"><code>export DISCORD_TOKEN="your-bot-token"</code></div>
+              <span class="guide-step-note">Or configure directly in <code>data/config.json</code>.</span>
+            </li>
+            <li class="guide-step">
+              <p><strong>4. Run Sentinel</strong></p>
+              <div class="guide-code"><code>python3 bot.py</code></div>
+              <span class="guide-step-note">Or execute <code>scripts/run_linux.sh</code> (Linux/macOS) or <code>scripts\run_windows.bat</code> (Windows).</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="guide-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            How to Use
+          </h3>
+          <ol class="guide-steps">
+            <li class="guide-step">
+              <p><strong>1. Enable Gateway Intents in Discord Portal</strong></p>
+              <p class="guide-step-note">Enable <em>Server Members Intent</em> and <em>Message Content Intent</em> under your Discord application's Bot settings.</p>
+            </li>
+            <li class="guide-step">
+              <p><strong>2. Initial server configuration</strong></p>
+              <div class="guide-code"><code>/manage setup staff_role:@Staff log_channel:#staff-log timezone:America/Toronto</code></div>
+            </li>
+            <li class="guide-step">
+              <p><strong>3. Moderation &amp; Warnings</strong></p>
+              <div class="guide-code"><code>/manage punish user:@User role:@Muted duration:2h reason:Spamming</code></div>
+              <span class="guide-step-note">Use <code>/manage warn</code>, <code>/manage pardon</code>, and <code>/manage status</code>.</span>
+            </li>
+            <li class="guide-step">
+              <p><strong>4. Staff Dashboard</strong></p>
+              <p class="guide-step-note">Access <code>http://localhost:8000</code> in your browser using the token generated during startup to manage history, punishments, and applications.</p>
+            </li>
+          </ol>
+        </div>
       </div>
     </section>
 

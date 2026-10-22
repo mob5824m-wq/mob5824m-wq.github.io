@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-product="soundtrail-bot">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0a0b10">
+  <meta name="author" content="mob5824">
+  <meta name="description" content="Soundtrail Support Bot is a self-hosted discord.py community support bot with interactive tickets, staff transcripts, announcements, polls, and a web dashboard.">
+  <link rel="canonical" href="https://mob5824m-wq.github.io/soundtrail-bot/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="mob5824 projects">
+  <meta property="og:url" content="https://mob5824m-wq.github.io/soundtrail-bot/">
+  <meta property="og:title" content="Soundtrail Support Bot — Discord Operations &amp; Tickets">
+  <meta property="og:description" content="A self-hosted Discord support and operations bot with private tickets, staff transcripts, polls, scheduled announcements, and a browser dashboard.">
+  <meta property="og:image" content="https://mob5824m-wq.github.io/assets/img/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Soundtrail Support Bot — Discord Operations &amp; Tickets</title>
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css?v=20261020a">
+  <link rel="stylesheet" href="../assets/css/project-pages.css?v=20261020c">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Soundtrail Support Bot",
+      "applicationCategory": "SocialNetworkingApplication",
+      "operatingSystem": "Windows, macOS, Linux",
+      "description": "A self-hosted Discord support bot with interactive tickets, transcripts, announcements, polls, and an operations dashboard.",
+      "url": "https://mob5824m-wq.github.io/soundtrail-bot/",
+      "codeRepository": "https://github.com/mob5824m-wq/Soundtrail-Bot"
+    }
+  </script>
+</head>
+<body class="product-page">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="../" aria-label="mob5824 projects home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">mob5824</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#features">Features</a>
+        <a href="#install-usage">Install &amp; Use</a>
+        <a href="#workflow">How it works</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="https://github.com/mob5824m-wq/Soundtrail-Bot" target="_blank" rel="noopener noreferrer">Source ↗</a>
+        <button class="theme-toggle" type="button" aria-label="Switch theme" title="Switch theme">
+          <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8-1.8"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="product-hero container" aria-labelledby="product-title">
+      <div class="product-copy">
+        <p class="product-kicker"><span class="product-kicker-dot" aria-hidden="true"></span>Self-hosted · Python · Discord</p>
+        <h1 class="product-title" id="product-title">Community support, <span class="product-gradient">streamlined and secure.</span></h1>
+        <p class="product-lede">A dedicated support and operations bot for Discord communities. Members open private support tickets from an interactive panel, while staff get claim workflows, saved transcripts, canned FAQ replies, announcements, and an audit trail.</p>
+        <div class="product-actions">
+          <a class="btn btn-primary" href="https://github.com/mob5824m-wq/Soundtrail-Bot" target="_blank" rel="noopener noreferrer">View source &amp; setup <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-ghost" href="#install-usage">Installation &amp; Usage</a>
+        </div>
+        <ul class="product-meta" aria-label="Project details">
+          <li>Python 3.9+</li><li>discord.py</li><li>SQLite</li><li>Web Dashboard</li>
+        </ul>
+      </div>
+
+      <figure class="product-visual product-visual--terminal">
+        <div class="product-code-box" style="padding: 1.5rem; background: var(--surface-2); border-radius: var(--radius); border: 1px solid var(--border); font-family: var(--mono); font-size: .85rem; line-height: 1.6;">
+          <div style="color: var(--accent); margin-bottom: .6rem; font-weight: 600;">/manage command surface</div>
+          <div><span style="color: var(--accent-2);">/manage ticket panel</span> &mdash; post interactive support panel</div>
+          <div><span style="color: var(--accent-2);">/manage ticket claim</span> &mdash; take ownership of an open ticket</div>
+          <div><span style="color: var(--accent-2);">/manage ticket close</span> &mdash; resolve and archive transcript</div>
+          <div><span style="color: var(--accent-2);">/manage announce</span> &mdash; publish formatted embed notice</div>
+          <div><span style="color: var(--accent-2);">/manage poll create</span> &mdash; deploy vote button poll</div>
+          <div><span style="color: var(--accent-2);">/manage audit</span> &mdash; newest-first staff action history</div>
+        </div>
+        <figcaption class="visual-caption">Soundtrail Support · One command group for staff</figcaption>
+      </figure>
+    </section>
+
+    <section class="container" aria-label="Soundtrail Support highlights">
+      <div class="product-proof">
+        <div class="product-proof-item"><strong>Private Tickets</strong><span>Dedicated channels for Technical, Account, and General help</span></div>
+        <div class="product-proof-item"><strong>Archived Transcripts</strong><span>Complete conversation logs preserved before channel deletion</span></div>
+        <div class="product-proof-item"><strong>Staff Dashboard</strong><span>Manage tickets, review metrics, and inspect logs in the browser</span></div>
+      </div>
+    </section>
+
+    <section class="product-section container" id="features" aria-labelledby="features-title">
+      <div class="product-section-head">
+        <p class="product-section-kicker">Everything staff needs</p>
+        <h2 class="product-section-title" id="features-title">Structured workflows, zero chaos.</h2>
+        <p class="product-section-sub">Soundtrail Support provides an end-to-end help desk right inside your Discord server.</p>
+      </div>
+
+      <div class="product-feature-grid">
+        <article class="product-feature-card">
+          <span class="product-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          <h3>Interactive Ticket Panel</h3>
+          <p>Buttons for Technical issue, Account help, and General questions create private ticket channels visible only to the member and authorized staff.</p>
+        </article>
+        <article class="product-feature-card">
+          <span class="product-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+          <h3>Saved Transcripts</h3>
+          <p>Before a ticket channel is removed, all messages, timestamps, authors, and attachment links are compiled into an HTML/text transcript for staff review.</p>
+        </article>
+        <article class="product-feature-card">
+          <span class="product-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><line x1="8" y1="12" x2="16" y2="12"/><line x1="8" y1="8" x2="16" y2="8"/><line x1="8" y1="16" x2="12" y2="16"/></svg></span>
+          <h3>Canned FAQ Replies</h3>
+          <p>Save common troubleshooting guides using <code>/manage faq save</code> and insert them directly into open tickets with <code>/manage faq use</code> without pinging members.</p>
+        </article>
+        <article class="product-feature-card">
+          <span class="product-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+          <h3>Support Hours &amp; Quiet Time</h3>
+          <p>Define operating hours to automatically inform members if they submit inquiries after hours, and prevent late-night announcement bursts.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Installation & Usage -->
+    <section class="product-section container" id="install-usage" aria-labelledby="install-usage-title">
+      <div class="product-section-head">
+        <p class="product-section-kicker">Installation &amp; Setup</p>
+        <h2 class="product-section-title" id="install-usage-title">Run Soundtrail Support Bot.</h2>
+        <p class="product-section-sub">Self-hosted Python 3.9+ bot with SQLite persistence and browser management dashboard.</p>
+      </div>
+
+      <div class="install-guide-grid">
+        <div class="guide-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Installation Steps
+          </h3>
+          <ol class="guide-steps">
+            <li class="guide-step">
+              <p><strong>1. Clone the repository</strong></p>
+              <div class="guide-code"><code>git clone https://github.com/mob5824m-wq/Soundtrail-Bot.git &amp;&amp; cd Soundtrail-Bot</code></div>
+            </li>
+            <li class="guide-step">
+              <p><strong>2. Install Python dependencies</strong></p>
+              <div class="guide-code"><code>python3 -m pip install -r requirements.txt</code></div>
+              <span class="guide-step-note">Requires Python 3.9 or higher.</span>
+            </li>
+            <li class="guide-step">
+              <p><strong>3. Configure Bot Token</strong></p>
+              <div class="guide-code"><code>export DISCORD_TOKEN="your-bot-token"</code></div>
+              <span class="guide-step-note">Or save inside <code>data/config.json</code>.</span>
+            </li>
+            <li class="guide-step">
+              <p><strong>4. Launch the Bot</strong></p>
+              <div class="guide-code"><code>python3 bot.py</code></div>
+              <span class="guide-step-note">Helpers: <code>scripts/run_linux.sh</code> or <code>scripts\run_windows.bat</code>.</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="guide-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            How to Use
+          </h3>
+          <ol class="guide-steps">
+            <li class="guide-step">
+              <p><strong>1. Discord Bot Gateway Intents</strong></p>
+              <p class="guide-step-note">In Discord Developer Portal, enable <em>Server Members Intent</em> and <em>Message Content Intent</em>.</p>
+            </li>
+            <li class="guide-step">
+              <p><strong>2. Server configuration</strong></p>
+              <div class="guide-code"><code>/manage setup staff_role:@Support ticket_category:Support timezone:America/Toronto</code></div>
+            </li>
+            <li class="guide-step">
+              <p><strong>3. Deploy Support Ticket Panel</strong></p>
+              <div class="guide-code"><code>/manage ticket panel</code></div>
+              <span class="guide-step-note">Posts the interactive ticket creation embed in your channel.</span>
+            </li>
+            <li class="guide-step">
+              <p><strong>4. Staff Dashboard</strong></p>
+              <p class="guide-step-note">Visit <code>http://localhost:8000</code> to view live ticket queues, download transcripts, and inspect audit logs.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-section container" id="workflow" aria-labelledby="workflow-title">
+      <div class="product-section-head">
+        <p class="product-section-kicker">Security &amp; Data Control</p>
+        <h2 class="product-section-title" id="workflow-title">Self-hosted data governance.</h2>
+        <p class="product-section-sub">You own your community records. All data is kept on the host you choose.</p>
+      </div>
+      <div class="workflow-grid">
+        <article class="workflow-step"><span class="workflow-number">01 / LOCAL</span><h3>Isolated SQLite database</h3><p>Tickets, settings, FAQs, and audit logs are stored in a local SQLite file in your data directory.</p></article>
+        <article class="workflow-step"><span class="workflow-number">02 / ROLES</span><h3>Staff privilege gate</h3><p>Commands verify the caller's server role and permissions on every invocation.</p></article>
+        <article class="workflow-step"><span class="workflow-number">03 / RETENTION</span><h3>Configurable retention</h3><p>Set transcript retention periods from 1 to 3,650 days with automatic expiration of local files.</p></article>
+      </div>
+      <div class="product-legal-links" aria-label="Soundtrail Support policies">
+        <a href="terms.html">Soundtrail Support Terms</a>
+        <a href="privacy.html">Soundtrail Support Privacy Policy</a>
+        <a href="https://github.com/mob5824m-wq/Soundtrail-Bot" target="_blank" rel="noopener noreferrer">GitHub repository ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year">2026</span> mob5824 · Soundtrail Support is open source under the MIT License.</p>
+      <a href="../" class="to-top">← All projects</a>
+    </div>
+  </footer>
+  <script src="../assets/js/project-pages.js?v=20261020a"></script>
+</body>
+</html>

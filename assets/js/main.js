@@ -192,7 +192,15 @@
     spark:
       "<path d='M12 3v18'/><path d='M3 12h18'/><path d='M5.6 5.6l12.8 12.8'/><path d='M18.4 5.6 5.6 18.4'/>",
     music:
-      "<path d='M9 18V5l12-2v13'/><circle cx='6' cy='18' r='3'/><circle cx='18' cy='16' r='3'/><path d='M9 9l12-2'/>"
+      "<path d='M9 18V5l12-2v13'/><circle cx='6' cy='18' r='3'/><circle cx='18' cy='16' r='3'/><path d='M9 9l12-2'/>",
+    mobile:
+      "<rect x='5' y='2' width='14' height='20' rx='3'/><line x1='11' y1='18' x2='13' y2='18'/>",
+    search:
+      "<circle cx='11' cy='11' r='8'/><path d='m21 21-4.35-4.35'/>",
+    audio:
+      "<polygon points='11 5 6 9 2 9 2 15 6 15 11 19 11 5'/><path d='M15.54 8.46a5 5 0 0 1 0 7.07'/><path d='M19.07 4.93a10 10 0 0 1 0 14.14'/>",
+    server:
+      "<rect x='2' y='2' width='20' height='8' rx='2'/><rect x='2' y='14' width='20' height='8' rx='2'/><line x1='6' y1='6' x2='6.01' y2='6'/><line x1='6' y1='18' x2='6.01' y2='18'/>"
   };
 
   function iconSvg(name) {
@@ -349,6 +357,40 @@
         (p.year ? "<span>" + esc(p.year) + "</span>" : "") +
         (p.status ? "<span class='badge " + statusClass(p.status) + "'>" + esc(p.status) + "</span>" : "");
 
+      var installHtml = "";
+      if (has(p.install)) {
+        installHtml = "<div class='modal-section'>" +
+          "<h4 class='modal-section-title'>" +
+            "<svg class='section-icon' viewBox='0 0 24 24' aria-hidden='true' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4'/><polyline points='7 10 12 15 17 10'/><line x1='12' y1='15' x2='12' y2='3'/></svg>" +
+            " Installation &amp; Setup</h4>" +
+          "<ol class='modal-steps'>" +
+          p.install.map(function (s) {
+            return "<li class='modal-step-item'>" +
+              "<div class='step-desc'><strong>" + esc(s.step) + "</strong>" +
+              (s.note ? " — <span class='step-note'>" + esc(s.note) + "</span>" : "") + "</div>" +
+              (s.command ? "<div class='code-block-wrap'><pre class='code-block'><code>" + esc(s.command) + "</code></pre><button type='button' class='copy-code-btn' data-copy='" + esc(s.command) + "' title='Copy command'>Copy</button></div>" : "") +
+              "</li>";
+          }).join("") +
+          "</ol></div>";
+      }
+
+      var usageHtml = "";
+      if (has(p.usage)) {
+        usageHtml = "<div class='modal-section'>" +
+          "<h4 class='modal-section-title'>" +
+            "<svg class='section-icon' viewBox='0 0 24 24' aria-hidden='true' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polygon points='5 3 19 12 5 21 5 3'/></svg>" +
+            " How to Use</h4>" +
+          "<ol class='modal-steps'>" +
+          p.usage.map(function (s) {
+            return "<li class='modal-step-item'>" +
+              "<div class='step-desc'><strong>" + esc(s.step) + "</strong>" +
+              (s.note ? " — <span class='step-note'>" + esc(s.note) + "</span>" : "") + "</div>" +
+              (s.command ? "<div class='code-block-wrap'><pre class='code-block'><code>" + esc(s.command) + "</code></pre><button type='button' class='copy-code-btn' data-copy='" + esc(s.command) + "' title='Copy command'>Copy</button></div>" : "") +
+              "</li>";
+          }).join("") +
+          "</ol></div>";
+      }
+
       modalBody.innerHTML = "" +
         (p.shot
           ? "<div class='modal-shot'><img src='" + esc(p.shot) + "' alt='Screenshot of " +
@@ -363,6 +405,8 @@
           ? "<ul class='hl'>" + p.highlights.map(function (h) {
               return "<li>" + esc(h) + "</li>";
             }).join("") + "</ul>" : "") +
+        installHtml +
+        usageHtml +
         (has(p.tags)
           ? "<ul class='tags'>" + p.tags.map(function (t) {
               return "<li class='tag'>" + esc(t) + "</li>";
@@ -420,6 +464,25 @@
     });
 
     modalBody.addEventListener("click", function (e) {
+      var copyBtn = e.target.closest(".copy-code-btn");
+      if (copyBtn) {
+        var text = copyBtn.dataset.copy;
+        var orig = copyBtn.textContent;
+        var done = function () {
+          copyBtn.textContent = "Copied \u2713";
+          copyBtn.classList.add("copied");
+          setTimeout(function () {
+            copyBtn.textContent = orig;
+            copyBtn.classList.remove("copied");
+          }, 1600);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, function () { copyBtn.textContent = text; });
+        } else {
+          done();
+        }
+        return;
+      }
       var b = e.target.closest(".modal-step");
       if (b) step(Number(b.dataset.step));
     });
