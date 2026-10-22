@@ -426,14 +426,14 @@ window.PROJECTS = [
   {
     title: "Kobo Arc 7 Freedom",
     blurb:
-      "Anti-brick verified root, OTA web installer, Aurora Store, F-Droid, 60fps UI, " +
-      "and native ARMv7 Linux toolchain for Kobo Arc 7 & 7HD.",
+      "Anti-brick root, customizable App Bar launcher, VLC, 2-way Chromebook USB internet, " +
+      "Aurora Store, F-Droid, and native ARMv7 Linux toolchain for Kobo Arc 7 & 7HD.",
     description:
-      "A complete revival suite for the Kobo Arc 7 and 7HD Android tablets. Provides an anti-brick " +
-      "verified root engine, over-the-air web rooting portal, automatic local timezone sync with " +
-      "atomic clock precision, patched Aurora Store and F-Droid Classic with TLS 1.3 bridge, " +
-      "smooth 60fps animations, stock Android 4.2 launcher without bloatware, and native ARMv7 " +
-      "python3 and apt toolchains.",
+      "A complete revival suite for Kobo Arc 7 (MT8125) and 7HD (Tegra 3) Android tablets. " +
+      "Provides an anti-brick root engine, a customizable multi-edge App Bar launcher with 5 OS skins, " +
+      "two-way wired USB internet with Chromebook/Linux, pre-bundled VLC media player, Calendar with home widget, " +
+      "Notes with sketchpad, 20 Archive.org alarm chimes, patched Aurora Store and F-Droid with TLS 1.3 bridge, " +
+      "and native ARMv7 python3 and apt toolchains.",
     tags: ["Android", "Root", "OTA", "Toolchain", "Linux"],
     year: "2026",
     status: "Live",
@@ -441,26 +441,54 @@ window.PROJECTS = [
     shot: "assets/img/shots/kobo-banner.png",
     shotPos: "center",
     highlights: [
-      "Anti-brick verified root with direct Over-The-Air (OTA) web browser installer",
-      "Stock Android 4.2 Home launcher with long-press widgets and zero bloatware",
-      "Pre-bundled Aurora Store (Play Store client) and patched F-Droid Classic with TLS 1.3 bridge",
-      "Automatic Wi-Fi timezone detection and atomic clock synchronization",
-      "Hardware-accelerated 60 fps activity and transition animations",
-      "Native ARMv7 python3, pip, curl, and apt Linux toolchain in /system/xbin/"
+      "Anti-brick verified root with 1-tap OTA upgrade (Upgrade-My-Kobo-To-v2.1.0.apk)",
+      "Customizable App Bar launcher: pin 0–12 apps, 5 positions (Bottom, Top, Left/Right rails, Hidden), and 5 OS skins",
+      "Two-way wired USB internet bridge for Chromebooks and Linux (Start-Chromebook-Wired-Internet.sh)",
+      "Pre-bundled ARMv7 VLC Media Player, Arc7 Calendar with widget, Notes, Camera, and Photos studio",
+      "Pre-bundled Aurora Store and patched F-Droid Classic with TLS 1.3 gateway and updated 2026 SSL certs",
+      "Zero-SSL home Wi-Fi rooting servers for Windows (.bat) and macOS/Linux (.sh) to bypass expired factory certs",
+      "Native ARMv7 python3, pip, and apt Linux toolchain in /system/xbin/"
     ],
     install: [
-      { step: "Open OTA installer in Kobo browser", note: "Visit https://mob5824m-wq.github.io/Kobo-Arc-7-freedom/ in the stock Kobo browser." },
-      { step: "Or start Wi-Fi OTA server on computer", note: "Windows: run Start-Kobo-WiFi-Server.bat | macOS/Linux: run ./Start-Kobo-WiFi-Server.sh" },
-      { step: "Install 1-Tap Upgrader APK", note: "Download and tap Upgrade-My-Kobo-To-v1.9.1.apk on the tablet." }
+      {
+        step: "Method 1: Local Wi-Fi Rooting Server (Recommended for unrooted tablets)",
+        command: "Windows: Start-Kobo-WiFi-Server.bat\nmacOS/Linux: ./Start-Kobo-WiFi-Server.sh",
+        note: "Factory tablets have expired 2013 SSL certs. This runs a local zero-SSL server so the tablet browser downloads Upgrade-My-Kobo-To-v2.1.0.apk from http://<pc-ip>:8000 without SSL handshake errors."
+      },
+      {
+        step: "Method 2: USB / ADB Sideload",
+        command: "adb install Upgrade-My-Kobo-To-v2.1.0.apk",
+        note: "Enable USB Debugging in Developer Options on the tablet and sideload directly over USB."
+      },
+      {
+        step: "Method 3: Direct Download / MicroSD Transfer",
+        command: "https://github.com/mob5824m-wq/Kobo-Arc-7-freedom/releases/latest",
+        note: "Download Upgrade-My-Kobo-To-v2.1.0.apk from GitHub Releases and transfer to the tablet via MicroSD card or USB storage."
+      }
     ],
     usage: [
-      { step: "Root & Setup", note: "Open Kobo Arc 7 Freedom app on the tablet, tap 1-Tap Root, and let it clean stock bloatware and calibrate time." },
-      { step: "Install modern Android apps", note: "Launch Aurora Store or F-Droid Classic to browse and install compatible Android 4.2 applications." },
-      { step: "Use Linux terminal toolchain", note: "Open terminal and run python3 or apt commands directly from the native ARMv7 Linux environment." }
+      {
+        step: "1-Tap Root & Full Upgrade",
+        note: "Launch Upgrade-My-Kobo-To-v2.1.0.apk on the tablet and tap '1-Tap Root & Upgrade'. It applies anti-brick root, cleans bloatware, installs 120 modern 2026 SSL certs, TLS 1.3, Aurora Store, and F-Droid."
+      },
+      {
+        step: "Customizable App Bar & OS Skins",
+        note: "Long-press any icon on the Home App Bar or tap 'App Bar' to configure 0–12 slots, dock position (Bottom, Top, Left/Right side rail, or Hidden), and choose from 5 OS skins."
+      },
+      {
+        step: "Chromebook / Linux USB Internet Bridge",
+        command: "./Start-Chromebook-Wired-Internet.sh",
+        note: "Plug Kobo into a Chromebook or Linux machine to share high-speed wired internet over USB without Wi-Fi."
+      },
+      {
+        step: "Native ARMv7 Linux Toolchain",
+        command: "python3 --version && apt --help",
+        note: "Open terminal on the tablet to run native ARMv7 python3, pip, curl, and apt package management."
+      }
     ],
     links: [
       { label: "Project page", href: "kobo-arc-7-freedom/" },
-      { label: "OTA web portal", href: "https://mob5824m-wq.github.io/Kobo-Arc-7-freedom/" },
+      { label: "Latest release (v2.1.0)", href: "https://github.com/mob5824m-wq/Kobo-Arc-7-freedom/releases/latest" },
       { label: "Source", href: "https://github.com/mob5824m-wq/Kobo-Arc-7-freedom" }
     ]
   },
