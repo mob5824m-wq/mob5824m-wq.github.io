@@ -1,0 +1,12 @@
+{
+  "owner": {
+    "username": "mob5824m-wq",
+    "email": "mob5824@duck.com"
+  },
+  "records": {
+    "URL": "https://mob5824.is-a.dev/raspap-webone/"
+  },
+  "redirect_config": {
+    "redirect_paths": true
+  }
+}
