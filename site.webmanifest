@@ -1,7 +1,7 @@
 {
   "name": "mob5824 — Projects",
   "short_name": "mob5824",
-  "description": "Projects by mob5824 — a classroom library system, a Discord moderation bot and a Raspberry Pi image builder.",
+  "description": "A portfolio of 24 projects across classroom tools, Android and desktop apps, browser extensions, games, hardware, and self-hosted software.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

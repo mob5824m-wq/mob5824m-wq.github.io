@@ -46,7 +46,7 @@
   });
 
   var titleName = has(SITE.name) ? SITE.name : SITE.brand;
-  if (has(titleName)) document.title = titleName + " — Projects";
+  if (has(titleName)) document.title = titleName + " — Projects & Software";
 
   show($("#availability"), has(SITE.availability));
 
@@ -82,7 +82,8 @@
   var statsEl = $("#stats");
   if (statsEl && has(SITE.stats)) {
     statsEl.innerHTML = SITE.stats.map(function (s) {
-      return "<li><strong>" + esc(s.value) + "</strong><span>" + esc(s.label) + "</span></li>";
+      var value = s.label === "Projects" ? String(PROJECTS.length) : s.value;
+      return "<li><strong>" + esc(value) + "</strong><span>" + esc(s.label) + "</span></li>";
     }).join("");
     show(statsEl, true);
   }
@@ -225,11 +226,14 @@
     return "archived";
   }
 
-  /* Filter bar — only worth showing with 2+ tags and 2+ projects */
-  var tags = ["All"];
-  PROJECTS.forEach(function (p) {
-    (p.tags || []).forEach(function (t) { if (tags.indexOf(t) === -1) tags.push(t); });
-  });
+  /* Keep filters useful as the portfolio grows: expose a short set of broad,
+     recognizable categories instead of every implementation-detail tag. */
+  var preferredTags = [
+    "Web app", "Android", "Desktop", "Browser extension", "Discord", "Game", "Hardware", "Self-hosted"
+  ];
+  var tags = ["All"].concat(preferredTags.filter(function (tag) {
+    return PROJECTS.some(function (p) { return (p.tags || []).indexOf(tag) > -1; });
+  }));
 
   if (filtersEl && tags.length > 2 && PROJECTS.length > 1) {
     filtersEl.innerHTML = tags.map(function (t) {
