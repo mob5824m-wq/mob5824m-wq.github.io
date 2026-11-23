@@ -1,6 +1,6 @@
 # mob5824 — projects portfolio
 
-Personal portfolio and project directory for **<https://mob5824m-wq.github.io/>**. It brings together 25 first-party projects across web, Android, desktop, browser extensions, games, hardware, and self-hosted services. Cards open detailed setup/usage notes, and projects have their own landing pages where available. The static site uses plain HTML, CSS, and JavaScript—no build step, package manager, or framework required.
+Personal portfolio and project directory for **<https://mob5824m-wq.github.io/>**. It brings together 24 first-party projects across web, Android, desktop, browser extensions, games, hardware, and self-hosted services. Cards open detailed setup/usage notes, and projects have their own landing pages where available. The static site uses plain HTML, CSS, and JavaScript—no build step, package manager, or framework required.
 
 The inventory is based on the public repositories in `mob5824m-wq`. Related Soniq-App and Soniq-Base repositories are grouped as one early-stage project; upstream forks are not presented as original projects.
 
@@ -32,8 +32,6 @@ arena-ai-helper/                   Arena.ai Helper browser extension landing pag
 dropzone/                          Dropzone local battle-royale landing page
 youtube-music-to-jellyfin/         ytm2j local web app and CLI landing page
 soniq/                             Soniq early-stage project status page
-NA/ and na/                        North Active storefront and lowercase product routes
-NA/products/ and na/<product>/     Generated product pages and case-compatibility aliases
 terms.html                         Directory to project-specific Terms of Service
 privacy.html                       Directory to project-specific Privacy Policies
 data/content.js                    Portfolio identity and shared project content
@@ -43,7 +41,6 @@ assets/css/project-details.css     Shared styles for recent project landing page
 assets/js/main.js                  Portfolio rendering, filters, theme, and dialogs
 assets/js/project-pages.js         Theme, navigation, and legal-page interactions
 assets/js/project-detail.js        Shared renderer for project detail pages
-scripts/build_na_catalog.py        North Active catalog and product-page generator
 serve.py                           Local preview server with caching disabled
 sitemap.xml                        Search engine URL list
 ```
@@ -64,7 +61,6 @@ sitemap.xml                        Search engine URL list
 - **Ledger KW** (`/city-search/`) — Kitchener and Waterloo public property and building-permit search using open data.
 - **MyInstants Clone** (`/myinstants-clone/`) — browser soundboard with streaming clips, favorites, and custom uploads.
 - **CubeClash** (`/cubeclash/`) — playable first-person voxel sandbox with Survival and Creative modes.
-- **North Active** (`/na/`) — activewear storefront experiment with a hosted catalog and an external checkout handoff to the retailer.
 - **OpenTag** (`/opentag/`) — ESP32-S3 NFC handheld with firmware, hardware files, and an Android companion app. Tag data is user-supplied; see its safety notes.
 - **SwimSet** (`/swimset/`) — offline swim-practice builder and poolside timer for Android, Chromebooks, and Debian Linux.
 - **PatchPilot** (`/patchpilot/`) — Android tool for finding and verifying APK versions supported by a user's Morphe patch bundles.

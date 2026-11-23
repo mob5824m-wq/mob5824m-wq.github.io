@@ -984,39 +984,6 @@ window.PROJECTS = [
     ]
   },
   {
-    slug: "north-active",
-    page: "na/",
-    title: "North Active",
-    blurb: "A polished activewear storefront with a hosted catalog, search and filters, dedicated product pages, a local bag, and external checkout handoff.",
-    description: "North Active is an independent storefront experiment built around a hosted Athleta Canada product catalog. Shoppers can browse, search, filter and sort the catalog, open dedicated product pages, and save items to a browser-local shopping bag. Checkout is handed off to the retailer's own site; North Active does not process orders or payments.",
-    tags: ["Web app", "JavaScript", "Storefront", "E-commerce", "Catalog"],
-    year: "2026",
-    status: "Live",
-    icon: "search",
-    featured: true,
-    highlights: [
-      "Hosted product catalog: storefront listings load from a static JSON catalog in this repository",
-      "Search, filter, and sort: browse products by name, category, price, and other catalog fields",
-      "Dedicated product pages: view images, color options, source details, and product information",
-      "Local shopping bag: selected items persist in the browser while the shopper browses",
-      "External checkout: the final checkout handoff goes to Athleta Canada; no payments are handled here",
-      "Static deployment: plain HTML, CSS, and JavaScript with no build step"
-    ],
-    install: [
-      { step: "Clone the portfolio repository", command: "git clone https://github.com/mob5824m-wq/mob5824m-wq.github.io.git && cd mob5824m-wq.github.io" },
-      { step: "Start a local server", command: "python3 serve.py 8000", note: "Then open http://localhost:8000/na/; the project uses the hosted catalog JSON in data/." }
-    ],
-    usage: [
-      { step: "Browse and filter the catalog", note: "Open the storefront, search by product name, select a category, or sort by price or name." },
-      { step: "Review a product", note: "Open a product detail page to inspect the available images and color options, then add it to the local bag." },
-      { step: "Continue to checkout", note: "The checkout button redirects to the partner retailer. Product information and availability should be confirmed on that site." }
-    ],
-    links: [
-      { label: "Project page", href: "na/" },
-      { label: "Source & catalog", href: "https://github.com/mob5824m-wq/mob5824m-wq.github.io" }
-    ]
-  },
-  {
     slug: "soniq",
     page: "soniq/",
     title: "Soniq (in progress)",
