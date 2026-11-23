@@ -1,81 +1,103 @@
-# mob5824m-wq.github.io
+# mob5824 — projects portfolio
 
-Personal website and portfolio showcasing all open-source projects by mob5824. Every project features comprehensive step-by-step installation guides and usage instructions, with dedicated landing pages and legal documents where applicable. Plain HTML, CSS, and vanilla JS—no build step, npm, or framework. Push and it is live on GitHub Pages.
+Personal portfolio and project directory for **<https://mob5824m-wq.github.io/>**. It brings together 25 first-party projects across web, Android, desktop, browser extensions, games, hardware, and self-hosted services. Cards open detailed setup/usage notes, and projects have their own landing pages where available. The static site uses plain HTML, CSS, and JavaScript—no build step, package manager, or framework required.
 
-**<https://mob5824m-wq.github.io/>**
+The inventory is based on the public repositories in `mob5824m-wq`. Related Soniq-App and Soniq-Base repositories are grouped as one early-stage project; upstream forks are not presented as original projects.
+
+## Site map
 
 ```
-index.html                 Home page & project showcase portfolio
-classroom-library/         Classroom Library project page
-soundtrail/                Soundtrail location-based music companion project page
-pixel-photo-nas/           Pixel Photo NAS & Household Samba client project page
-sentinel/                  Sentinel landing page, Terms, and Privacy Policy
-discord-lofi/              Lofi (Discord-lofi) landing page, Terms, and Privacy Policy
-combat-master/             Combat Master landing page, Terms, and Privacy Policy
-soundtrail-bot/            Soundtrail Support Bot landing page, Terms, and Privacy Policy
-raspap-webone/             RaspAP + WebOne image-builder project page
-kobo-arc-7-freedom/        Kobo Arc 7 Freedom root, OTA & Linux suite project page
-classroom-book-recs/       Classroom Book Recommendations project page
-city-search/               Ledger KW Kitchener & Waterloo property search page
-myinstants-clone/          MyInstants Clone real MP3 soundboard project page
-cubeclash/                 CubeClash playable voxel sandbox game
-terms.html                 Directory to the project-specific Terms of Service
-privacy.html               Directory to the project-specific Privacy Policies
-data/content.js            ← Portfolio content & project definitions
-assets/css/style.css       Design tokens and portfolio styles
-assets/css/project-pages.css Shared styles for project landing and legal pages
-assets/js/main.js          Dynamic portfolio rendering, theme, filters, and project modals
-assets/js/project-pages.js Theme, navigation, and legal-page interactions
-assets/img/                Icons, social graph image (og.jpg), and screenshots
-serve.py                   Local preview server (caching disabled)
-.nojekyll                  Stops GitHub Pages running Jekyll
-sitemap.xml                Search engine indexing sitemap
+index.html                         Main portfolio, filters, project detail dialogs
+classroom-library/                 Classroom Library landing page
+soundtrail/                        Soundtrail Android app landing page
+soundtrail-server/                 SoundTrail ServerSide landing page
+pixel-photo-nas/                   Pixel Photo NAS landing page
+sentinel/                          Sentinel landing page, Terms, and Privacy
+discord-lofi/                      Lofi Discord music bot landing page, Terms, Privacy
+combat-master/                     Combat Master landing page, Terms, and Privacy
+soundtrail-bot/                    Soundtrail Support Bot landing page, Terms, Privacy
+raspap-webone/                     RaspAP + WebOne image-builder landing page
+kobo-arc-7-freedom/                Kobo Arc 7 Freedom landing page
+classroom-book-recs/               Classroom Book Recommendations landing page
+city-search/                       Ledger KW civic search landing page
+myinstants-clone/                  MyInstants Clone landing page
+cubeclash/                         Playable CubeClash voxel game
+opentag/                           OpenTag NFC handheld landing page
+swimset/                           SwimSet native swim-practice app landing page
+patchpilot/                        PatchPilot Android app landing page
+openpath-vpn/                      OpenPath VPN landing page
+focusfrost/                        FocusFrost browser extension landing page
+negativity-now/                    Negativity Now Android app landing page
+arena-ai-helper/                   Arena.ai Helper browser extension landing page
+dropzone/                          Dropzone local battle-royale landing page
+youtube-music-to-jellyfin/         ytm2j local web app and CLI landing page
+soniq/                             Soniq early-stage project status page
+NA/ and na/                        North Active storefront and lowercase product routes
+NA/products/ and na/<product>/     Generated product pages and case-compatibility aliases
+terms.html                         Directory to project-specific Terms of Service
+privacy.html                       Directory to project-specific Privacy Policies
+data/content.js                    Portfolio identity and shared project content
+assets/css/style.css               Portfolio design tokens and card styles
+assets/css/project-pages.css       Shared landing-page styles
+assets/css/project-details.css     Shared styles for recent project landing pages
+assets/js/main.js                  Portfolio rendering, filters, theme, and dialogs
+assets/js/project-pages.js         Theme, navigation, and legal-page interactions
+assets/js/project-detail.js        Shared renderer for project detail pages
+scripts/build_na_catalog.py        North Active catalog and product-page generator
+serve.py                           Local preview server with caching disabled
+sitemap.xml                        Search engine URL list
 ```
 
-## Showcased Projects
+## Projects
 
-- **`/` (`index.html`)**: Interactive project portfolio with dark/light mode, tag filtering, modal dialogs displaying full Installation and Usage instructions with copyable code snippets.
-- **`/classroom-library/`**: Classroom Library, a self-hosted Grade 7–8 library with a shared catalog, student checkout, holds, barcode scanning, reading logs, and teacher controls.
-- **`/soundtrail/`**: Soundtrail, a location-based music companion Android app integrating Spotify, YouTube Music, SoundCloud, and Jellyfin with on-device mood mixes and Android Auto.
-- **`/pixel-photo-nas/`**: Pixel Photo NAS, turning older Google Pixel 1–5 phones into a 24/7 home Samba NAS with automated photo/video compression for Google Photos unlimited backup and a dedicated Household client app.
-- **`/sentinel/`**: Sentinel, a cross-platform, self-hosted Discord bot for role-based moderation, warnings, applications, and a staff dashboard.
-- **`/discord-lofi/`**: Lofi (Discord-lofi), a self-hosted Discord music bot with network radio streams, local audio playback, offline Studio Lofi beats, and a web dashboard.
-- **`/combat-master/`**: Combat Master, a self-hosted Discord staff bot for scheduled announcements, button polls, events, tickets, roles, and a browser operations dashboard.
-- **`/soundtrail-bot/`**: Soundtrail Support Bot, a community help desk bot featuring private support tickets, message transcripts saved before deletion, FAQ replies, and an audit trail.
-- **`/raspap-webone/`**: RaspAP + WebOne image builder, a GUI/CLI Bash tool producing a flashable 64-bit Raspberry Pi hotspot image with retro-web proxy baked in.
-- **`/kobo-arc-7-freedom/`**: Kobo Arc 7 Freedom, an anti-brick root engine, OTA web installer, Aurora Store, F-Droid with TLS 1.3 bridge, 60fps animations, and native ARMv7 Linux toolchain.
-- **`/classroom-book-recs/`**: Classroom Book Recommendations, a personalized recommendation system using unique student codes, reading preference quizzes, and Open Library integration.
-- **`/city-search/`**: Ledger KW, an open-data GIS tool querying Kitchener & Waterloo corporate property portfolios, building permit histories, and keyless vector maps.
-- **`/myinstants-clone/`**: MyInstants Clone, a responsive soundboard web app featuring 60+ buttons with real MP3 audio streaming, Web Audio synth fallback, and custom uploads.
-- **`/cubeclash/`**: CubeClash, a first-person voxel sandbox game built with vanilla JS and Canvas, featuring Survival and Creative modes, slime combat, crafting, and local high scores.
-- **`/terms.html`** and **`/privacy.html`**: Directories linking to project-specific legal documents.
+- **Classroom Library** (`/classroom-library/`) — self-hosted classroom library with student checkout, holds, barcode scanning, reading logs, and teacher controls.
+- **Soundtrail** (`/soundtrail/`) — Android music companion with location pins, on-device mood mixes, and Android Auto.
+- **SoundTrail ServerSide** (`/soundtrail-server/`) — optional self-hosted sync and audio API for Soundtrail, with encrypted sync payloads and managed backups.
+- **Sentinel** (`/sentinel/`) — self-hosted Discord moderation, applications, and staff dashboard.
+- **Pixel Photo NAS** (`/pixel-photo-nas/`) — Google Pixel photo/video NAS with Samba and a household Android client.
+- **Lofi (Discord-lofi)** (`/discord-lofi/`) — Discord music bot for radio streams, local audio, and generated lofi.
+- **Combat Master** (`/combat-master/`) — Discord staff operations bot for announcements, schedules, polls, events, tickets, and roles.
+- **Soundtrail Support Bot** (`/soundtrail-bot/`) — Discord help desk with tickets, transcripts, polls, and staff tooling.
+- **RaspAP + WebOne** (`/raspap-webone/`) — GUI/CLI builder for a flashable Raspberry Pi hotspot image with a retro-web proxy.
+- **Kobo Arc 7 Freedom** (`/kobo-arc-7-freedom/`) — root, OTA, App Bar, app store, USB networking, and ARMv7 tools for Kobo Arc 7 tablets.
+- **Classroom Book Recommendations** (`/classroom-book-recs/`) — student-code reading recommendations with teacher tools and Open Library integration.
+- **Ledger KW** (`/city-search/`) — Kitchener and Waterloo public property and building-permit search using open data.
+- **MyInstants Clone** (`/myinstants-clone/`) — browser soundboard with streaming clips, favorites, and custom uploads.
+- **CubeClash** (`/cubeclash/`) — playable first-person voxel sandbox with Survival and Creative modes.
+- **North Active** (`/na/`) — activewear storefront experiment with a hosted catalog and an external checkout handoff to the retailer.
+- **OpenTag** (`/opentag/`) — ESP32-S3 NFC handheld with firmware, hardware files, and an Android companion app. Tag data is user-supplied; see its safety notes.
+- **SwimSet** (`/swimset/`) — offline swim-practice builder and poolside timer for Android, Chromebooks, and Debian Linux.
+- **PatchPilot** (`/patchpilot/`) — Android tool for finding and verifying APK versions supported by a user's Morphe patch bundles.
+- **OpenPath VPN** (`/openpath-vpn/`) — native WireGuard clients and self-hosted services. Read its security notes before deployment; demo endpoints are not production-safe.
+- **FocusFrost** (`/focusfrost/`) — Chromium extension for site interventions, focus caps, and cooldowns.
+- **Negativity Now** (`/negativity-now/`) — Android reminder scheduler with configurable windows, snoozes, prompts, and a home-screen widget.
+- **Arena.ai Helper** (`/arena-ai-helper/`) — Chromium extension for queueing prompts and pausing automation on verification challenges.
+- **Dropzone** (`/dropzone/`) — single-file Canvas battle royale with bots, loot, building, and a shrinking storm.
+- **ytm2j — YouTube Music to Jellyfin** (`/youtube-music-to-jellyfin/`) — local web app and CLI for organizing playlists into Jellyfin-ready folders.
+- **Soniq** (`/soniq/`) — early-stage project represented by the public Soniq-App and Soniq-Base starter repositories; feature details are not published yet.
 
-## CubeClash
+The portfolio's project descriptions and setup links live in **`data/content.js`**. The home-page project count is derived from the project list, and the recent project detail pages read their content from the same data source.
 
-The game is a standalone static page in `cubeclash/` and uses no runtime or build dependencies. Survival and Creative sessions both support block mining/placement, slime mobs, pause/restart, and device-local high scores.
+## CubeClash controls
 
-- **Move/strafe:** `WASD`; mobile D-pad forward/back
-- **Look:** click the world to lock the mouse, then move to look left/right/up/down (`Esc` unlocks and pauses); click-drag fallback, arrow keys, or mobile swipe
-- **Inventory/gear:** press `I` or tap the backpack; select blocks, craft swords and leaf/bark armor, and equip a loadout
-- **Fight:** press `Space`, click the sword button or a slime, or tap mobile `FIGHT`; move closer if out of reach
-- **Mine:** click/tap what you’re facing or press `F`; mobile Mine button
-- **Build:** right-click or press `E`; choose a block with `1`–`9` or the hotbar
+CubeClash is a standalone static page in `cubeclash/`; it has no runtime or build dependencies. Survival and Creative sessions support mining, building, slimes, pause/restart, and device-local high scores.
+
+- **Move:** `WASD`; mobile D-pad
+- **Look:** click the world to lock the mouse, then move it to look around; `Esc` unlocks and pauses
+- **Inventory and gear:** press `I`; choose blocks, craft equipment, and equip a loadout
+- **Fight:** `Space`, the sword button, or tap a slime
+- **Mine:** click/tap the block you face or press `F`
+- **Build:** right-click or press `E`; choose blocks with `1`–`9`
 - **Creative flight:** double-tap `Space` to toggle; hold `Space` to rise and `Shift` to descend
-- **Pause:** `Esc` or `P`; scores are stored in browser `localStorage`
+- **Pause:** `Esc` or `P`; scores stay in browser `localStorage`
 
-## Editing Portfolio Content
-
-Portfolio projects and personal bio details live in **`data/content.js`**.
-- `window.SITE`: Brand name, availability, typewriter slogans, bio, skills, timeline, and contact links.
-- `window.PROJECTS`: Project names, descriptions, tags, highlights, screenshots, and links.
-
-## Local Preview
+## Local preview
 
 ```bash
 python3 serve.py 8000
-# Visit http://localhost:8000 in your browser
+# Open http://localhost:8000/
 ```
 
-## Licence
+## License
 
-[MIT](LICENSE).
+The portfolio site is released under the [MIT License](LICENSE). Individual projects may use their own license; check the source repository before reuse.

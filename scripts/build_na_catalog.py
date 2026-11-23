@@ -14,7 +14,7 @@ NA_PRODUCTS_DIR = ROOT / "NA" / "products"
 na_PRODUCTS_DIR = ROOT / "na" / "products"
 NA_DIRECT_DIR = ROOT / "NA"
 na_DIRECT_DIR = ROOT / "na"
-ASSET_VERSION = "20260830f"
+ASSET_VERSION = "20261123a"
 GENERIC_SOURCE_NAME = "Partner source"
 GENERIC_SOURCE_LABEL = "Open source page"
 GENERIC_CHECKOUT_NAME = "Partner site"
@@ -167,7 +167,7 @@ def build_storefront_items(source_items: list[dict]) -> list[OrderedDict]:
     return out_items
 
 
-def product_page_html(product_name: str, product_id: str, styles_href: str, store_js_href: str, product_js_href: str, shop_href: str, cart_href: str) -> str:
+def product_page_html(product_name: str, product_id: str, styles_href: str, store_js_href: str, product_js_href: str, shop_href: str, cart_href: str, portfolio_href: str) -> str:
     product_name = escape(product_name)
     product_id = escape(product_id)
     return f'''<!DOCTYPE html>
@@ -194,6 +194,7 @@ def product_page_html(product_name: str, product_id: str, styles_href: str, stor
         </a>
         <nav class="nav-links" aria-label="Primary navigation">
           <a href="{shop_href}">Shop</a>
+          <a href="{portfolio_href}">All projects</a>
           <a href="{cart_href}">Cart</a>
         </nav>
         <a class="bag-button" id="bagButton" href="{cart_href}" aria-label="Shopping cart">
@@ -213,6 +214,10 @@ def product_page_html(product_name: str, product_id: str, styles_href: str, stor
           <div class="product-grid" id="relatedGrid"></div>
         </section>
       </main>
+      <footer class="store-footer">
+        <p>North Active is an independent storefront experiment. Product details, availability, and checkout are provided by the retailer.</p>
+        <a href="{portfolio_href}">← All mob5824 projects</a>
+      </footer>
     </div>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <script src="{store_js_href}?v={ASSET_VERSION}"></script>
@@ -239,6 +244,7 @@ def write_legacy_upper_product_page(product: dict) -> None:
             "../../product-page.js",
             "../../",
             "../../cart.html",
+            "../../../",
         ),
     )
 
@@ -278,6 +284,7 @@ def write_direct_lower_product_page(product: dict) -> None:
             "../../NA/product-page.js",
             "../",
             "../cart.html",
+            "../../",
         ),
     )
 

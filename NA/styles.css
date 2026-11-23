@@ -1526,3 +1526,22 @@ body[data-page="catalog"] .story-main {
     grid-template-columns: 48px 1fr 48px;
   }
 }
+
+.store-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .8rem 1.5rem;
+  margin: 1.5rem 0 0;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, .62);
+  color: var(--muted);
+  font-size: .82rem;
+}
+
+.store-footer p { margin: 0; max-width: 78ch; }
+.store-footer a { color: var(--ink); font-weight: 700; text-decoration: none; }
+.store-footer a:hover { color: var(--accent-dark); }
